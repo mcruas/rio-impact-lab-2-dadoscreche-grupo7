@@ -13,7 +13,8 @@
       "type": "array",
       "items": { "$ref": "endereco.schema.json" },
       "minItems": 1,
-      "maxItems": 3
+      "maxItems": 5,
+      "description": "Endereço de moradia (obrigatório, tipo=Moradia) e, opcionalmente, outros locais de interesse (tipo=Trabalho, ou texto livre para outros locais de desejo como casa dos avós) — usados pelo módulo Recomendação de Escola para calcular proximidade."
     },
     "turno": { "type": "string", "enum": ["Integral", "Parcial"] },
     "escolas_escolhidas": {

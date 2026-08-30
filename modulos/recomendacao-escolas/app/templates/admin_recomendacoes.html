@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Admin — Recomendação de Escola</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; }
+    h1 { font-size: 1.3rem; }
+    form { display: grid; grid-template-columns: repeat(2, minmax(200px, 1fr)); gap: 0.75rem 1.5rem; max-width: 900px; margin-bottom: 2rem; }
+    label { display: flex; flex-direction: column; font-size: 0.85rem; color: #444; }
+    input { padding: 0.4rem; font-size: 1rem; margin-top: 0.2rem; }
+    button { grid-column: 1 / -1; padding: 0.6rem; font-size: 1rem; cursor: pointer; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+    th, td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #f2f2f2; }
+    .preferida { background: #fff8e1; }
+    .erro { color: #b00020; margin-bottom: 1rem; }
+    .explicacao { max-width: 320px; }
+  </style>
+</head>
+<body>
+  <h1>Admin — Recomendação de Escola (racional de cada sugestão)</h1>
+  <p>Formulário de teste — chama a mesma função de ranking usada por <code>POST /recomendacoes</code>.</p>
+
+  {% if erro %}
+    <p class="erro">{{ erro }}</p>
+  {% endif %}
+
+  <form method="post">
+    <label>Bairro de moradia (obrigatório)
+      <input type="text" name="bairro_moradia" value="{{ form.get('bairro_moradia', '') }}" required>
+    </label>
+    <label>Bairro de trabalho (opcional)
+      <input type="text" name="bairro_trabalho" value="{{ form.get('bairro_trabalho', '') }}">
+    </label>
+    <label>Tipo do local extra (opcional, ex.: Avós)
+      <input type="text" name="tipo_local_extra" value="{{ form.get('tipo_local_extra', '') }}" placeholder="ex.: Avós">
+    </label>
+    <label>Bairro do local extra (opcional)
+      <input type="text" name="bairro_local_extra" value="{{ form.get('bairro_local_extra', '') }}">
+    </label>
+    <label>Percentil do score estimado, 0-100 (opcional)
+      <input type="text" name="percentil_score" value="{{ form.get('percentil_score', '') }}" placeholder="ex.: 80">
+    </label>
+    <label>Escola preferida — esc_codigo (opcional)
+      <input type="text" name="escola_preferida_esc_codigo" value="{{ form.get('escola_preferida_esc_codigo', '') }}">
+    </label>
+    <label>Vezes convocado historicamente (opcional)
+      <input type="text" name="vezes_convocado" value="{{ form.get('vezes_convocado', '') }}">
+    </label>
+    <label>Dessas, vezes que não compareceu (opcional)
+      <input type="text" name="vezes_nao_compareceu" value="{{ form.get('vezes_nao_compareceu', '') }}">
+    </label>
+    <button type="submit">Recomendar</button>
+  </form>
+
+  {% if resultados is not none %}
+    <h2>{{ resultados|length }} escola(s) recomendada(s)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Escola</th>
+          <th>Bairro</th>
+          <th>Microárea / CRE</th>
+          <th>Distância</th>
+          <th>Concorrência</th>
+          <th>Pontuação final</th>
+          <th>Proximidade</th>
+          <th>Adequação score</th>
+          <th>Histórico</th>
+          <th>Explicação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in resultados %}
+        <tr class="{{ 'preferida' if r.preferida else '' }}">
+          <td>{{ r.nome }}{% if r.preferida %} ⭐{% endif %}<br><small>{{ r.esc_codigo }}</small></td>
+          <td>{{ r.bairro }}</td>
+          <td>{{ r.cod_territ ~ " / CRE " ~ r.cre if r.cod_territ else "sem dado" }}</td>
+          <td>{{ "%.1f"|format(r.distancia_km) }} km ({{ r.origem_distancia }})</td>
+          <td>{{ "%.0f%%"|format(r.indice_concorrencia * 100) if r.indice_concorrencia is not none else "sem dado" }}</td>
+          <td><strong>{{ "%.1f"|format(r.pontuacao_final) }}</strong></td>
+          <td>{{ "%.1f"|format(r.rationale.pontos_proximidade) }}</td>
+          <td>{{ "%.1f"|format(r.rationale.pontos_adequacao_score) }}</td>
+          <td>{{ "%.1f"|format(r.rationale.pontos_historico) }}</td>
+          <td class="explicacao">{{ r.rationale.explicacao }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</body>
+</html>

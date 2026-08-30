@@ -1,6 +1,19 @@
 """Carrega e prepara os dados de escolas usados pelo endpoint /escolas.
 
-Fontes (lidas direto de desafio/, sem depender de nenhum outro módulo):
+Duas formas de carregar, para dois públicos diferentes:
+
+- `carregar_escolas()` (usada em produção/deploy, inclusive Vercel): lê
+  `dados/escolas.duckdb`, um arquivo pequeno (~1941 linhas) já processado e
+  commitado no git. Rápida, não depende de `desafio/` nem das extensões
+  `excel`/`spatial` do DuckDB em runtime — essencial porque o ambiente de
+  deploy não tem os dados brutos do desafio (ver `.gitignore` da raiz).
+- `recalcular_de_desafio()` (usada só por `scripts/gerar_dataset.py`, local,
+  com `desafio/` presente): recalcula tudo do zero a partir das fontes
+  originais e é o que gera o arquivo acima. Rodar de novo sempre que os dados
+  de `desafio/` mudarem.
+
+Fontes de `recalcular_de_desafio()` (lidas direto de desafio/, sem depender de
+nenhum outro módulo):
 - desafio/OferecimentosEvagas/Unidades_Unificadas_com_Localizacao.xlsx
   (endereço, bairro, lat/long e tipo de cada unidade — DESIGNACAO = esc_codigo).
 - desafio/Bases IC_ ClassificadoseFila/01_QueryA_InscricoesPorAno.csv(.gz)
@@ -25,11 +38,15 @@ from pathlib import Path
 
 import duckdb
 
+from . import microarea
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
+MODULO_ROOT = Path(__file__).resolve().parents[1]
 ESCOLAS_XLSX = (
     REPO_ROOT / "desafio" / "OferecimentosEvagas" / "Unidades_Unificadas_com_Localizacao.xlsx"
 )
 QUERY_A_DIR = REPO_ROOT / "desafio" / "Bases IC_ ClassificadoseFila"
+DATASET_PRECOMPUTADO = MODULO_ROOT / "dados" / "escolas.duckdb"
 
 ATENDIDA = ("Confirmado", "Ativo", "Selecionado", "Selecionado da lista")
 
@@ -43,8 +60,14 @@ class Escola:
     latitude: float | None
     longitude: float | None
     tipo: str | None
-    tag_priorizacao: str
-    taxa_atendimento_historica: float | None
+    indice_concorrencia: float | None
+    """1 - taxa histórica de atendimento nesta unidade (ver módulo pontuacao.py).
+    None quando a unidade não tem histórico em Query A (ex.: unidade nova, ou
+    conveniada que nunca apareceu como opção nos processos analisados)."""
+    cod_territ: str | None = None
+    cre: int | None = None
+    """Microárea/CRE (SME) que contém as coordenadas da escola — ver app/microarea.py.
+    None quando a escola não tem lat/long ou cai fora dos polígonos mapeados."""
 
 
 def _normalizar(texto: str) -> str:
@@ -72,18 +95,19 @@ def _resolver_query_a() -> Path:
     )
 
 
-def _tag_para_taxa(taxa: float | None) -> str:
-    if taxa is None:
-        return "Sem dado"
-    if taxa >= 0.6:
-        return "Alta"
-    if taxa >= 0.3:
-        return "Média"
-    return "Baixa"
+def _indice_concorrencia(taxa_atendimento: float | None) -> float | None:
+    """Quanto menor a taxa histórica de atendimento, mais concorrida é a escola."""
+    if taxa_atendimento is None:
+        return None
+    return 1.0 - taxa_atendimento
 
 
-def carregar_escolas() -> list[Escola]:
-    """Lê desafio/ uma vez e devolve a lista completa de escolas com tag."""
+def recalcular_de_desafio() -> list[Escola]:
+    """Lê desafio/ do zero e devolve a lista completa de escolas com tag.
+
+    Só usada por scripts/gerar_dataset.py (local, com desafio/ presente) para
+    gerar dados/escolas.duckdb — em produção/deploy usa-se carregar_escolas().
+    """
     if not ESCOLAS_XLSX.exists():
         raise FileNotFoundError(f"Não encontrei {ESCOLAS_XLSX} — confirme se desafio/ está presente.")
 
@@ -119,6 +143,14 @@ def carregar_escolas() -> list[Escola]:
             """
         ).fetchall()
     )
+
+    microarea.carregar_microareas(con)
+    pontos_escolas = {
+        str(registro["esc_codigo_num"]): (registro["latitude"], registro["longitude"])
+        for registro in (dict(zip(colunas, linha)) for linha in escolas_raw)
+        if registro["latitude"] is not None and registro["longitude"] is not None
+    }
+    microarea_por_escola = microarea.atribuir_microarea_lote(con, pontos_escolas)
     con.close()
 
     escolas = []
@@ -126,6 +158,7 @@ def carregar_escolas() -> list[Escola]:
         registro = dict(zip(colunas, linha))
         esc_codigo_num = registro["esc_codigo_num"]
         taxa = taxa_por_unidade.get(esc_codigo_num)
+        cod_territ, cre = microarea_por_escola.get(str(esc_codigo_num), (None, None))
         escolas.append(
             Escola(
                 esc_codigo=str(esc_codigo_num),
@@ -135,11 +168,50 @@ def carregar_escolas() -> list[Escola]:
                 latitude=registro["latitude"],
                 longitude=registro["longitude"],
                 tipo=registro["tipo"],
-                tag_priorizacao=_tag_para_taxa(taxa),
-                taxa_atendimento_historica=taxa,
+                indice_concorrencia=_indice_concorrencia(taxa),
+                cod_territ=cod_territ,
+                cre=cre,
             )
         )
     return escolas
+
+
+def carregar_escolas() -> list[Escola]:
+    """Lê dados/escolas.duckdb (pré-processado, commitado no git).
+
+    Rápida e sem dependência de desafio/ nem das extensões excel/spatial em
+    runtime — é o que roda em produção/deploy (inclusive Vercel). Se o
+    arquivo pré-processado ainda não existir (ex.: acabou de clonar o repo e
+    ainda não rodou scripts/gerar_dataset.py), cai para
+    recalcular_de_desafio() como conveniência de desenvolvimento local.
+    """
+    if not DATASET_PRECOMPUTADO.exists():
+        return recalcular_de_desafio()
+
+    con = duckdb.connect(str(DATASET_PRECOMPUTADO), read_only=True)
+    linhas = con.execute(
+        """
+        SELECT esc_codigo, nome, endereco, bairro, latitude, longitude, tipo,
+               indice_concorrencia, cod_territ, cre
+        FROM escolas
+        """
+    ).fetchall()
+    con.close()
+    return [
+        Escola(
+            esc_codigo=esc_codigo,
+            nome=nome,
+            endereco=endereco,
+            bairro=bairro,
+            latitude=latitude,
+            longitude=longitude,
+            tipo=tipo,
+            indice_concorrencia=indice_concorrencia,
+            cod_territ=cod_territ,
+            cre=cre,
+        )
+        for esc_codigo, nome, endereco, bairro, latitude, longitude, tipo, indice_concorrencia, cod_territ, cre in linhas
+    ]
 
 
 def buscar_por_bairro(escolas: list[Escola], bairro: str) -> list[Escola]:

@@ -1,0 +1,89 @@
+:root {
+  --azul-primario: #2f6fed;
+  --azul-primario-escuro: #1f4fc4;
+  --azul-claro-bg: #eaf1fd;
+  --azul-texto: #1d4ed8;
+
+  --verde-selecionado-bg: #dcfce7;
+  --verde-selecionado-texto: #15803d;
+  --verde-selecionado-borda: #4ade80;
+
+  --laranja-bg: #fef3c7;
+  --laranja-texto: #b45309;
+
+  --vermelho: #ef4444;
+
+  --texto-principal: #16213a;
+  --texto-secundario: #5b6478;
+  --borda: #e2e8f4;
+  --fundo-pagina: #eef3fb;
+  --fundo-cartao: #ffffff;
+
+  --raio-cartao: 20px;
+  --raio-controle: 12px;
+  --sombra-cartao: 0 12px 30px -18px rgba(22, 33, 58, 0.35);
+
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--fundo-pagina);
+  color: var(--texto-principal);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  background: var(--fundo-pagina);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Em telas largas (desktop), mostra como um "quadro" de celular centralizado
+   para facilitar revisar o estilo mobile sem precisar de devtools. */
+@media (min-width: 560px) {
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 32px 0;
+    background: #d7e2f3;
+  }
+
+  .app-shell {
+    min-height: min(860px, calc(100vh - 64px));
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.45);
+  }
+}

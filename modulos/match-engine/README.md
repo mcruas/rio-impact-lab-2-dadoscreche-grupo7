@@ -27,6 +27,17 @@ contrato REST abaixo.
 - `GET /criterios` — lista os critérios de match vigentes e seus pesos.
 - `GET /status/{cpf}` — consultado pelo módulo `acompanhamento/` (Tela 3) para mostrar
   a posição na fila.
+- `POST /score-preliminar` — consultado pelo módulo `inscricao/` (Tela 1) **antes**
+  de chamar a Recomendação de Escola: calcula um score preliminar a partir de
+  respostas socioeconômicas autodeclaradas, já que o score final (validado por
+  documentos) só existe depois da Tela 2. Retorna um **percentil** (não o valor
+  bruto) — ver `contracts/schemas/score_estimado.schema.json`.
+- `GET /historico/{cpf}` — também consultado pelo `inscricao/` antes de chamar a
+  recomendação: quantas vezes esse responsável já foi convocado e quantas dessas
+  vezes não confirmou a tempo (`vezes_convocado`/`vezes_nao_compareceu`). Num
+  sistema novo começa em zero para todo mundo e vai acumulando a cada ciclo de
+  inscrição — não há como "importar" esse histórico dos dados anonimizados de
+  `desafio/` (os códigos anonimizados não correspondem a CPFs reais).
 
 ## Cuidado ao desenhar os critérios (lições da EDA do próprio desafio)
 

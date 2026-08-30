@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pedido_recomendacao.schema.json",
+  "title": "PedidoRecomendacao",
+  "description": "Corpo da requisição POST /recomendacoes. score_estimado e historico_responsavel são opcionais/nulos quando ainda não estão disponíveis (ex.: primeira vez que a família se inscreve, ou antes do Motor de Match calcular um score preliminar) — o motor de recomendação trata a ausência de forma neutra, nunca como erro.",
+  "type": "object",
+  "required": ["enderecos"],
+  "properties": {
+    "enderecos": {
+      "type": "array",
+      "items": { "$ref": "endereco.schema.json" },
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "Endereço de moradia (obrigatório, tipo=Moradia) e, opcionalmente, outros locais de interesse da família (trabalho, casa dos avós etc.), cada um com 'tipo' preenchido. O motor de recomendação usa a menor distância entre qualquer um desses locais e cada escola."
+    },
+    "escola_preferida_esc_codigo": {
+      "type": ["string", "null"],
+      "description": "Se informado, essa escola sempre aparece na resposta (com sua pontuação real), mesmo se não estiver no top N por pontuação."
+    },
+    "score_estimado": {
+      "anyOf": [{ "$ref": "score_estimado.schema.json" }, { "type": "null" }]
+    },
+    "historico_responsavel": {
+      "anyOf": [{ "$ref": "historico_responsavel.schema.json" }, { "type": "null" }]
+    }
+  },
+  "additionalProperties": false
+}

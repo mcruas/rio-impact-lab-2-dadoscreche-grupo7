@@ -11,17 +11,28 @@ Tela de formulário onde o responsável cadastra:
 
 - Nome da criança, CPF da criança, CPF do responsável, data de nascimento da criança
 - Turno: Integral ou Parcial
-- Até 3 endereços de interesse
-- Até 5 escolas escolhidas (a partir da lista/mapa trazida pelo módulo Recomendação de Escola)
+- Endereço de casa (obrigatório) e até mais 2 lugares de interesse (rede de apoio, trabalho
+  etc.) — `tipo` livre em cada item de `enderecos_interesse` (ver
+  `contracts/schemas/endereco.schema.json`)
+- Até 5 escolas escolhidas (a partir da recomendação trazida pelo módulo Recomendação de Escola)
 
 ## O que este módulo consome
 
-- [`recomendacao-escolas.openapi.yaml`](../../contracts/recomendacao-escolas.openapi.yaml)
-  (`GET /escolas?bairro=`) — para listar/mapear escolas da região de cada endereço de
-  interesse e deixar o responsável escolher até 5, exibindo a tag de priorização.
+- [`match-engine.openapi.yaml`](../../contracts/match-engine.openapi.yaml):
+  - `POST /score-preliminar` — antes de chamar a recomendação, busca um score
+    preliminar a partir de respostas socioeconômicas autodeclaradas (o score final,
+    validado, só existe depois da Tela 2 + Motor de Match).
+  - `GET /historico/{cpf}` — histórico de convocação/não-comparecimento do
+    responsável (começa zerado para quem nunca se inscreveu antes).
+- [`recomendacao-escolas.openapi.yaml`](../../contracts/recomendacao-escolas.openapi.yaml):
+  - `POST /recomendacoes` — chamado com os endereços informados + o `score_estimado`
+    e `historico_responsavel` obtidos acima (ambos opcionais/nulos se ainda não
+    existirem — a recomendação funciona, só fica menos afinada). Devolve as escolas
+    recomendadas com o racional de cada uma, para exibir junto na tela (a família tem
+    o direito de entender por que uma escola foi ou não sugerida).
 
 **Só por contrato** — nunca acessar o banco/código interno de `recomendacao-escolas/`
-diretamente.
+ou `match-engine/` diretamente.
 
 ## O que este módulo expõe
 
@@ -40,9 +51,11 @@ pip install fastapi "uvicorn[standard]" pydantic
 uvicorn main:app --reload
 ```
 
-Frontend (React + TypeScript, ainda não escafoldado):
+Frontend (React + TypeScript via Vite — já escafoldado, protótipo visual dos 5 passos
+da Tela 1, com dados mockados; ver [`frontend/README.md`](frontend/README.md)):
 
 ```bash
 cd modulos/inscricao/frontend
-npm create vite@latest . -- --template react-ts
+npm install
+npm run dev
 ```

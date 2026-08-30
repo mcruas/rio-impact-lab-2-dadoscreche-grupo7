@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "historico_responsavel.schema.json",
+  "title": "HistoricoResponsavel",
+  "description": "Histórico de convocação/comparecimento de um responsável em processos anteriores. Em um sistema novo começa vazio (vezes_convocado=0) e vai acumulando ao longo dos ciclos de inscrição.",
+  "type": "object",
+  "required": ["vezes_convocado", "vezes_nao_compareceu"],
+  "properties": {
+    "vezes_convocado": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Quantas vezes uma opção deste responsável foi selecionada/chamada em processos anteriores."
+    },
+    "vezes_nao_compareceu": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Dessas, quantas vezes a convocação terminou em cancelamento automático por falta de confirmação (não em desistência voluntária)."
+    }
+  },
+  "additionalProperties": false
+}

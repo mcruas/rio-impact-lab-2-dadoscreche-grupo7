@@ -1,12 +1,13 @@
 openapi: 3.0.3
 info:
   title: Recomendação de Escola
-  version: "1.0.0"
+  version: "2.0.0"
   description: >
-    Dado um bairro de interesse, retorna as escolas da região com uma tag de
-    priorização (heurística ilustrativa baseada em dados anonimizados do
-    desafio — não reflete a realidade). Consumido pela Tela 1 (Inscrição).
-    Não depende de nenhum outro módulo — só dos dados em desafio/.
+    Recomenda escolas para uma família, combinando proximidade (moradia/trabalho),
+    adequação entre o score estimado da família e o quão concorrida cada escola é
+    historicamente, e o histórico de não-comparecimento do responsável. Consumido
+    pela Tela 1 (Inscrição). Não depende de nenhum outro módulo em runtime — score e
+    histórico chegam prontos no corpo do pedido (ver contracts/README.md).
 paths:
   /health:
     get:
@@ -14,9 +15,31 @@ paths:
       responses:
         "200":
           description: OK
+  /cep/{cep}:
+    get:
+      summary: "Resolve um CEP para o nome do bairro (via ViaCEP, viacep.com.br)"
+      parameters:
+        - name: cep
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "CEP com ou sem hífen (ex.: 23050-300 ou 23050300)."
+      responses:
+        "200":
+          description: Bairro correspondente ao CEP
+          content:
+            application/json:
+              schema:
+                type: object
+                required: ["bairro"]
+                properties:
+                  bairro: { type: string }
+        "404":
+          description: "CEP inválido, inexistente, ou ViaCEP indisponível"
   /escolas:
     get:
-      summary: Lista escolas de um bairro, com tag de priorização
+      summary: "Lista simples de escolas de um bairro, sem ranking (ex.: para um mapa)"
       parameters:
         - name: bairro
           in: query
@@ -35,3 +58,64 @@ paths:
                   $ref: "./schemas/escola.schema.json"
         "422":
           description: Parâmetro bairro ausente ou vazio
+  /recomendacoes:
+    post:
+      summary: Recomenda e explica as melhores escolas para um pedido
+      parameters:
+        - name: limite
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+          description: Quantidade máxima de escolas retornadas (a escola_preferida, se informada, sempre é incluída além do limite).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/pedido_recomendacao.schema.json"
+      responses:
+        "200":
+          description: Escolas recomendadas, ordenadas por pontuacao_final (desc)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/recomendacao_escola.schema.json"
+        "422":
+          description: "Pedido inválido (ex.: nenhum endereço informado)"
+  /admin/recomendacoes:
+    get:
+      summary: Formulário HTML para testar/auditar o recomendador manualmente
+      responses:
+        "200":
+          description: Página HTML com o formulário
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Processa o formulário e renderiza a tabela de recomendações com o racional
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                bairro_moradia: { type: string }
+                bairro_trabalho: { type: string }
+                percentil_score: { type: string, description: "0-100, vazio = sem score" }
+                vezes_convocado: { type: string }
+                vezes_nao_compareceu: { type: string }
+                escola_preferida_esc_codigo: { type: string }
+      responses:
+        "200":
+          description: Página HTML com a tabela de recomendações e o racional de cada uma
+          content:
+            text/html:
+              schema:
+                type: string

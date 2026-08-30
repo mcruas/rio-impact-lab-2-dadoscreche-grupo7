@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "recomendacao_escola.schema.json",
+  "title": "RecomendacaoEscola",
+  "description": "Item de resposta de POST /recomendacoes: uma escola candidata com a pontuação final e o racional (rationale) que explica como ela foi calculada — usado tanto pela Tela 1 quanto pela página de admin.",
+  "type": "object",
+  "required": [
+    "esc_codigo", "nome", "bairro", "distancia_km", "origem_distancia",
+    "indice_concorrencia", "preferida", "pontuacao_final", "rationale"
+  ],
+  "properties": {
+    "esc_codigo": { "type": "string" },
+    "nome": { "type": "string" },
+    "endereco": { "type": ["string", "null"] },
+    "bairro": { "type": "string" },
+    "latitude": { "type": ["number", "null"] },
+    "longitude": { "type": ["number", "null"] },
+    "tipo": { "type": ["string", "null"] },
+    "cod_territ": {
+      "type": ["string", "null"],
+      "description": "Código da microárea SME (Territórios_SME) que contém as coordenadas da escola. Null se a escola não tiver latitude/longitude ou cair fora dos polígonos mapeados."
+    },
+    "cre": {
+      "type": ["integer", "null"],
+      "description": "Coordenadoria Regional de Educação (agrupamento de microáreas) correspondente a cod_territ. Null nas mesmas condições que cod_territ."
+    },
+    "distancia_km": { "type": "number", "minimum": 0 },
+    "origem_distancia": {
+      "type": "string",
+      "minLength": 1,
+      "description": "O 'tipo' do endereço informado (Moradia, Trabalho, ou outro local de desejo) que gerou a menor distância até esta escola."
+    },
+    "indice_concorrencia": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "0 = historicamente pouco concorrida, 1 = historicamente muito concorrida. Null = sem histórico suficiente."
+    },
+    "preferida": {
+      "type": "boolean",
+      "description": "True se esta é a escola_preferida_esc_codigo do pedido."
+    },
+    "pontuacao_final": {
+      "type": "number",
+      "description": "0.5*pontos_proximidade + 0.3*pontos_adequacao_score + 0.2*pontos_historico."
+    },
+    "rationale": {
+      "type": "object",
+      "required": ["pontos_proximidade", "pontos_adequacao_score", "pontos_historico", "explicacao"],
+      "properties": {
+        "pontos_proximidade": { "type": "number" },
+        "pontos_adequacao_score": { "type": "number" },
+        "pontos_historico": { "type": "number" },
+        "explicacao": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
