@@ -63,6 +63,31 @@ listar mais opções nunca piora o resultado da família — no mecanismo
 antigo, listar menos podia dar resultado melhor, o oposto do que se pedia
 à família.
 
+## O papel do RMI
+
+Decisão de arquitetura: não construir um sistema de notificação novo — a
+Prefeitura já tem essa infraestrutura pronta, e o Match Creche se encaixa
+nela em vez de competir com ela. O RMI (Registro Municipal de Informações)
+é o cadastro unificado da cidade, e ele resolve dois problemas reais que
+hoje custam vaga:
+
+**A cascata de telefone deixa de ser tentativa cega.** O RMI mantém um
+registro consolidado de telefone por CPF, com qualidade técnica, confiança
+de propriedade e histórico de quando cada número apareceu em qual sistema
+municipal. A convocação usa exatamente essa ordem — tenta primeiro o
+telefone mais confiável, não o mais recente cadastrado ou o primeiro da
+lista — e é isso que faz a cascata avançar rápido pro número certo em vez
+de insistir em contatos desatualizados.
+
+**O endereço deixa de ser aproximação.** O RMI traz o endereço principal da
+família já com latitude e longitude reais, não só bairro ou CEP. Toda a
+lógica de proximidade — recomendação de escola, reserva territorial no
+matching — passa a calcular sobre o ponto real da família, não sobre um
+centróide de bairro. (No ambiente de teste seguimos com a aproximação por
+CEP porque a base de dados usada aqui é anonimizada e só expõe essa
+granularidade; em produção, plugando no RMI de verdade, o mesmo código já
+fica mais preciso sem precisar ser reescrito.)
+
 ## Como é feito o matching, em uma frase
 
 Aceitação diferida (Gale-Shapley) — o mesmo mecanismo usado hoje na
