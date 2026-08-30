@@ -2,9 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "escola.schema.json",
   "title": "Escola",
-  "description": "Escola candidata retornada pelo módulo Recomendação de Escola, com tag de priorização.",
+  "description": "Catálogo básico de uma unidade escolar (sem informação de ranking/recomendação — ver recomendacao_escola.schema.json para isso).",
   "type": "object",
-  "required": ["esc_codigo", "nome", "bairro", "tag_priorizacao"],
+  "required": ["esc_codigo", "nome", "bairro"],
   "properties": {
     "esc_codigo": { "type": "string", "description": "Código da unidade (DESIGNACAO / esc_codigo)." },
     "nome": { "type": "string" },
@@ -13,16 +13,13 @@
     "latitude": { "type": ["number", "null"] },
     "longitude": { "type": ["number", "null"] },
     "tipo": { "type": "string", "description": "Tipo de unidade (ex.: CDEI, CIEP, CRECHE, EDI)." },
-    "tag_priorizacao": {
-      "type": "string",
-      "enum": ["Alta", "Média", "Baixa", "Sem dado"],
-      "description": "Heurística ilustrativa baseada em dados anonimizados — não reflete a realidade."
+    "cod_territ": {
+      "type": ["string", "null"],
+      "description": "Código da microárea SME (Territórios_SME) que contém as coordenadas da escola. Null se a escola não tiver latitude/longitude ou cair fora dos polígonos mapeados."
     },
-    "taxa_atendimento_historica": {
-      "type": ["number", "null"],
-      "minimum": 0,
-      "maximum": 1,
-      "description": "Proporção histórica de inscrições nesta unidade que terminaram atendidas (Confirmado/Ativo/Selecionado)."
+    "cre": {
+      "type": ["integer", "null"],
+      "description": "Coordenadoria Regional de Educação (agrupamento de microáreas) correspondente a cod_territ. Null nas mesmas condições que cod_territ."
     }
   },
   "additionalProperties": false

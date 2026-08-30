@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "score_estimado.schema.json",
+  "title": "ScoreEstimado",
+  "description": "Score preliminar de uma família, ainda antes da validação de documentos pelo Motor de Match. Usa percentil (posição relativa na distribuição de scores), não valor bruto, porque a régua de pontuação pode mudar entre anos/versões — comparar percentis é robusto a essa mudança (ver eda/RESULTADOS_H6_H12.md).",
+  "type": "object",
+  "required": ["percentil"],
+  "properties": {
+    "percentil": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "0 = score mais baixo observado, 1 = score mais alto observado."
+    },
+    "valor": {
+      "type": "number",
+      "description": "Valor bruto do score, opcional, só para referência/depuração — não usar para comparar entre regras de pontuação diferentes."
+    }
+  },
+  "additionalProperties": false
+}

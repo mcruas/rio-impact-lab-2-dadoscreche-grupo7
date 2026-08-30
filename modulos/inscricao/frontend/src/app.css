@@ -1,0 +1,702 @@
+/* ---------- Cabeçalho de marca ---------- */
+
+.marca-topo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 20px 4px;
+}
+
+.marca-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marca-logo-icone {
+  font-size: 28px;
+  background: var(--azul-claro-bg);
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marca-logo-texto {
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--azul-primario-escuro);
+}
+
+.marca-tagline {
+  color: var(--texto-secundario);
+  font-size: 13px;
+}
+
+/* ---------- Painel de teste/QA (não faz parte do design) ---------- */
+
+.painel-teste {
+  margin: 0 20px 10px;
+  padding: 10px 12px;
+  border: 1.5px dashed #d97706;
+  border-radius: var(--raio-controle);
+  background: #fffbeb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.painel-teste-preencher {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: var(--raio-controle);
+  background: #d97706;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.painel-teste-passos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #92400e;
+}
+
+.painel-teste-passos button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #d97706;
+  background: white;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.painel-teste-passo--ativo {
+  background: #d97706 !important;
+  color: white !important;
+}
+
+/* ---------- Estrutura da tela (StepShell) ---------- */
+
+.tela {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 4px 20px 24px;
+}
+
+.tela-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 14px;
+}
+
+.botao-voltar {
+  background: none;
+  border: none;
+  color: var(--azul-primario);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+}
+
+.contador-passo {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  letter-spacing: 0.04em;
+}
+
+.progresso-dots {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--borda);
+  flex-shrink: 0;
+}
+
+.dot--concluido::before,
+.dot--atual::before {
+  background: var(--azul-primario);
+}
+
+.dot--atual::before {
+  box-shadow: 0 0 0 4px var(--azul-claro-bg);
+}
+
+.dot:last-child {
+  flex: 0;
+}
+
+.dot-linha {
+  flex: 1;
+  height: 2px;
+  background: var(--borda);
+  margin: 0 4px;
+}
+
+.dot--concluido .dot-linha {
+  background: var(--azul-primario);
+}
+
+.tela-conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tela-titulo {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.tela-subtitulo {
+  margin-top: 6px;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.tela-corpo {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tela-rodape {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.botao-continuar {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: var(--raio-controle);
+  background: var(--azul-primario);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.botao-continuar:hover:not(:disabled) {
+  background: var(--azul-primario-escuro);
+}
+
+.botao-continuar:disabled {
+  background: #b9c6e8;
+  cursor: not-allowed;
+}
+
+.nota-seguranca {
+  text-align: center;
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Campos de formulário ---------- */
+
+.secao-titulo {
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.secao-descricao {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  margin-top: -8px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+
+.campo-ajuda {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texto-secundario);
+  margin-top: -4px;
+}
+
+.campo input,
+.campo select {
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-controle);
+  padding: 13px 14px;
+  font-size: 15px;
+  color: var(--texto-principal);
+  font-weight: 500;
+  background: var(--fundo-cartao);
+  width: 100%;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--azul-primario);
+  outline-offset: 1px;
+}
+
+.campo-input--erro {
+  border-color: var(--vermelho) !important;
+}
+
+.campo-erro {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vermelho);
+}
+
+.campo-com-icone {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.campo-com-icone input {
+  padding-right: 40px;
+}
+
+.campo-com-icone span {
+  position: absolute;
+  right: 14px;
+  font-size: 16px;
+}
+
+/* ---------- Toggle segmentado (Step 2) ---------- */
+
+.segmentado {
+  display: flex;
+  gap: 8px;
+}
+
+.segmentado-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-controle);
+  background: var(--fundo-cartao);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segmentado-item span {
+  font-size: 20px;
+}
+
+.segmentado-item--ativo {
+  border-color: var(--azul-primario);
+  background: var(--azul-claro-bg);
+  color: var(--azul-texto);
+}
+
+/* ---------- Caixa de dica ---------- */
+
+.dica-caixa {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: var(--raio-controle);
+  background: #f3f6fc;
+  font-size: 13px;
+}
+
+.dica-caixa span:first-child {
+  font-size: 18px;
+}
+
+.dica-caixa p {
+  color: var(--texto-secundario);
+  margin-top: 2px;
+}
+
+.dica-caixa--estrela {
+  background: #fffbeb;
+}
+
+/* ---------- Escolha e ordene (Step 3) ---------- */
+
+.sugestoes-cabecalho {
+  font-size: 13px;
+}
+
+.sugestoes-cabecalho p {
+  color: var(--texto-secundario);
+  margin-top: 2px;
+}
+
+.creche-card-ordenavel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-cartao);
+  background: var(--fundo-cartao);
+  touch-action: none;
+}
+
+.creche-arrastar {
+  border: none;
+  background: none;
+  cursor: grab;
+  font-size: 16px;
+  color: var(--texto-secundario);
+  padding: 4px;
+  touch-action: none;
+}
+
+.creche-posicao {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--azul-primario);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.creche-foto {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--azul-claro-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.creche-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.creche-info h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.creche-distancia {
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+
+.creche-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.tag--azul {
+  background: var(--azul-claro-bg);
+  color: var(--azul-texto);
+}
+
+.tag--verde {
+  background: var(--verde-selecionado-bg);
+  color: var(--verde-selecionado-texto);
+}
+
+.tag--laranja {
+  background: var(--laranja-bg);
+  color: var(--laranja-texto);
+}
+
+.creche-remover-x {
+  border: none;
+  background: none;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.lista-vazia {
+  text-align: center;
+  font-size: 13px;
+  color: var(--texto-secundario);
+  padding: 20px 0;
+}
+
+.arraste-dica {
+  text-align: center;
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Prioridade (Step 4) ---------- */
+
+.pergunta-prioridade-texto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pergunta-icone {
+  font-size: 18px;
+  background: var(--azul-claro-bg);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pill-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--borda);
+  background: var(--fundo-cartao);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-principal);
+  cursor: pointer;
+}
+
+.pill--selecionada {
+  background: var(--verde-selecionado-bg);
+  border-color: var(--verde-selecionado-borda);
+  color: var(--verde-selecionado-texto);
+}
+
+/* ---------- Modal de sugestão de troca ---------- */
+
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+}
+
+@media (min-width: 560px) {
+  .modal-fundo {
+    align-items: center;
+  }
+}
+
+.modal-caixa {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--fundo-cartao);
+  border-radius: 20px 20px 0 0;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 560px) {
+  .modal-caixa {
+    border-radius: 20px;
+  }
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: var(--texto-secundario);
+  cursor: pointer;
+}
+
+.modal-titulo {
+  font-size: 16px;
+  font-weight: 800;
+  padding-right: 24px;
+}
+
+.modal-subtitulo {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  margin-top: -6px;
+}
+
+.modal-card-sugerido {
+  border: 1.5px solid var(--verde-selecionado-borda);
+  border-radius: var(--raio-cartao);
+  padding: 14px;
+  background: var(--verde-selecionado-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-card-selo {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--verde-selecionado-texto);
+}
+
+.modal-card-linha {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-motivos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: var(--verde-selecionado-texto);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-atual-rotulo {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  margin-top: 4px;
+}
+
+.modal-card-atual {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-cartao);
+}
+
+.modal-manter {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: none;
+  color: var(--texto-secundario);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ---------- Tela de conclusão ---------- */
+
+.tela-concluida {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.tela-concluida .tela-conteudo {
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.concluida-icone {
+  font-size: 40px;
+}
+
+.proximos-passos {
+  width: 100%;
+  text-align: left;
+  background: #f3f6fc;
+  border-radius: var(--raio-cartao);
+  padding: 16px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.proximos-passos ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proximos-passos li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--texto-secundario);
+}
+
+.tela-concluida .botao-continuar {
+  margin-top: 12px;
+}

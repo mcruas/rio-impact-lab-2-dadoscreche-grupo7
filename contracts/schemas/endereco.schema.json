@@ -5,6 +5,11 @@
   "type": "object",
   "required": ["bairro"],
   "properties": {
+    "tipo": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Papel deste endereço para o responsável (usado pelo motor de recomendação de escola para calcular proximidade). 'Moradia' é obrigatório em pelo menos um item; 'Trabalho' é o outro valor comum, mas aceita qualquer texto livre para locais de desejo adicionais informados pela família (ex.: 'Avós', 'Escola atual')."
+    },
     "logradouro": { "type": "string" },
     "numero": { "type": "string" },
     "complemento": { "type": "string" },

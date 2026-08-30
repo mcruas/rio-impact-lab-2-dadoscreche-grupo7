@@ -35,7 +35,10 @@ validar que os contratos continuam bem formados: `python contracts/validate_cont
 ## Fluxo de dados
 
 ```
-Tela 1 (Inscrição) --GET /escolas?bairro=--> Recomendação de Escola --lista c/ tag--> Tela 1
+Tela 1 --POST /score-preliminar, GET /historico/{cpf}--> Motor de Match (score/histórico, se já existirem
+                                                            — endpoints propostos, ainda não implementados;
+                                                            recomendacao-escolas já funciona sem eles)
+Tela 1 (Inscrição) --POST /recomendacoes--> Recomendação de Escola --escolas + racional--> Tela 1
 Tela 1             --POST /inscricoes-------> [backend Inscrição]  (persiste a inscrição)
 
 Tela 2 (Documentação) --GET /inscricoes/{cpf}--> [backend Inscrição]     (confirma contexto)

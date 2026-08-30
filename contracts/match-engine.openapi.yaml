@@ -126,3 +126,55 @@ paths:
                 type: array
                 items:
                   $ref: "./schemas/inconsistencia_cadastro.schema.json"
+  /historico/{cpf}:
+    get:
+      summary: >
+        [PROPOSTO, ainda não implementado — ver nota em ../../modulos/match-engine/README.md]
+        Histórico de convocação/comparecimento do responsável em processos
+        anteriores. Consumido pelo módulo Inscrição antes de chamar
+        POST /recomendacoes do módulo Recomendação de Escola.
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: >
+            Histórico do responsável (vezes_convocado=0 para quem nunca
+            participou de um processo — não é erro, é o estado inicial normal).
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/historico_responsavel.schema.json"
+  /score-preliminar:
+    post:
+      summary: >
+        [PROPOSTO, ainda não implementado — ver nota em ../../modulos/match-engine/README.md]
+        Calcula um score preliminar a partir de respostas autodeclaradas,
+        antes da validação de documentos (Tela 2). Consumido pelo módulo
+        Inscrição antes de chamar POST /recomendacoes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: ["respostas"]
+              properties:
+                respostas:
+                  type: array
+                  items:
+                    type: object
+                    required: ["criterio_id", "resposta"]
+                    properties:
+                      criterio_id: { type: string }
+                      resposta: { type: boolean }
+      responses:
+        "200":
+          description: Score preliminar (percentil na distribuição de scores vigente)
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/score_estimado.schema.json"
