@@ -1,0 +1,11 @@
+# Requirements do backend unificado de deploy (deploy/main.py) -- une as
+# dependencias dos 4 backends de modulo (cada um mantem seu proprio
+# requirements.txt tambem, para rodar isolado localmente).
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+psycopg[binary]>=3.2
+duckdb>=1.1
+httpx>=0.27
+jinja2>=3.1
+python-multipart>=0.0.9

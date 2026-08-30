@@ -1,8 +1,10 @@
 # Inscrição (Tela 1)
 
-> Módulo esqueleto — implementação a fazer. Ver [`../../ARQUITETURA.md`](../../ARQUITETURA.md)
+> Backend implementado: `POST /inscricoes` e `GET /inscricoes/{cpf}` persistem
+> de verdade em Postgres (hospedado no Railway). Ver [`../../ARQUITETURA.md`](../../ARQUITETURA.md)
 > para a visão geral do sistema e [`../recomendacao-escolas/`](../recomendacao-escolas/)
-> como referência de estrutura/qualidade.
+> como referência de estrutura (esta pasta segue a mesma organização: `app/`, `api/index.py`,
+> `vercel.json`).
 
 ## Responsabilidade
 
@@ -36,19 +38,37 @@ ou `match-engine/` diretamente.
 
 ## O que este módulo expõe
 
-- `POST /inscricoes` — cria a inscrição (criança + responsável + endereços + escolas escolhidas).
-- `GET /inscricoes/{cpf}` — consultado pelo módulo `documentacao/` para confirmar que a
-  inscrição existe antes de aceitar documentos.
+- `POST /inscricoes` — cria a inscrição (criança + responsável + endereços + escolas escolhidas)
+  e persiste em Postgres. Validação de schema (CPF, endereço com `tipo=Moradia` obrigatório
+  etc.) via os modelos Pydantic em `backend/app/models.py`, espelhando
+  `contracts/schemas/inscricao.schema.json`.
+- `GET /inscricoes/{cpf}` — busca pelo CPF da criança OU do responsável (o que existir
+  primeiro), consultado pelo módulo `documentacao/` para confirmar que a inscrição existe
+  antes de aceitar documentos. 404 se nenhuma inscrição bater com o CPF.
+
+Persistência: `backend/app/db.py`, uma tabela única (`inscricoes`, com o documento completo
+em `payload JSONB` e `cpf_crianca`/`cpf_responsavel` como colunas indexadas pra busca rápida).
+Postgres provisionado no Railway; connection string em `DATABASE_URL` (ver
+`backend/.env.example`) — sem esse env var configurado, o backend recusa (falha explícita,
+não um fallback silencioso).
 
 ## Como começar
 
-Backend (stub em `backend/main.py`):
+Backend (`backend/app/main.py` — mesma estrutura do `recomendacao-escolas/`):
 
 ```bash
 cd modulos/inscricao/backend
-python -m venv .venv && source .venv/Scripts/activate
-pip install fastapi "uvicorn[standard]" pydantic
-uvicorn main:app --reload
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env.local   # preencher DATABASE_URL com a connection string do Postgres
+uvicorn app.main:app --reload
+```
+
+Testes (não precisam de Postgres real — o repositório é substituído por um fake via
+`app.dependency_overrides`):
+
+```bash
+pytest
 ```
 
 Frontend (React + TypeScript via Vite — já escafoldado, protótipo visual dos 5 passos

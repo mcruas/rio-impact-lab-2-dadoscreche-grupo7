@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { criarInscricao } from "./api/inscricao";
+import { resolverCep } from "./api/recomendacaoEscolas";
 import { BrandHeader } from "./components/BrandHeader";
 import { PainelTeste } from "./components/PainelTeste";
 import { DADOS_EXEMPLO } from "./data/mockCreches";
@@ -33,6 +35,14 @@ function App() {
   function reiniciar() {
     setDados(dadosIniciais);
     setPasso(1);
+  }
+
+  async function finalizarInscricao() {
+    const localizacao = await resolverCep(dados.cepResidencial);
+    if (localizacao === null) {
+      throw new Error("Não encontramos o CEP residencial informado no passo 1.");
+    }
+    await criarInscricao(dados, localizacao.bairro);
   }
 
   return (
@@ -80,7 +90,13 @@ function App() {
         <Step3Escolha dados={dados} atualizar={atualizar} onVoltar={() => irPara(2)} onContinuar={() => irPara(4)} />
       )}
       {passo === 4 && (
-        <Step4Prioridade dados={dados} atualizar={atualizar} onVoltar={() => irPara(3)} onContinuar={() => irPara(5)} />
+        <Step4Prioridade
+          dados={dados}
+          atualizar={atualizar}
+          onVoltar={() => irPara(3)}
+          onFinalizar={finalizarInscricao}
+          onContinuar={() => irPara(5)}
+        />
       )}
       {passo === 5 && (
         <Step5Confirmacao onAcompanhar={() => irPara(6)} onVoltarInicio={reiniciar} />

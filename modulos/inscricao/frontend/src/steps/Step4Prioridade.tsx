@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PillGroup } from "../components/PillGroup";
 import { StepShell } from "../components/StepShell";
 import type { DadosInscricao, RespostaPrioridade } from "../types";
@@ -6,6 +7,7 @@ interface StepProps {
   dados: DadosInscricao;
   atualizar: (patch: Partial<DadosInscricao>) => void;
   onVoltar: () => void;
+  onFinalizar: () => Promise<void>;
   onContinuar: () => void;
 }
 
@@ -20,12 +22,32 @@ const OPCOES_SIM_NAO: { valor: "Sim" | "Nao"; rotulo: string }[] = [
   { valor: "Nao", rotulo: "Não" },
 ];
 
-export function Step4Prioridade({ dados, atualizar, onVoltar, onContinuar }: StepProps) {
+export function Step4Prioridade({ dados, atualizar, onVoltar, onFinalizar, onContinuar }: StepProps) {
+  const [enviando, setEnviando] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
+
   const preenchido =
     dados.cadUnico !== null &&
     dados.bolsaFamilia !== null &&
     dados.publicoEducacaoEspecial !== null &&
     dados.outraVulnerabilidade !== null;
+
+  async function enviar() {
+    setErro(null);
+    setEnviando(true);
+    try {
+      await onFinalizar();
+      onContinuar();
+    } catch (excecao) {
+      setErro(
+        excecao instanceof Error
+          ? excecao.message
+          : "Não conseguimos enviar sua inscrição agora. Tente de novo em instantes.",
+      );
+    } finally {
+      setEnviando(false);
+    }
+  }
 
   return (
     <StepShell
@@ -34,13 +56,17 @@ export function Step4Prioridade({ dados, atualizar, onVoltar, onContinuar }: Ste
       titulo="Algumas informações podem dar prioridade à sua inscrição."
       subtitulo="Responda com calma. Você poderá comprovar depois, se necessário."
       onVoltar={onVoltar}
-      onContinuar={onContinuar}
-      continuarDesabilitado={!preenchido}
+      onContinuar={enviar}
+      rotuloContinuar={enviando ? "Enviando…" : "Confirmar inscrição"}
+      continuarDesabilitado={!preenchido || enviando}
       notaRodape={
-        <p className="nota-seguranca">
-          🔒 As informações serão verificadas conforme as regras do processo. Documentos serão
-          solicitados posteriormente, se necessário.
-        </p>
+        <>
+          {erro && <p className="campo-erro">{erro}</p>}
+          <p className="nota-seguranca">
+            🔒 As informações serão verificadas conforme as regras do processo. Documentos serão
+            solicitados posteriormente, se necessário.
+          </p>
+        </>
       }
     >
       <PillGroup
