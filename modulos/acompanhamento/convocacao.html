@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silêncio Não Trava a Vaga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F5F4;
+    --panel: #FFFFFF;
+    --panel-2: #ECEFEE;
+    --ink: #152029;
+    --ink-soft: #48545D;
+    --border: #D8DEDD;
+    --accent: #B36A0C;
+    --accent-soft: #F1DCB9;
+    --confirmado: #227A54;
+    --confirmado-bg: #E1F1E8;
+    --manual: #45586B;
+    --manual-bg: #E4E9EE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10161C;
+      --panel: #18222A;
+      --panel-2: #1E2930;
+      --ink: #E7ECEE;
+      --ink-soft: #A7B3BA;
+      --border: #2C3941;
+      --accent: #E0983A;
+      --accent-soft: #4A3A1E;
+      --confirmado: #55C48C;
+      --confirmado-bg: #17301F;
+      --manual: #9FB4C7;
+      --manual-bg: #202B35;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161C;
+    --panel: #18222A;
+    --panel-2: #1E2930;
+    --ink: #E7ECEE;
+    --ink-soft: #A7B3BA;
+    --border: #2C3941;
+    --accent: #E0983A;
+    --accent-soft: #4A3A1E;
+    --confirmado: #55C48C;
+    --confirmado-bg: #17301F;
+    --manual: #9FB4C7;
+    --manual-bg: #202B35;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+  .eyebrow {
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5vw, 2.7rem);
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1.1rem;
+  }
+  .lede {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0 0 2.6rem;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.88em;
+    background: var(--panel-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  figure { margin: 0 0 1.2rem; }
+  .diagram-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.1rem;
+  }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 0.9rem;
+    max-width: 64ch;
+  }
+  figcaption strong { color: var(--ink); font-weight: 600; }
+
+  .legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.8rem;
+    margin: 2.4rem 0 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--border);
+  }
+  .legenda-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+  }
+  .swatch {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+    transform: translateY(1px);
+  }
+  .swatch.confirmado { background: var(--confirmado); }
+  .swatch.manual { background: var(--manual); }
+  .swatch.processo { background: var(--accent); opacity: 0.6; }
+  .swatch-line {
+    width: 1.15rem;
+    height: 0;
+    border-top: 2px dashed currentColor;
+    opacity: 0.65;
+    flex-shrink: 0;
+    transform: translateY(-3px);
+  }
+  .legenda-item span.rotulo { color: var(--ink-soft); }
+
+  .fonte {
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .fonte code { font-size: 0.85em; }
+
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+
+  <p class="eyebrow">Acompanhamento — Eixo 3</p>
+  <h1>Silêncio não trava a vaga</h1>
+  <p class="lede">
+    Hoje esse contato é manual: o diretor testa SMS, depois WhatsApp, depois e-mail,
+    um a um — e uma família que nunca responde simplesmente segura a vaga. O que
+    automatizamos é <strong>a cascata de tentativa, a confirmação, e o prazo</strong>:
+    quem fica em silêncio (não só quem diz "não sou eu") avança a cascata sozinho, e se
+    ninguém confirma até o fim, a vaga é liberada de volta para a fila — não fica presa
+    a uma família que nunca vai aparecer.
+  </p>
+
+  <figure>
+    <div class="diagram-panel">
+      <svg viewBox="0 0 780 730" role="img" aria-label="O Motor de Match aloca uma vaga e o sistema dispara um HSM para o telefone da cascata do RMI. Se o responsável responde dentro do prazo, um LLM que já roda no WhatsApp da Prefeitura interpreta a mensagem: confirmar com os últimos quatro dígitos do CPF certos encerra em Confirmada; não sou eu, dígitos errados, ou o prazo vencer sem nenhuma resposta, avançam para o próximo telefone da cascata. Esgotados os três telefones simulados, escala para o fluxo manual do diretor. Se o prazo do diretor também vencer sem confirmação, o sistema marca a inscrição como não confirmada e roda o motor de match de novo, o que libera a vaga para a próxima criança da fila de espera — fechando o ciclo de volta ao topo do diagrama.">
+        <defs>
+          <marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <!-- gatilho -->
+        <rect x="230" y="18" width="300" height="56" rx="28" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="380" y="42" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">Motor de Match</text>
+        <text x="380" y="59" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.75">aloca a vaga — status = Confirmado</text>
+
+        <line x1="380" y1="74" x2="380" y2="108" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="396" y="96" font-family="ui-monospace, monospace" font-size="10" fill="currentColor" opacity="0.6">POST /convocacoes/{cpf}</text>
+
+        <!-- disparo (entrada do laco interno) -->
+        <rect x="170" y="108" width="420" height="96" rx="10" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="380" y="134" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">Dispara HSM para telefone[i]</text>
+        <text x="380" y="153" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.75">cascata do RMI, ordenada por confiança</text>
+        <text x="380" y="170" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.6">i vai de 0 a 2 nesta simulação (3 telefones)</text>
+        <text x="380" y="188" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.6">prazo por tentativa: ex. 48h</text>
+
+        <line x1="380" y1="204" x2="380" y2="238" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="396" y="224" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.6">responde dentro do prazo</text>
+
+        <!-- LLM interpreta -->
+        <rect x="170" y="238" width="420" height="86" rx="10" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="380" y="264" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">LLM do WhatsApp da Prefeitura</text>
+        <text x="380" y="282" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.75">interpreta a resposta em linguagem natural</text>
+        <text x="380" y="302" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="currentColor" opacity="0.6">POST /convocacoes/{cpf}/eventos</text>
+
+        <!-- ramo direito: confirmar -->
+        <path d="M 500,324 C 555,346 590,366 598,404" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="512" y="348" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">confirmar</text>
+        <text x="512" y="361" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">+ dígitos de CPF certos</text>
+
+        <rect x="498" y="406" width="200" height="58" rx="29" fill="var(--confirmado-bg)" stroke="var(--confirmado)"/>
+        <text x="598" y="430" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="var(--confirmado)">Confirmada</text>
+        <text x="598" y="448" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10.5" fill="var(--confirmado)" opacity="0.85">vaga aceita, fim do ciclo</text>
+
+        <!-- ramo esquerdo: nao sou eu / digito errado (evento explicito) -->
+        <path d="M 260,324 C 215,347 197,367 200,388" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="70" y="345" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">não sou eu —</text>
+        <text x="70" y="358" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">ou dígitos errados</text>
+
+        <!-- prazo vence sem nenhuma resposta chegar (timeout, tracejado) -->
+        <path d="M 560,204 C 690,250 690,350 210,384" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#seta)"/>
+        <text x="612" y="265" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">prazo vence,</text>
+        <text x="612" y="278" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">sem resposta</text>
+
+        <!-- diamante de decisao -->
+        <polygon points="200,388 272,438 200,488 128,438" fill="var(--panel)" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="200" y="433" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" font-weight="700" fill="currentColor">ainda há</text>
+        <text x="200" y="448" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" font-weight="700" fill="currentColor">telefone?</text>
+
+        <!-- loop de volta (laco interno) -->
+        <path d="M 128,438 C 40,438 40,155 168,154" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="18" y="300" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75" transform="rotate(-90 18 300)" text-anchor="middle">sim — tenta telefone[i+1]</text>
+
+        <!-- esgotado -->
+        <line x1="200" y1="488" x2="200" y2="522" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="216" y="510" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">não</text>
+
+        <rect x="95" y="524" width="210" height="70" rx="14" fill="var(--manual-bg)" stroke="var(--manual)"/>
+        <text x="200" y="546" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="var(--manual)">EsgotadoEscalarManual</text>
+        <text x="200" y="563" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10.5" fill="var(--manual)" opacity="0.85">cascata de telefones esgotada</text>
+        <text x="200" y="578" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10" fill="var(--manual)" opacity="0.75">volta pro fluxo manual do diretor</text>
+
+        <!-- prazo do diretor tambem vence (timeout, tracejado) -->
+        <path d="M 200,594 C 200,616 250,616 300,624" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#seta)"/>
+        <text x="216" y="612" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">prazo do diretor</text>
+        <text x="216" y="624" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75">também vence</text>
+
+        <!-- libera a vaga: marca nao confirmou e reroda o motor -->
+        <rect x="150" y="624" width="480" height="90" rx="10" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="390" y="649" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">Marca como Não Confirmou (status = Cancelado)</text>
+        <text x="390" y="667" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.75">sai do pool — a vaga não fica presa a quem nunca respondeu</text>
+        <text x="390" y="686" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="currentColor" opacity="0.6">roda_matching() de novo</text>
+        <text x="390" y="702" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="10" fill="currentColor" opacity="0.6">promove quem tinha a próxima prioridade nesse estrato</text>
+
+        <!-- laco externo: fecha de volta no gatilho, para a proxima crianca da fila -->
+        <path d="M 630,669 C 750,669 750,46 532,46" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#seta)"/>
+        <text x="738" y="360" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.75" transform="rotate(-90 738 360)" text-anchor="middle">libera a vaga — próxima criança da fila é convocada</text>
+      </svg>
+    </div>
+    <figcaption>
+      <strong>Laço interno</strong> (telefones cheios): cada "não sou eu", dígito errado,
+      ou prazo vencido sem resposta (tracejado) avança para o próximo telefone e dispara
+      de novo. <strong>Laço externo</strong> (linha contínua na borda direita): se nem o
+      diretor consegue confirmar até o prazo dele vencer, a inscrição é marcada como não
+      confirmada e o motor roda de novo — a vaga não fica alocada a uma família que nunca
+      responde, ela é redistribuída pela mesma ordem de mérito de sempre.
+    </figcaption>
+  </figure>
+
+  <div class="legenda">
+    <div class="legenda-item"><span class="swatch processo"></span><span class="rotulo">disparo / interpretação / liberação (processo)</span></div>
+    <div class="legenda-item"><span class="swatch confirmado"></span><span class="rotulo">estado final — vaga confirmada</span></div>
+    <div class="legenda-item"><span class="swatch manual"></span><span class="rotulo">estado intermediário — escala para humano</span></div>
+    <div class="legenda-item"><span class="swatch-line"></span><span class="rotulo">timeout — nenhuma resposta chega</span></div>
+  </div>
+
+  <p class="fonte">
+    Contrato em <code>contracts/acompanhamento.openapi.yaml</code> e
+    <code>contracts/schemas/convocacao.schema.json</code> /
+    <code>evento_convocacao.schema.json</code>. Implementação e o porquê de cada
+    decisão (por que pedir dígitos de CPF, por que a cascata tem esse tamanho,
+    o que é real vs. simulado neste hackathon) em <code>backend/main.py</code> e
+    <code>../../INTEGRACAO_RMI_WHATSAPP.md</code>. <strong>O laço externo — prazo por
+    tentativa e a liberação da vaga via re-execução do motor — é o desenho proposto
+    para quem nunca confirma; ainda não está implementado em <code>backend/main.py</code>.</strong>
+  </p>
+
+</main>
+</body>
+</html>
