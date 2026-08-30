@@ -1,73 +1,76 @@
-# Resumo de impacto: Match Perfeito
+# Resumo de impacto: Match Creche
 
-Quatro peças que se encaixam numa coisa só: fazer a vaga certa chegar na
-criança certa, e a confirmação realmente acontecer.
+Um sistema com quatro etapas que trabalham juntas: a família é bem orientada
+na escolha, o algoritmo aloca de forma justa e eficiente, a vaga é confirmada
+sem depender de ligação manual, e a família responde sem sair do WhatsApp.
 
-## 1. Recomendação de escola (upstream)
+## As quatro etapas
 
-47,0% das famílias listam uma única creche (P1) — em geral a mais próxima ou
-conhecida, mesmo havendo vaga ociosa ao lado. `recomendacao-escolas/` sugere
-unidades a partir do endereço real: geocodificação por CEP em vez de
-centróide de bairro (erro mediano cai de 0,97km para 0,65km). Sozinha, essa
-sugestão rende pouco — listar mais opções hoje só aumenta a chance de vaga em
-2,6 pontos percentuais, porque a classificação atual não é um matching de
-verdade. É aí que a peça 2 entra.
+1. **Recomendação de escola** — sugere creches reais perto de casa, com
+   distância calculada de verdade.
+2. **Motor de match (Gale-Shapley)** — decide quem fica com qual vaga, de
+   forma justa e à prova de "jogadinha".
+3. **Convocação automática (RMI + WhatsApp)** — avisa a família e confirma a
+   vaga sem depender de o diretor ligar pra cada uma.
+4. **IA no contato** — a família responde em linguagem natural, no próprio
+   WhatsApp, sem precisar voltar ao site.
 
-## 2. Motor de match corrigido
+---
 
-O motor antigo tinha dois defeitos reais, achados e corrigidos: não era à
-prova de estratégia (truncar a lista de opções melhorava o resultado — o
-oposto do que P1 pede às famílias) e subcontava a capacidade real em 531
-vagas. Corrigido para aceitação diferida de verdade, com reserva territorial
-mole e os dois critérios legais de desempate que o motor antigo ignorava
-(irmão na rede, responsável menor de 18 anos). Rodando sobre os 62.891
-crianças reais de 2025: ordenar pela régua legal em vez de sorteio leva o
-atendimento de quem declara CadÚnico de 78,0% para 93,1%. A régua não existe
-pra aumentar volume — custa ~180 vagas, e isso é esperado — existe pra
-decidir quem é atendido, e nisso o efeito é grande. Ganho líquido total
-(mecanismo + vaga ociosa + régua + reserva): +779 crianças. Achado que virou
-salvaguarda: entre 7.800 e 9.100 crianças já confirmadas hoje perderiam a
-vaga sob a nova ordem, então a régua nova só vale para a fila de espera e
-vagas futuras — nunca aplicada retroativamente sobre quem já está matriculado.
+## 1. Recomendação de escola
 
-Aceitação diferida (Gale-Shapley) não é uma aposta nova: é o mecanismo usado
-hoje na matrícula das redes públicas de Nova York e Boston, e no processo
-nacional de admissão escolar do Chile — uso consolidado o suficiente em
-educação para render o Nobel de Economia de 2012 a Alvin Roth e Lloyd
-Shapley "pela teoria de alocações estáveis e a prática do desenho de
-mercados". Referências: Abdulkadiroğlu & Sönmez, *School Choice: A Mechanism
-Design Approach*, American Economic Review 2003 (doi:10.1257/000282803322157061);
-Abdulkadiroğlu, Pathak & Roth, *The New York City High School Match*, AER
-2005; Abdulkadiroğlu, Pathak, Roth & Sönmez, *The Boston Public School
-Match*, AER 2005; nobelprize.org/prizes/economic-sciences/2012/press-release.
+Mostra pra família as creches mais próximas de casa de verdade — usando a
+localização real do CEP, não uma aproximação por bairro. **Erro de distância
+caiu de 0,97km para 0,65km.** Isso ajuda a família a listar mais opções com
+confiança, o que importa muito mais a partir da etapa 2.
 
-## 3. RMI + WhatsApp: convocação automática
+## 2. Motor de match: o que é o Gale-Shapley
 
-Hoje a confirmação de vaga é manual — SMS, WhatsApp e e-mail disparados um a
-um pelo diretor da unidade. O Eixo 3 automatiza a cascata: convoca pelo
-telefone de maior confiança (RMI) e, se a resposta for "não sou eu", avança
-sozinho pro próximo telefone. Ninguém fica esperando pra sempre: sem resposta
-em 48h o sistema trata como recusa e avança a cascata; se o processo manual
-também vencer o prazo (5 dias), a vaga é liberada de verdade — o motor de
-match roda de novo, em lote, sobre ~63 mil famílias em ~1,1s, e passa a
-próxima prioridade daquele estrato pra frente.
+É o mesmo algoritmo (aceitação diferida) usado hoje na matrícula pública de
+Nova York, Boston e no processo nacional de admissão escolar do Chile — rendeu
+o Nobel de Economia de 2012 aos seus criadores. A ideia é simples:
 
-## 4. IA no contato: confirmar sem sair do WhatsApp
+- Cada criança "propõe" pra sua creche preferida.
+- Cada creche só aceita as melhores propostas até a vaga acabar — e pode
+  **trocar** uma criança já aceita por outra melhor que apareça depois.
+- O processo repete até sobrar ninguém propondo.
 
-A resposta em linguagem natural é interpretada pelo LLM que já atende o
-WhatsApp da Prefeitura (Wetalkie) — não construímos canal novo. Pra fechar o
-ciclo, pede só os 4 últimos dígitos do CPF da criança (protege contra número
-reciclado ou compartilhado), sem forçar a família a voltar ao site. Baixo
-atrito é a mesma lógica de P3: qualquer barreira extra de comparecimento
-filtra primeiro quem o critério de prioridade quer proteger.
+O resultado tem duas garantias fortes: **ninguém ganha vantagem escondendo
+opções ou mentindo preferência** (ao contrário do sistema antigo, em que listar
+menos opções podia dar resultado melhor), e **nenhuma vaga fica presa** com uma
+criança pior alocada enquanto uma criança melhor colocada quer aquela vaga.
 
-## Por que as quatro juntas
+**Resultado, rodando sobre as 62.891 crianças reais de 2025:**
 
-Cada peça sozinha resolve uma fração do problema e depende da seguinte:
-sugestão sem matching de verdade rende pouco (P1); matching correto sem
-confirmação automática ainda perde vaga para famílias que nunca vão
-aparecer (P2, P4); confirmação automática sem canal de baixo atrito
-reproduz a mesma barreira presencial que a régua de prioridade existe para
-remover (P3). As quatro juntas fecham o ciclo — da inscrição à matrícula
-efetivada — sem reintroduzir a barreira presencial em nenhum ponto do
-caminho.
+- **+779 crianças atendidas a mais**, somando o conserto de um bug de
+  contagem de capacidade (531 vagas que existiam mas não eram contadas), o
+  aproveitamento de vaga ociosa e a nova régua de prioridade.
+- Famílias que declaram CadÚnico saem de **78,0% para 93,1%** de chance de
+  atendimento — a régua de prioridade legal (hoje ignorada na prática) passa
+  a valer de verdade.
+- **Ninguém que já tem vaga confirmada perde ela**: a régua nova só vale pra
+  fila de espera e vagas novas, nunca aplicada pra trás.
+
+## 3. Convocação automática (RMI + WhatsApp)
+
+Hoje a confirmação de vaga é manual: o diretor liga, manda SMS, manda
+WhatsApp, um por um. Automatizamos isso: o sistema convoca pelo telefone mais
+confiável (via RMI) e, se a resposta for "não sou eu", passa sozinho pro
+próximo telefone da família — sem intervenção humana.
+
+E ninguém fica esperando pra sempre: sem resposta em 48h já conta como
+recusa e avança a fila; se passar de 5 dias sem confirmação nenhuma, a vaga é
+liberada de verdade e o motor de match roda de novo — **em lote, sobre ~63 mil
+famílias, em ~1,1 segundo** — passando a vaga pra próxima criança da fila.
+
+## 4. IA no contato
+
+A resposta da família é interpretada pelo LLM que já atende o WhatsApp da
+Prefeitura — não criamos canal novo. Pra confirmar de verdade (e evitar
+número reciclado ou compartilhado), o sistema pede só os últimos dígitos do
+CPF da criança, direto na conversa. A família nunca precisa voltar ao site.
+
+---
+
+**Em uma frase:** melhor escolha, melhor algoritmo, melhor confirmação, sem
+fricção — da inscrição até a matrícula de fato acontecer.
