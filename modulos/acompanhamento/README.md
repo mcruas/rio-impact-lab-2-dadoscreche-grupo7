@@ -15,14 +15,18 @@ Duas coisas:
    repassa o status do `match-engine/`.
 2. **Eixo 3 (convocação)** — dono do contato automatizado via WhatsApp/RMI que
    pede ao responsável para confirmar uma vaga que o Motor de Match alocou.
-   Máquina de estados própria (`AguardandoResposta` → `Confirmada` ou
-   `EsgotadoEscalarManual`), guardada em memória.
+   Máquina de estados própria (`AguardandoResposta` → `Confirmada`,
+   `EsgotadoEscalarManual` ou `Liberada`), guardada em memória, implementada
+   em [`backend/ciclo_convocacao.py`](backend/ciclo_convocacao.py) — `main.py`
+   só traduz HTTP para essas funções, de propósito, para a lógica de negócio
+   não ficar misturada com a camada de rotas.
 
 Contrato: [`../../contracts/acompanhamento.openapi.yaml`](../../contracts/acompanhamento.openapi.yaml).
 
 ## O que este módulo consome
 
-- [`match-engine.openapi.yaml`](../../contracts/match-engine.openapi.yaml) (`GET /status/{cpf}`)
+- [`match-engine.openapi.yaml`](../../contracts/match-engine.openapi.yaml)
+  (`GET /status/{cpf}`, `POST /nao-confirmados`)
 
 **Só por contrato** — nunca acessar o banco/código interno de `match-engine/` diretamente.
 
@@ -35,17 +39,24 @@ Contrato: [`../../contracts/acompanhamento.openapi.yaml`](../../contracts/acompa
 - `POST /convocacoes/{cpf}/eventos` — webhook para o LLM do WhatsApp da
   Prefeitura reportar a intenção estruturada extraída da resposta do
   responsável (`confirmar` com dígitos de CPF, ou `nao_sou_eu`).
+- `POST /convocacoes/verificar-prazos` — avança quem estourou o prazo de
+  resposta por silêncio, e libera (chamando o Motor de Match em lote) quem
+  estourou também o prazo do fluxo manual do diretor. Em produção roda numa
+  tarefa periódica; aqui é disparável sob demanda para poder demonstrar o
+  ciclo completo sem esperar os prazos reais passarem.
 
 ## Limitações conhecidas (simulado neste hackathon)
 
 A base anonimizada não tem CPF nem telefone reais, então dois pedaços são
-mock — o resto (contrato, máquina de estados, verificação) é o que valeria em
-produção. Detalhes e porquês em
-[`../../INTEGRACAO_RMI_WHATSAPP.md`](../../INTEGRACAO_RMI_WHATSAPP.md):
+mock — o resto (contrato, máquina de estados, verificação, e o recálculo real
+do Motor de Match ao liberar uma vaga) é o que valeria em produção. Detalhes e
+porquês em [`../../INTEGRACAO_RMI_WHATSAPP.md`](../../INTEGRACAO_RMI_WHATSAPP.md):
 
 - Cascata de telefones do RMI: tamanho fixo (3), não a lista real por pessoa.
 - Autenticação por "últimos 4 dígitos do CPF": gerada por hash do código
   anonimizado, não dígitos de CPF de verdade.
+- `POST /convocacoes/verificar-prazos` é disparado manualmente, não por uma
+  tarefa agendada (não há orquestrador tipo cron/Prefect neste hackathon).
 
 ## Como começar
 
