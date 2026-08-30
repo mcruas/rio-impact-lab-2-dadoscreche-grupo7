@@ -700,3 +700,475 @@
 .tela-concluida .botao-continuar {
   margin-top: 12px;
 }
+
+/* ---------- Fluxo de match, telas 6-9 (pós-inscrição) ---------- */
+
+.match-topo {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 14px;
+}
+
+.match-topo .botao-voltar {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.match-topo-titulo {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.botao-ajuda {
+  border: none;
+  background: none;
+  color: var(--azul-primario);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.match-ajuda-caixa {
+  background: var(--azul-claro-bg);
+  color: var(--azul-texto);
+  border-radius: var(--raio-controle);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.match-stepper {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: flex;
+}
+
+.match-etapa {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.match-etapa-linha-caixa {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.match-etapa-linha {
+  flex: 1;
+  height: 2px;
+  background: var(--borda);
+}
+
+/* A linha da esquerda de uma etapa concluída/atual já foi percorrida. */
+.match-etapa--concluida .match-etapa-linha,
+.match-etapa--atual .match-etapa-linha:first-child {
+  background: var(--azul-primario);
+}
+
+.match-etapa-bolha {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e8edf6;
+  color: var(--texto-secundario);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.match-etapa--concluida .match-etapa-bolha,
+.match-etapa--atual .match-etapa-bolha {
+  background: var(--azul-primario);
+  color: white;
+}
+
+.match-etapa-rotulo {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  text-align: center;
+}
+
+.match-etapa--atual .match-etapa-rotulo {
+  color: var(--azul-texto);
+  font-weight: 800;
+}
+
+.match-centralizado {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.match-check {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.match-check--grande {
+  width: 84px;
+  height: 84px;
+  font-size: 44px;
+}
+
+.analise-icone {
+  font-size: 52px;
+  background: var(--azul-claro-bg);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.match-card {
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-cartao);
+  background: var(--fundo-cartao);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.match-card-selo {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--verde-selecionado-bg);
+  color: var(--verde-selecionado-texto);
+}
+
+.match-card-linha {
+  display: flex;
+  gap: 10px;
+}
+
+.match-motivos strong {
+  font-size: 14px;
+}
+
+.match-motivos ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.match-motivos li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--texto-secundario);
+}
+
+.motivo-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--verde-selecionado-bg);
+  color: var(--verde-selecionado-texto);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.caixa-aviso {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: var(--raio-controle);
+  font-size: 13px;
+}
+
+.caixa-aviso strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.caixa-aviso p {
+  color: var(--texto-secundario);
+  line-height: 1.45;
+}
+
+.caixa-aviso p + p {
+  margin-top: 3px;
+}
+
+.caixa-aviso-destaque {
+  font-weight: 700;
+  color: var(--texto-principal) !important;
+}
+
+.caixa-aviso > span:first-child {
+  font-size: 18px;
+}
+
+.caixa-aviso--prazo {
+  background: var(--laranja-bg);
+}
+
+.caixa-aviso--prazo strong {
+  color: var(--laranja-texto);
+}
+
+.caixa-aviso--info {
+  background: #f3f6fc;
+}
+
+.caixa-aviso--sucesso {
+  background: var(--verde-selecionado-bg);
+}
+
+.caixa-aviso--sucesso strong {
+  color: var(--verde-selecionado-texto);
+}
+
+.lista-marcadores {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--texto-secundario);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1.45;
+}
+
+.opcao-envio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-controle);
+  background: var(--fundo-cartao);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--texto-principal);
+}
+
+.opcao-envio--ativa {
+  border-color: var(--azul-primario);
+  background: var(--azul-claro-bg);
+}
+
+.opcao-envio--presencial.opcao-envio--ativa {
+  border-color: var(--verde-selecionado-borda);
+  background: var(--verde-selecionado-bg);
+}
+
+.opcao-envio-icone {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.opcao-envio-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.opcao-envio-texto strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.opcao-envio-texto span {
+  font-size: 12px;
+  color: var(--texto-secundario);
+  line-height: 1.4;
+}
+
+.opcao-envio-seta {
+  color: var(--texto-secundario);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.divisor-ou {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+.divisor-ou::before,
+.divisor-ou::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borda);
+}
+
+.lista-documentos {
+  padding: 14px;
+  border-radius: var(--raio-controle);
+  background: #f3f6fc;
+  font-size: 13px;
+}
+
+.lista-documentos .nota-seguranca {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.detalhes-inscricao {
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--raio-controle);
+  background: #f3f6fc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.detalhes-inscricao > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.detalhes-inscricao dt {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+}
+
+.detalhes-inscricao dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  min-width: 0;
+}
+
+.endereco-unidade {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-controle);
+  font-size: 13px;
+}
+
+.endereco-unidade p {
+  color: var(--texto-secundario);
+  line-height: 1.45;
+}
+
+.endereco-pino {
+  font-size: 20px;
+  background: var(--azul-claro-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------- Mapa das creches (components/MapaCreches.tsx) ---------- */
+
+.mapa-bloco {
+  margin-bottom: 16px;
+}
+
+.mapa-container {
+  height: 260px;
+  width: 100%;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-controle);
+  /* O Leaflet posiciona tiles e pinos em absolute; sem isso eles vazam do card. */
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* O pino e um SVG inline: o Leaflet aplica fundo/borda no .leaflet-div-icon por
+   padrao, o que desenharia um quadrado branco atras de cada marcador. */
+.mapa-pino {
+  background: transparent;
+  border: none;
+}
+
+.mapa-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+
+.mapa-legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mapa-bolinha {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.mapa-bolinha--escolhida {
+  background: var(--azul-texto);
+}
+
+.mapa-bolinha--casa {
+  background: var(--verde-selecionado-texto);
+}
+
+.mapa-vazio {
+  padding: 14px;
+  margin-bottom: 16px;
+  border: 1px dashed var(--borda);
+  border-radius: var(--raio-controle);
+  font-size: 13px;
+  color: var(--texto-secundario);
+}

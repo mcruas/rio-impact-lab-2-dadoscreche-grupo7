@@ -1,4 +1,5 @@
 const PASSOS = [1, 2, 3, 4, 5];
+const PASSOS_MATCH = [6, 7, 8, 9];
 
 interface PainelTesteProps {
   passoAtual: number;
@@ -16,8 +17,21 @@ export function PainelTeste({ passoAtual, onPreencher, onIrPara }: PainelTestePr
         🧪 Preencher com dados de teste
       </button>
       <div className="painel-teste-passos">
-        <span>Ir direto para:</span>
+        <span>Inscrição:</span>
         {PASSOS.map((passo) => (
+          <button
+            key={passo}
+            type="button"
+            className={passo === passoAtual ? "painel-teste-passo--ativo" : ""}
+            onClick={() => onIrPara(passo)}
+          >
+            {passo}
+          </button>
+        ))}
+      </div>
+      <div className="painel-teste-passos">
+        <span>Match:</span>
+        {PASSOS_MATCH.map((passo) => (
           <button
             key={passo}
             type="button"

@@ -9,10 +9,12 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { MapaCreches } from "../components/MapaCreches";
 import { StepShell } from "../components/StepShell";
 import { OrderableSchoolCard } from "../components/OrderableSchoolCard";
 import { SwapSuggestionModal } from "../components/SwapSuggestionModal";
 import type { DadosInscricao, RecomendacaoEscola } from "../types";
+import { buscarCreche } from "../utils/creches";
 
 interface StepProps {
   dados: DadosInscricao;
@@ -22,24 +24,6 @@ interface StepProps {
 }
 
 const POSICAO_SUGESTAO = 3; // 3ª escolha, 1-indexado
-
-function buscarCreche(resultados: RecomendacaoEscola[], escCodigo: string): RecomendacaoEscola {
-  return (
-    resultados.find((creche) => creche.escCodigo === escCodigo) ?? {
-      escCodigo,
-      nome: "(creche não encontrada nos resultados)",
-      endereco: null,
-      bairro: "",
-      tipo: null,
-      distanciaKm: 0,
-      origemDistancia: "",
-      indiceConcorrencia: null,
-      preferida: false,
-      pontuacaoFinal: 0,
-      rationale: { pontosProximidade: 0, pontosAdequacaoScore: 0, pontosHistorico: 0, explicacao: "" },
-    }
-  );
-}
 
 /** Melhor candidata dos resultados da busca que ainda não está na lista escolhida. */
 function melhorAlternativa(dados: DadosInscricao): RecomendacaoEscola | null {
@@ -123,6 +107,13 @@ export function Step3Escolha({ dados, atualizar, onVoltar, onContinuar }: StepPr
           <strong>Sugestões para você</strong>
           <p>Com base na sua busca, encontramos opções que podem combinar com sua rotina.</p>
         </div>
+
+        <MapaCreches
+          creches={dados.resultadosBusca}
+          escolhidas={lista}
+          latFamilia={dados.latFamilia}
+          lonFamilia={dados.lonFamilia}
+        />
 
         {lista.length === 0 ? (
           <p className="lista-vazia">Nenhuma creche na sua lista — volte e busque novamente.</p>

@@ -16,6 +16,8 @@ const POOL_BUSCA_POR_NOME: RecomendacaoEscola[] = [
 ].map((base) => ({
   ...base,
   endereco: null,
+  latitude: null,
+  longitude: null,
   tipo: "Creche",
   distanciaKm: 0,
   origemDistancia: "Nome buscado",
@@ -48,6 +50,9 @@ export const DADOS_EXEMPLO: DadosInscricao = {
   turno: "Integral",
   cpfResponsavel: "987.654.321-00",
   cepResidencial: "23050-300",
+  // Resolvidas de verdade no passo 2, ao buscar pelo CEP acima.
+  latFamilia: null,
+  lonFamilia: null,
   modoBusca: "regiao",
   buscaTexto: "23050-300",
   crechesEscolhidas: [],
@@ -56,4 +61,6 @@ export const DADOS_EXEMPLO: DadosInscricao = {
   bolsaFamilia: "Sim",
   publicoEducacaoEspecial: "Nao",
   outraVulnerabilidade: "Nao",
+  // Escolhido pela família na tela 7, não é dado do formulário de inscrição.
+  envioDocumentos: null,
 };
