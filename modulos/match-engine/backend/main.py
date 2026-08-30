@@ -1,14 +1,17 @@
 """Motor de Match -- contrato em contracts/match-engine.openapi.yaml.
 
 A alocacao (motor.roda_matching, aceitacao diferida com reserva territorial
-mole -- ver ../MATCHING.md) e calculada uma vez na subida do servidor e
-mantida em memoria; toda consulta a /status/{cpf} depois so olha um
-dicionario ja pronto.
+mole -- ver ../MATCHING.md) e calculada na subida do servidor e mantida em
+memoria; toda consulta a /status/{cpf} depois so olha um dicionario ja
+pronto. POST /nao-confirmados recalcula esse dicionario sob demanda, em
+lote, excluindo quem o Eixo 3 (acompanhamento) marcou como nao confirmado
+-- ver ciclo_convocacao.py em modulos/acompanhamento/backend/.
 
 Limitacoes conhecidas do contrato face aos dados reais -- ver
 ../README.md secao "Limitacoes conhecidas" para o porque de cada uma:
 - {cpf} recebe, na pratica, o codigo aluno_anon (a base do desafio nao tem CPF real).
-- StatusFila.status so usa 2 dos 4 valores do enum (Confirmado / ListaDeEspera).
+- StatusFila.status usa 3 dos 4 valores do enum (Confirmado / ListaDeEspera /
+  Cancelado -- este ultimo so depois de POST /nao-confirmados).
 - posicao_fila e a posicao na ordem de merito GLOBAL, nao por unidade.
 - escola_alocada guarda so o esc_codigo (unidade); grupamento/turno nao cabem
   no contrato (additionalProperties: false).
@@ -40,17 +43,24 @@ CRITERIOS = [
     {"criterio_id": "pais_menor_18", "descricao": "Pais/responsáveis com idade menor que 18 anos (desempate, não soma pontos)", "peso": 0},
 ]
 
-_estado: dict = {}
+_estado: dict = {"excluidos": set()}
 
 
 def _carrega_alocacao() -> None:
+    """Recalcula a alocacao. Chamada na subida do servidor e de novo, sob
+    demanda, por POST /nao-confirmados -- excluidos e cumulativo entre
+    chamadas (quem foi marcado numa rodada continua fora nas seguintes).
+    """
     familias, bairro_unid, capacidade, ociosas = load()
+    excluidos = _estado["excluidos"]
+    elegiveis = {cpf: f for cpf, f in familias.items() if cpf not in excluidos}
+
     cap_total = soma_capacidade(capacidade, ociosas)
-    alocacao = roda_matching(familias, bairro_unid, cap_total, reserve_fraction=RESERVE_FRACTION)
-    ordem = ordem_global(familias)
+    alocacao = roda_matching(elegiveis, bairro_unid, cap_total, reserve_fraction=RESERVE_FRACTION)
+    ordem = ordem_global(elegiveis)
     posicao = {a: i for i, a in enumerate(ordem)}  # 0-based: posicao na ordem de merito GLOBAL
 
-    _estado["familias"] = familias
+    _estado["familias"] = familias  # todos, inclusive excluidos -- para consulta de pontuacao
     _estado["alocacao"] = alocacao
     _estado["posicao"] = posicao
 
@@ -83,6 +93,15 @@ def status(cpf: str) -> dict:
     if fam is None:
         raise HTTPException(status_code=404, detail="Nenhum status encontrado para esse CPF")
 
+    if cpf in _estado["excluidos"]:
+        return {
+            "inscricao_id": cpf,
+            "status": "Cancelado",
+            "posicao_fila": None,
+            "escola_alocada": None,
+            "pontuacao": fam["pontos"],
+        }
+
     estrato = _estado["alocacao"].get(cpf)
     if estrato is not None:
         unidade, _grupamento, _turno = estrato
@@ -101,3 +120,25 @@ def status(cpf: str) -> dict:
         "escola_alocada": None,
         "pontuacao": fam["pontos"],
     }
+
+
+@app.post("/nao-confirmados")
+def marcar_nao_confirmados(lote: dict) -> dict:
+    """Chamado pelo Eixo 3 (acompanhamento) em lote, nunca por criança --
+    ver contracts/match-engine.openapi.yaml. Quem e marcado aqui sai da
+    concorrencia por TODAS as opcoes que listou (nao so pela vaga que
+    recebeu): nao confirmar e tratado como desistencia do processo, igual
+    a como a rede trata hoje quem nao aparece pra matricular.
+    """
+    cpfs = lote.get("cpfs", [])
+    familias = _estado["familias"]
+    desconhecidos = [cpf for cpf in cpfs if cpf not in familias]
+    if desconhecidos:
+        raise HTTPException(
+            status_code=404,
+            detail=f"CPFs nao encontrados: {desconhecidos}",
+        )
+
+    _estado["excluidos"].update(cpfs)
+    _carrega_alocacao()
+    return {"excluidos_total": len(_estado["excluidos"])}

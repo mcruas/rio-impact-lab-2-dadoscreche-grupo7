@@ -56,10 +56,14 @@ uma omissão:
   CPF" em `../../INTEGRACAO_RMI_WHATSAPP.md`). O contrato continua com o nome `cpf`
   por não exigir mudança combinada com quem consome; o vínculo com CPF de verdade
   só existe em produção, via RMI.
-- **`status` só usa 2 dos 4 valores do enum** (`Confirmado` / `ListaDeEspera`). O
-  motor roda uma rodada até convergir e não modela estado intermediário
-  (`EmFila`) nem desistência/cancelamento (`Cancelado`) — não é omissão, é o que o
-  algoritmo de fato produz.
+- **`status` usa 3 dos 4 valores do enum** (`Confirmado` / `ListaDeEspera` /
+  `Cancelado`). O motor roda uma rodada até convergir e não modela estado
+  intermediário (`EmFila`) — não é omissão, é o que o algoritmo de fato
+  produz. `Cancelado` só aparece depois de `POST /nao-confirmados` (chamado
+  pelo Eixo 3/`acompanhamento` quando ninguém confirma a vaga dentro do
+  prazo, nem por telefone nem pelo fluxo manual do diretor — ver
+  `../../INTEGRACAO_RMI_WHATSAPP.md`); não existe desistência espontânea
+  nesta simulação.
 - **`posicao_fila` é a posição na ordem de mérito GLOBAL** (pontuação → desempates
   → sorteio), não a posição numa fila por unidade — o motor processa uma ordem
   única para todas as escolas, não mantém fila por escola. `null` quando a criança
