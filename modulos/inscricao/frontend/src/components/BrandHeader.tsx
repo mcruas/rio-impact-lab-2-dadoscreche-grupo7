@@ -6,9 +6,9 @@ export function BrandHeader() {
           🏠
         </span>
         <span className="marca-logo-texto">
-          MATRÍCULA
+          MATCH
           <br />
-          CARIOCA
+          CRECHE
         </span>
       </div>
       <p className="marca-tagline">Encontre a creche certa para a sua família.</p>
