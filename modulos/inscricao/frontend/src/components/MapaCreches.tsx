@@ -20,8 +20,11 @@ interface MapaCrechesProps {
   escolhidas: string[];
   latFamilia: number | null;
   lonFamilia: number | null;
-  /** Chamado ao clicar num pino de creche, para a lista destacar a mesma. */
+  /** Chamado ao clicar num pino de creche, para adicioná-la à lista. */
   onSelecionar?: (escCodigo: string) => void;
+  /** Falso quando a lista já bateu o limite — muda o texto do popup, para o
+   * pino não prometer uma adição que não vai acontecer. */
+  podeAdicionar?: boolean;
 }
 
 // Pino numerado desenhado em SVG inline — evita depender dos PNG do Leaflet, que
@@ -116,6 +119,7 @@ export function MapaCreches({
   latFamilia,
   lonFamilia,
   onSelecionar,
+  podeAdicionar = true,
 }: MapaCrechesProps) {
   const container = useRef<HTMLDivElement>(null);
   const mapa = useRef<L.Map | null>(null);
@@ -183,11 +187,18 @@ export function MapaCreches({
         // Pinos da lista por cima dos demais, para o número nunca ficar escondido.
         zIndexOffset: escolhida ? 1000 - posicao : 0,
       });
+      const situacao = escolhida
+        ? `${posicao + 1}ª da sua lista`
+        : onSelecionar === undefined
+          ? ""
+          : podeAdicionar
+            ? "Toque no pino para adicionar à sua lista"
+            : "Sua lista já está cheia — remova uma creche para poder adicionar esta";
       marcador.bindPopup(
         `<strong>${escaparHtml(creche.nome)}</strong><br/>` +
           `${escaparHtml(creche.bairro)}<br/>` +
           formatarDistancia(creche.distanciaKm) +
-          (escolhida ? `<br/><em>${posicao + 1}ª da sua lista</em>` : ""),
+          (situacao === "" ? "" : `<br/><em>${escaparHtml(situacao)}</em>`),
       );
       if (onSelecionar) marcador.on("click", () => onSelecionar(creche.escCodigo));
       marcador.addTo(camada);
@@ -205,7 +216,7 @@ export function MapaCreches({
         .bindPopup("<strong>Seu endereço</strong><br/>Origem do cálculo de distância.")
         .addTo(camada);
     }
-  }, [comCoordenada, escolhidas, latFamilia, lonFamilia, onSelecionar]);
+  }, [comCoordenada, escolhidas, latFamilia, lonFamilia, onSelecionar, podeAdicionar]);
 
   if (comCoordenada.length === 0) {
     return (

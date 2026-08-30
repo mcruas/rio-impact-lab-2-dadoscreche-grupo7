@@ -41,7 +41,7 @@ export function Step8Analise({ dados, onVoltar, onContinuar }: StepProps) {
     },
     { rotulo: "Turno", valor: dados.turno ?? "—" },
     { rotulo: "Responsável (CPF)", valor: vazio(dados.cpfResponsavel) },
-    { rotulo: "CEP informado", valor: vazio(dados.cepResidencial) },
+    { rotulo: "Busca (bairro/CEP)", valor: vazio(dados.buscaTexto) },
     { rotulo: "Creche do match", valor: creche?.nome ?? "—" },
     {
       rotulo: "Entrega dos documentos",

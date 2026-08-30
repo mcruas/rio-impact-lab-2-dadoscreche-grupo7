@@ -85,7 +85,7 @@ function cepParaContrato(cep?: string): string | undefined {
 
 export async function buscarPorBairro(
   bairro: string,
-  limite = 8,
+  limite = 20,
   cep?: string,
 ): Promise<RecomendacaoEscola[]> {
   // Mandar o cep junto do bairro é o que dá precisão de CEP (erro mediano 0,65 km)

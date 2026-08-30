@@ -9,15 +9,23 @@ export type ModoBusca = "creche" | "regiao";
 
 export type EnvioDocumentos = "aplicativo" | "presencial";
 
+/** Teto de creches por inscrição, definido pelo processo da SME. */
+export const LIMITE_ESCOLHAS = 5;
+
+/** Quantas candidatas a busca do passo 2 traz. Bem mais que LIMITE_ESCOLHAS de
+ * propósito: o que não entra na lista continua no mapa do passo 3, para a
+ * família poder trocar clicando no pino. */
+export const TOTAL_CANDIDATAS = 20;
+
 export interface DadosInscricao {
   nomeCrianca: string;
   cpfCrianca: string;
   dataNascimento: string;
   turno: Turno | null;
   cpfResponsavel: string;
-  cepResidencial: string;
-  /** Coordenada do cepResidencial, resolvida por GET /cep/{cep} no passo 2.
-   * Nula quando o CEP nao esta na tabela local (ai o mapa nao mostra a casa). */
+  /** Coordenada do CEP buscado no passo 2 (GET /cep/{cep}). Nula quando a busca
+   * foi por nome de bairro, ou quando o CEP nao esta na tabela local — nos dois
+   * casos o mapa simplesmente nao mostra o pino da casa. */
   latFamilia: number | null;
   lonFamilia: number | null;
   modoBusca: ModoBusca;
@@ -44,7 +52,6 @@ export const dadosIniciais: DadosInscricao = {
   dataNascimento: "",
   turno: null,
   cpfResponsavel: "",
-  cepResidencial: "",
   latFamilia: null,
   lonFamilia: null,
   modoBusca: "regiao",

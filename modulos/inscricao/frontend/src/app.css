@@ -487,6 +487,17 @@
   color: var(--texto-secundario);
 }
 
+.contagem-escolhas {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  letter-spacing: 0.02em;
+}
+
+.contagem-escolhas--cheia {
+  color: var(--laranja-texto);
+}
+
 /* ---------- Prioridade (Step 4) ---------- */
 
 .pergunta-prioridade-texto {
@@ -1118,7 +1129,9 @@
 }
 
 .mapa-container {
-  height: 260px;
+  /* 300px e não 260: com 20 candidatas no mapa, o enquadramento fica apertado
+     demais numa faixa mais baixa. */
+  height: 300px;
   width: 100%;
   border: 1px solid var(--borda);
   border-radius: var(--raio-controle);

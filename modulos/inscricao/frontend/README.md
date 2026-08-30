@@ -24,17 +24,24 @@ passo 2 no modo "bairro/CEP" funcionar.
 
 1. **Dados da criança e do responsável** — nome, CPF da criança (com validador de
    dígitos verificadores — ver `src/utils/cpf.ts`), data de nascimento, turno
-   Integral/Parcial, CPF do responsável (mesma validação), CEP residencial.
+   Integral/Parcial, CPF do responsável (mesma validação). **Não pede CEP**: o
+   endereço de referência é escolhido no passo 2, que é onde ele de fato importa
+   (e onde a família pode procurar perto do trabalho ou da avó em vez de casa).
 2. **Encontre sua creche** — alterna entre busca por nome (mockada,
    `src/data/mockCreches.ts`) e busca por bairro/CEP (real — `src/api/recomendacaoEscolas.ts`
    resolve CEP via `GET /cep/{cep}` quando o texto parece CEP, depois chama
-   `POST /recomendacoes`). Mostra erro se o backend estiver fora do ar ou o CEP não
-   existir.
+   `POST /recomendacoes`). Traz **20 candidatas** (`TOTAL_CANDIDATAS`), não 5: as 5
+   melhores viram a lista inicial e as outras 15 ficam no mapa do passo 3 para a
+   família trocar. Mostra erro se o backend estiver fora do ar ou o CEP não existir.
 3. **Escolha e ordene até 5 creches** — lista arrastável (`@dnd-kit`, com suporte a
-   toque) sobre os resultados reais da busca (`dados.resultadosBusca`). Um modal de
-   "sugestão de troca" aparece automaticamente quando alguma candidata fora do top 5
-   tem `pontuacaoFinal` maior que a 3ª escolha atual — usa o racional de verdade
-   (`rationale.explicacao`) devolvido pelo backend, não um texto inventado.
+   toque) sobre os resultados reais da busca (`dados.resultadosBusca`). O mapa mostra
+   as 20 candidatas: **tocar num pino cinza adiciona a creche à lista**; no limite de
+   5 (`LIMITE_ESCOLHAS`) o clique não adiciona e aparece um aviso pedindo para
+   remover alguma antes — remover é só pelo "×" do card, porque remover sem querer
+   com o dedo no mapa seria fácil demais. Um modal de "sugestão de troca" aparece
+   automaticamente quando alguma candidata fora do top 5 tem `pontuacaoFinal` maior
+   que a 3ª escolha atual — usa o racional de verdade (`rationale.explicacao`)
+   devolvido pelo backend, não um texto inventado.
 4. **Prioridade da inscrição** — CadÚnico, Bolsa Família, público-alvo de Educação
    Especial, outra vulnerabilidade — essas respostas são o que futuramente vira
    `POST /score-preliminar` no `match-engine` (endpoint ainda não implementado lá).
@@ -115,8 +122,11 @@ npm run lint      # oxlint
   propostos no contrato, não implementados).
 - Persistir a inscrição de verdade via `POST /inscricoes` (backend próprio deste
   módulo, hoje só um stub em `../backend/main.py`).
-- Validação de CEP no campo de endereço residencial do passo 1 (hoje só o passo 2
-  resolve CEP de verdade; o CEP do passo 1 ainda só checa se não está vazio).
+- Filtrar as candidatas por oferta de creche: `POST /recomendacoes` rankeia todas as
+  unidades do dataset, então entre as 20 mais próximas aparecem Escolas Municipais,
+  CIEPs e escolas especiais que podem não ter turma de creche. Com 8 resultados isso
+  passava batido; com 20 no mapa fica visível. Precisa de um critério acordado (por
+  `tipo`? por oferta declarada?) antes de sair filtrando.
 - Ligar as telas 6-9 no `match-engine`/`acompanhamento` de verdade: hoje a "vaga do
   match" é a 1ª escolha da família, não o resultado do motor, e o avanço entre
   análise e matrícula é um clique em vez de um evento do backend.

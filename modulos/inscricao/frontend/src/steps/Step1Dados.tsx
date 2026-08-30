@@ -22,8 +22,7 @@ export function Step1Dados({ dados, atualizar, onVoltar, onContinuar }: StepProp
     cpfValido(dados.cpfCrianca) &&
     dados.dataNascimento.trim() !== "" &&
     dados.turno !== null &&
-    cpfValido(dados.cpfResponsavel) &&
-    dados.cepResidencial.trim() !== "";
+    cpfValido(dados.cpfResponsavel);
 
   return (
     <StepShell
@@ -75,23 +74,6 @@ export function Step1Dados({ dados, atualizar, onVoltar, onContinuar }: StepProp
         valor={dados.cpfResponsavel}
         onAlterar={(cpfResponsavel) => atualizar({ cpfResponsavel })}
       />
-
-      <h2 className="secao-titulo">Endereço residencial</h2>
-      <p className="secao-descricao">Usaremos seu endereço para sugerir creches próximas.</p>
-
-      <label className="campo">
-        <span>CEP</span>
-        <div className="campo-com-icone">
-          <input
-            type="text"
-            value={dados.cepResidencial}
-            onChange={(evento) => atualizar({ cepResidencial: evento.target.value })}
-            placeholder="00000-000"
-            inputMode="numeric"
-          />
-          <span aria-hidden="true">📍</span>
-        </div>
-      </label>
     </StepShell>
   );
 }

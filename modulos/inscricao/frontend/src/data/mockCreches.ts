@@ -49,8 +49,7 @@ export const DADOS_EXEMPLO: DadosInscricao = {
   dataNascimento: "2023-05-02",
   turno: "Integral",
   cpfResponsavel: "987.654.321-00",
-  cepResidencial: "23050-300",
-  // Resolvidas de verdade no passo 2, ao buscar pelo CEP acima.
+  // Resolvidas de verdade no passo 2, ao buscar pelo CEP de buscaTexto.
   latFamilia: null,
   lonFamilia: null,
   modoBusca: "regiao",

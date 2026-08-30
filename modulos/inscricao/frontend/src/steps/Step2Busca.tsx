@@ -3,7 +3,7 @@ import { SegmentedToggle } from "../components/SegmentedToggle";
 import { StepShell } from "../components/StepShell";
 import { buscarPorBairro, ErroApiRecomendacao, resolverCep } from "../api/recomendacaoEscolas";
 import { buscarCrechesPorNome } from "../data/mockCreches";
-import type { DadosInscricao, ModoBusca, RecomendacaoEscola } from "../types";
+import { TOTAL_CANDIDATAS, type DadosInscricao, type ModoBusca, type RecomendacaoEscola } from "../types";
 
 interface StepProps {
   dados: DadosInscricao;
@@ -58,7 +58,9 @@ export function Step2Busca({ dados, atualizar, onVoltar, onBuscar }: StepProps) 
         atualizar({ latFamilia: null, lonFamilia: null });
       }
 
-      const resultados = await buscarPorBairro(bairro, 8, cep);
+      // 20 e não 8: as 5 pré-selecionadas viram só o começo da lista — as outras
+      // 15 ficam no mapa do passo 3 para a família trocar clicando no pino.
+      const resultados = await buscarPorBairro(bairro, TOTAL_CANDIDATAS, cep);
       if (resultados.length === 0) {
         setErro("Não encontramos creches nessa região. Tente um bairro vizinho.");
         setCarregando(false);
@@ -111,9 +113,8 @@ export function Step2Busca({ dados, atualizar, onVoltar, onBuscar }: StepProps) 
         <label className="campo">
           <span>Buscar por bairro ou CEP</span>
           <span className="campo-ajuda">
-            {dados.buscaTexto.trim() !== "" && dados.buscaTexto.trim() === dados.cepResidencial.trim()
-              ? "Usamos o CEP que você informou. Troque se quiser procurar perto de outro lugar (trabalho, casa de familiares…)."
-              : "Digite o bairro ou CEP para ver creches próximas de verdade."}
+            Digite o bairro ou CEP de onde você quer creche perto — pode ser sua casa, o
+            trabalho, a casa de familiares…
           </span>
           <div className="campo-com-icone">
             <input
@@ -133,7 +134,10 @@ export function Step2Busca({ dados, atualizar, onVoltar, onBuscar }: StepProps) 
         <span aria-hidden="true">💡</span>
         <div>
           <strong>Dica</strong>
-          <p>Você poderá escolher até 5 creches na próxima etapa.</p>
+          <p>
+            Vamos mostrar as creches mais próximas no mapa. Você poderá escolher até 5 delas na
+            próxima etapa.
+          </p>
         </div>
       </div>
     </StepShell>

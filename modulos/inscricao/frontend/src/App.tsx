@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { BrandHeader } from "./components/BrandHeader";
 import { PainelTeste } from "./components/PainelTeste";
 import { DADOS_EXEMPLO } from "./data/mockCreches";
@@ -11,7 +11,7 @@ import { Step6Match } from "./steps/Step6Match";
 import { Step7Documentos } from "./steps/Step7Documentos";
 import { Step8Analise } from "./steps/Step8Analise";
 import { Step9Matricula } from "./steps/Step9Matricula";
-import { dadosIniciais, type DadosInscricao } from "./types";
+import { dadosIniciais, LIMITE_ESCOLHAS, type DadosInscricao } from "./types";
 
 // 1-5: formulário de inscrição. 6-9: fluxo de match (pós-inscrição), que no
 // sistema real seria disparado pelo Motor de Match dias depois — aqui é a
@@ -22,9 +22,12 @@ function App() {
   const [passo, setPasso] = useState(1);
   const [dados, setDados] = useState<DadosInscricao>(dadosIniciais);
 
-  function atualizar(patch: Partial<DadosInscricao>) {
+  // useCallback (e não uma função solta) porque o MapaCreches recria todos os
+  // pinos — e reenquadra o mapa — sempre que o callback de clique muda de
+  // identidade. Com `atualizar` estável, isso só acontece quando os dados mudam.
+  const atualizar = useCallback((patch: Partial<DadosInscricao>) => {
     setDados((atual) => ({ ...atual, ...patch }));
-  }
+  }, []);
 
   function irPara(proximoPasso: number) {
     setPasso(Math.min(Math.max(proximoPasso, 1), TOTAL_TELAS));
@@ -49,17 +52,7 @@ function App() {
           dados={dados}
           atualizar={atualizar}
           onVoltar={() => irPara(passo - 1)}
-          onContinuar={() => {
-            // O CEP residencial já foi digitado aqui no passo 1 — pedir de novo no
-            // passo 2 era pedir a mesma coisa duas vezes. Leva o CEP como busca
-            // inicial; a família continua podendo trocar por outro bairro/CEP se
-            // quiser creche perto do trabalho, da avó etc.
-            const cep = dados.cepResidencial.trim();
-            if (cep !== "" && dados.modoBusca === "regiao" && dados.buscaTexto.trim() === "") {
-              atualizar({ buscaTexto: cep });
-            }
-            irPara(2);
-          }}
+          onContinuar={() => irPara(2)}
         />
       )}
       {passo === 2 && (
@@ -70,7 +63,11 @@ function App() {
           onBuscar={(resultados) => {
             atualizar({
               resultadosBusca: resultados,
-              crechesEscolhidas: resultados.slice(0, 5).map((creche) => creche.escCodigo),
+              // Pré-seleciona as melhores; o resto das candidatas fica no mapa
+              // do passo 3 para a família trocar.
+              crechesEscolhidas: resultados
+                .slice(0, LIMITE_ESCOLHAS)
+                .map((creche) => creche.escCodigo),
             });
             irPara(3);
           }}
