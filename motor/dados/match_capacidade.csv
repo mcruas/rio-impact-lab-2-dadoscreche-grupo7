@@ -1,0 +1,2115 @@
+unidade,g,h,capacidade
+01006,Berçário,Integral,40
+01009,Berçário,Integral,10
+0101601,Maternal I,Parcial,35
+0101602,Maternal I,Integral,31
+0101604,Maternal I,Parcial,31
+0101605,Maternal I,Parcial,14
+0101802,Berçário,Integral,54
+0101802,Maternal II ,Integral,13
+0102601,Maternal I,Integral,12
+0102803,Maternal II ,Integral,28
+0103604,Maternal II ,Integral,3
+0103606,Maternal II ,Integral,8
+0103805,Berçário,Integral,11
+0103807,Berçário,Integral,52
+0107602,Maternal II ,Integral,1
+0107604,Maternal I,Integral,20
+0107605,Berçário,Integral,25
+02028,Berçário,Integral,38
+02028,Maternal II ,Integral,11
+02028,Maternal I,Integral,10
+02045,Maternal II ,Integral,8
+0204805,Maternal I,Integral,79
+02053,Berçário,Integral,36
+02057,Maternal II ,Integral,8
+0208604,Berçário,Integral,43
+0209610,Berçário,Integral,25
+0209804,Maternal II ,Integral,9
+03003,Maternal I,Integral,84
+03005,Maternal II ,Integral,16
+03008,Maternal I,Integral,23
+03010,Maternal II ,Integral,10
+03015,Maternal I,Integral,6
+03017,Maternal I,Integral,15
+03017,Maternal II ,Integral,6
+03026,Maternal I,Integral,45
+03032,Maternal II ,Integral,5
+03036,Berçário,Integral,62
+03038,Maternal II ,Integral,14
+03040,Berçário,Integral,23
+03040,Maternal I,Integral,10
+0312601,Berçário,Integral,56
+0312601,Maternal I,Integral,19
+0312602,Maternal I,Integral,2
+0312802,Maternal II ,Integral,24
+0312813,Maternal I,Integral,18
+0313607,Berçário,Integral,38
+0313609,Maternal I,Integral,11
+0313610,Berçário,Integral,31
+0313611,Maternal I,Integral,11
+0328602,Maternal I,Integral,4
+0330602,Maternal I,Integral,20
+04001,Maternal II ,Integral,6
+04003,Berçário,Integral,39
+04006,Maternal I,Integral,12
+04008,Maternal I,Integral,37
+04010,Maternal I,Integral,69
+04013,Maternal I,Integral,41
+04021,Maternal I,Integral,45
+04029,Maternal I,Integral,18
+04030,Berçário,Integral,98
+04032,Maternal I,Integral,8
+04035,Maternal I,Integral,15
+04041,Maternal I,Integral,2
+04042,Maternal I,Integral,48
+04046,Berçário,Integral,13
+0410602,Maternal II ,Integral,21
+0410603,Maternal I,Integral,23
+0410808,Maternal II ,Integral,8
+0411601,Maternal I,Integral,4
+0411602,Berçário,Integral,24
+0411603,Maternal I,Integral,12
+0411802,Maternal II ,Integral,3
+0430809,Berçário,Integral,25
+0430810,Maternal I,Integral,60
+0431602,Maternal II ,Integral,8
+0431802,Maternal II ,Integral,11
+05003,Maternal I,Integral,35
+05005,Maternal II ,Integral,5
+05006,Berçário,Integral,65
+05007,Maternal I,Integral,19
+05010,Berçário,Integral,213
+05014,Maternal II ,Integral,41
+05015,Maternal II ,Integral,21
+05015,Berçário,Integral,37
+0514605,Berçário,Integral,49
+0514801,Maternal I,Integral,45
+0514803,Maternal II ,Parcial,50
+0515021,Maternal II ,Parcial,51
+0515602,Berçário,Integral,49
+0515606,Berçário,Integral,30
+0515606,Maternal II ,Integral,15
+0515611,Maternal I,Integral,33
+0515612,Maternal II ,Integral,8
+06009,Maternal I,Integral,158
+06013,Maternal II ,Integral,21
+06015,Maternal II ,Integral,43
+0622601,Maternal II ,Integral,29
+0622602,Berçário,Integral,29
+0622810,Maternal II ,Parcial,50
+0625601,Berçário,Integral,28
+0625601,Maternal I,Parcial,1
+0625603,Berçário,Integral,37
+0625607,Maternal I,Integral,30
+0625802,Maternal I,Integral,25
+0625818,Maternal I,Integral,1
+07003,Berçário,Integral,76
+07014,Berçário,Integral,27
+07017,Maternal I,Integral,34
+07034,Maternal I,Integral,11
+07035,Maternal I,Integral,91
+07036,Maternal I,Integral,35
+07038,Maternal II ,Integral,28
+07039,Maternal I,Integral,61
+07039,Maternal II ,Integral,15
+07040,Maternal II ,Integral,22
+07045,Maternal II ,Integral,23
+0716604,Maternal I,Integral,12
+0716612,Maternal II ,Integral,5
+0716801,Maternal I,Integral,27
+0716807,Berçário,Integral,62
+0716808,Maternal II ,Integral,10
+0716812,Berçário,Integral,23
+0716818,Maternal I,Integral,3
+0716824,Maternal II ,Integral,34
+0724601,Berçário,Integral,78
+0724605,Maternal I,Integral,28
+0724605,Maternal II ,Integral,8
+0724802,Maternal II ,Integral,15
+0724803,Maternal II ,Integral,27
+0734805,Maternal II ,Integral,6
+08006,Maternal II ,Integral,18
+08007,Maternal I,Integral,19
+08008,Maternal II ,Integral,42
+0817504,Maternal II ,Integral,40
+0817603,Maternal II ,Integral,11
+0817605,Maternal I,Integral,16
+0817605,Maternal II ,Integral,15
+0817605,Berçário,Parcial,49
+0817611,Maternal I,Integral,41
+0817615,Berçário,Integral,30
+0817806,Maternal II ,Parcial,7
+0833603,Berçário,Integral,89
+0833803,Maternal I,Integral,45
+0833807,Maternal II ,Integral,24
+0833809,Maternal I,Integral,19
+0833811,Maternal I,Integral,50
+09001,Maternal II ,Integral,8
+09003,Maternal II ,Integral,5
+09009,Maternal II ,Integral,6
+09014,Berçário,Integral,13
+09014,Maternal II ,Integral,23
+09025,Berçário,Integral,21
+09028,Maternal I,Integral,36
+09030,Maternal II ,Integral,20
+09032,Maternal II ,Integral,1
+09037,Maternal I,Integral,25
+09040,Berçário,Integral,21
+09042,Maternal II ,Integral,4
+0918605,Maternal I,Integral,43
+0918605,Maternal II ,Integral,7
+0918607,Maternal I,Integral,15
+0918615,Maternal I,Integral,44
+0918620,Berçário,Parcial,33
+0918621,Maternal II ,Integral,2
+0918805,Maternal II ,Integral,20
+0918805,Maternal I,Integral,22
+0918806,Maternal II ,Parcial,3
+0918807,Maternal I,Integral,18
+0918808,Maternal II ,Integral,23
+0918813,Berçário,Integral,53
+0918815,Maternal I,Parcial,11
+0918816,Maternal I,Integral,14
+0918817,Berçário,Parcial,62
+0918822,Berçário,Parcial,28
+0918824,Maternal II ,Integral,3
+0918824,Berçário,Integral,29
+0918825,Maternal II ,Integral,3
+0918835,Maternal I,Integral,20
+0918835,Maternal II ,Integral,30
+0918836,Berçário,Integral,49
+0918838,Maternal I,Parcial,49
+10005,Maternal I,Integral,12
+10008,Berçário,Integral,23
+10018,Berçário,Integral,128
+10018,Maternal II ,Integral,21
+10023,Berçário,Integral,20
+10039,Maternal II ,Integral,14
+10040,Maternal I,Integral,30
+10041,Berçário,Integral,64
+10042,Maternal II ,Integral,6
+10043,Berçário,Integral,28
+10052,Maternal II ,Integral,15
+10062,Maternal I,Integral,6
+10073,Berçário,Integral,20
+10079,Maternal I,Integral,11
+10080,Maternal II ,Integral,23
+10084,Maternal II ,Integral,15
+10085,Maternal II ,Integral,5
+1019606,Maternal I,Parcial,60
+1019616,Maternal I,Integral,39
+1019621,Maternal I,Integral,19
+1019628,Berçário,Integral,19
+1019801,Maternal II ,Integral,32
+1019801,Berçário,Integral,24
+1019824,Maternal II ,Integral,18
+1019826,Maternal II ,Integral,15
+1019831,Maternal II ,Integral,33
+1026601,Maternal I,Parcial,10
+1026806,Maternal I,Integral,30
+1026809,Maternal II ,Integral,12
+1026810,Berçário,Integral,35
+11008,Maternal II ,Integral,34
+1120602,Berçário,Integral,18
+1120606,Maternal II ,Integral,8
+1120801,Berçário,Integral,26
+0102605,Maternal II ,Integral,3
+02014,Maternal I,Integral,6
+02035,Maternal I,Integral,6
+02043,Maternal II ,Integral,5
+0204806,Maternal I,Integral,7
+0208601,Maternal II ,Integral,3
+03029,Maternal I,Integral,14
+0312809,Maternal II ,Integral,4
+0312810,Maternal II ,Integral,1
+0313601,Maternal I,Integral,2
+0313604,Maternal II ,Integral,4
+0313805,Maternal II ,Integral,4
+0328602,Maternal II ,Integral,5
+04005,Maternal II ,Integral,15
+0430605,Maternal I,Integral,23
+0430801,Maternal I,Integral,3
+0514605,Maternal II ,Integral,6
+0515808,Maternal I,Integral,8
+06001,Maternal II ,Integral,6
+06006,Maternal I,Integral,21
+0625803,Maternal I,Integral,1
+07007,Maternal II ,Integral,5
+0716614,Maternal I,Integral,4
+0716818,Maternal II ,Integral,4
+0716820,Maternal II ,Integral,9
+08009,Maternal II ,Integral,1
+0817615,Maternal II ,Integral,7
+0817801,Maternal II ,Integral,5
+0918619,Maternal II ,Integral,11
+0918811,Maternal I,Parcial,5
+0918813,Maternal II ,Integral,13
+0918820,Maternal I,Integral,12
+0918823,Maternal II ,Integral,5
+0918826,Maternal II ,Parcial,4
+10001,Maternal II ,Integral,11
+10068,Maternal II ,Integral,16
+1019809,Maternal II ,Integral,6
+1026807,Maternal I,Integral,6
+01005,Maternal I,Integral,11
+0107605,Maternal I,Integral,2
+02052,Maternal II ,Integral,4
+0208603,Maternal II ,Integral,3
+04049,Maternal I,Integral,6
+0431603,Maternal II ,Integral,2
+0625611,Maternal II ,Integral,7
+0625615,Maternal I,Integral,8
+07020,Maternal II ,Integral,2
+07034,Maternal II ,Integral,6
+0716606,Maternal I,Integral,5
+0716820,Maternal I,Integral,4
+0734801,Maternal II ,Integral,1
+09031,Maternal II ,Integral,7
+0918621,Maternal I,Integral,2
+0918810,Maternal II ,Parcial,9
+0918833,Maternal II ,Parcial,3
+10044,Maternal I,Integral,6
+11009,Maternal II ,Integral,3
+04041,Maternal II ,Integral,2
+0411602,Maternal I,Integral,2
+08005,Maternal II ,Integral,4
+0918616,Maternal II ,Integral,4
+10056,Maternal II ,Integral,6
+10077,Maternal II ,Integral,3
+01009,Maternal II ,Integral,3
+03007,Maternal II ,Integral,1
+09007,Maternal I,Integral,3
+0312806,Maternal II ,Integral,1
+0313802,Maternal I,Integral,2
+09011,Maternal II ,Integral,5
+0716607,Maternal II ,Integral,1
+0716816,Maternal II ,Integral,1
+0625601,Maternal II ,Integral,1
+01004,Maternal II ,Integral,3
+0101607,Maternal II ,Integral,3
+0101801,Maternal I,Parcial,17
+0102602,Maternal II ,Integral,17
+0103602,Maternal II ,Integral,4
+0103602,Berçário,Integral,25
+0103607,Berçário,Parcial,38
+0107603,Maternal II ,Integral,7
+0107604,Berçário,Integral,41
+0107609,Berçário,Parcial,53
+0121001,Maternal I,Integral,9
+02003,Berçário,Integral,32
+02004,Maternal I,Integral,43
+02006,Berçário,Integral,26
+02010,Berçário,Integral,45
+02013,Maternal I,Integral,27
+02020,Maternal I,Integral,8
+02032,Maternal II ,Integral,10
+02037,Maternal II ,Integral,3
+02043,Berçário,Integral,45
+02057,Maternal I,Integral,27
+02060,Maternal II ,Integral,20
+0208606,Berçário,Integral,15
+0209604,Berçário,Integral,17
+0209605,Maternal II ,Integral,1
+0209607,Berçário,Integral,19
+0209803,Maternal II ,Integral,10
+03002,Berçário,Integral,135
+03007,Maternal I,Integral,10
+03011,Maternal I,Integral,23
+03012,Maternal II ,Integral,17
+03014,Maternal I,Integral,52
+03019,Maternal I,Integral,5
+03020,Maternal I,Integral,48
+03024,Berçário,Integral,40
+03026,Maternal II ,Integral,16
+0312502,Berçário,Integral,49
+0312802,Maternal I,Integral,23
+0312809,Maternal I,Integral,27
+0312812,Berçário,Integral,43
+0313603,Maternal II ,Integral,1
+0313611,Maternal II ,Integral,3
+0313612,Berçário,Integral,40
+0313801,Maternal II ,Integral,17
+0313801,Berçário,Integral,22
+0328601,Maternal I,Integral,32
+04005,Maternal I,Integral,36
+04006,Berçário,Integral,7
+04007,Maternal I,Integral,23
+04012,Maternal I,Integral,28
+04022,Maternal I,Integral,46
+04024,Maternal I,Integral,55
+04024,Maternal II ,Integral,21
+04027,Berçário,Integral,43
+04028,Maternal I,Integral,3
+04030,Maternal I,Integral,61
+04032,Maternal II ,Integral,7
+04034,Maternal I,Integral,4
+04037,Maternal II ,Integral,30
+04039,Maternal I,Integral,18
+04040,Berçário,Integral,26
+04040,Maternal II ,Integral,41
+04045,Berçário,Integral,37
+04048,Berçário,Integral,13
+0410807,Berçário,Integral,30
+0410807,Maternal II ,Integral,5
+0411601,Berçário,Integral,23
+0411603,Berçário,Integral,48
+0411802,Berçário,Integral,23
+0430602,Berçário,Integral,28
+0430803,Maternal II ,Integral,6
+0430807,Maternal I,Integral,7
+0430811,Maternal II ,Integral,29
+0431602,Berçário,Integral,52
+0431607,Maternal II ,Integral,5
+0431803,Maternal II ,Parcial,21
+05008,Berçário,Integral,62
+05012,Maternal I,Integral,87
+05012,Berçário,Integral,58
+0514801,Maternal II ,Integral,27
+0514802,Maternal I,Parcial,15
+0515601,Maternal I,Integral,14
+0515612,Berçário,Integral,28
+0515613,Maternal I,Integral,14
+0515801,Berçário,Integral,26
+06001,Maternal I,Integral,55
+06003,Maternal I,Integral,35
+06003,Berçário,Integral,21
+06013,Berçário,Integral,27
+06017,Maternal II ,Integral,6
+0622202,Maternal II ,Integral,36
+0622601,Berçário,Integral,32
+0622603,Berçário,Integral,31
+0625602,Maternal I,Integral,34
+0625604,Maternal I,Integral,44
+0625604,Berçário,Integral,62
+0625605,Maternal I,Integral,25
+0625606,Maternal I,Integral,13
+0625610,Maternal II ,Integral,2
+0625612,Berçário,Integral,41
+0625801,Berçário,Integral,30
+0625803,Berçário,Integral,57
+0625817,Maternal II ,Integral,14
+0625817,Maternal I,Integral,13
+0625818,Maternal II ,Integral,18
+0625819,Maternal II ,Integral,26
+07002,Maternal I,Integral,25
+07003,Maternal II ,Integral,33
+07007,Maternal I,Integral,63
+07008,Maternal I,Integral,18
+07011,Maternal II ,Integral,11
+07018,Maternal II ,Integral,27
+07037,Maternal II ,Integral,14
+07038,Berçário,Integral,31
+07044,Maternal I,Integral,17
+0716602,Maternal I,Parcial,35
+0716608,Berçário,Integral,37
+0716609,Maternal I,Integral,14
+0716613,Maternal I,Integral,2
+0716613,Berçário,Integral,22
+0716819,Berçário,Integral,70
+0716822,Maternal I,Integral,16
+0716822,Maternal II ,Integral,2
+0724603,Maternal I,Parcial,14
+0724801,Berçário,Integral,52
+0724804,Maternal I,Integral,43
+0724805,Maternal II ,Integral,21
+08013,Maternal I,Integral,47
+08019,Maternal II ,Integral,21
+0817202,Maternal I,Integral,53
+0817607,Maternal II ,Parcial,58
+0817612,Berçário,Parcial,61
+0817806,Maternal I,Parcial,11
+0817807,Berçário,Parcial,54
+0833802,Berçário,Parcial,34
+0833805,Maternal I,Integral,31
+0833808,Berçário,Parcial,28
+0833809,Berçário,Integral,27
+09009,Maternal I,Integral,27
+09011,Maternal I,Integral,19
+09012,Maternal I,Integral,54
+09013,Maternal II ,Integral,14
+09018,Maternal I,Integral,24
+09021,Maternal II ,Integral,18
+09023,Berçário,Integral,17
+09023,Maternal II ,Integral,4
+09024,Berçário,Integral,27
+09025,Maternal I,Integral,3
+09029,Maternal I,Integral,15
+09031,Maternal I,Integral,11
+09034,Berçário,Integral,30
+09035,Maternal I,Integral,25
+09041,Maternal I,Integral,12
+0918601,Maternal I,Integral,9
+0918602,Maternal I,Parcial,48
+0918607,Berçário,Integral,34
+0918613,Maternal II ,Integral,27
+0918614,Berçário,Parcial,57
+0918616,Berçário,Integral,32
+0918618,Maternal II ,Parcial,22
+0918808,Berçário,Integral,28
+0918818,Maternal II ,Parcial,25
+0918823,Maternal I,Integral,27
+0918825,Maternal I,Integral,24
+0918827,Berçário,Integral,47
+0918833,Berçário,Integral,46
+10005,Maternal II ,Integral,4
+10010,Maternal I,Integral,48
+10019,Berçário,Integral,60
+10027,Maternal I,Integral,16
+10035,Berçário,Integral,29
+10044,Berçário,Integral,30
+10055,Maternal I,Integral,30
+10056,Berçário,Integral,26
+10058,Maternal I,Integral,30
+10059,Berçário,Integral,21
+10063,Maternal II ,Integral,7
+10067,Berçário,Integral,38
+10076,Maternal I,Integral,21
+10078,Berçário,Integral,12
+10080,Maternal I,Integral,17
+10084,Berçário,Integral,17
+1019601,Maternal I,Integral,21
+1019610,Maternal I,Integral,21
+1019613,Maternal I,Parcial,42
+1019614,Maternal I,Integral,25
+1019616,Maternal II ,Integral,9
+1019619,Maternal II ,Integral,10
+1019624,Maternal II ,Integral,18
+1019631,Maternal I,Integral,18
+1019632,Berçário,Integral,54
+1019810,Maternal II ,Integral,6
+1019820,Maternal II ,Integral,16
+1019826,Maternal I,Integral,8
+1026601,Berçário,Parcial,37
+11001,Maternal II ,Integral,5
+11004,Maternal II ,Integral,12
+11006,Maternal II ,Integral,31
+11006,Berçário,Integral,83
+11008,Maternal I,Integral,7
+1120201,Maternal II ,Integral,28
+1120605,Maternal II ,Integral,33
+1120605,Berçário,Integral,29
+1120804,Berçário,Integral,25
+0101606,Maternal II ,Parcial,5
+0103601,Maternal II ,Integral,3
+0204601,Berçário,Integral,15
+02055,Maternal II ,Integral,6
+02056,Maternal II ,Integral,13
+0209607,Maternal I,Integral,3
+0209608,Maternal I,Integral,5
+0313606,Maternal II ,Integral,2
+0430602,Maternal I,Integral,5
+05016,Maternal II ,Integral,13
+0514608,Berçário,Integral,27
+06017,Maternal I,Integral,8
+0625612,Maternal II ,Integral,3
+07027,Maternal I,Integral,13
+0724601,Maternal II ,Integral,6
+08021,Maternal II ,Integral,10
+09004,Maternal II ,Integral,9
+09019,Maternal I,Integral,14
+09034,Maternal I,Integral,4
+0918604,Maternal II ,Integral,8
+0918614,Maternal I,Parcial,14
+0918827,Maternal I,Integral,10
+10023,Maternal II ,Integral,7
+10037,Maternal I,Integral,14
+10082,Maternal II ,Integral,2
+1019822,Maternal I,Integral,11
+0107610,Maternal II ,Integral,6
+03024,Maternal II ,Integral,9
+03031,Maternal II ,Integral,2
+0312806,Maternal I,Integral,7
+04026,Maternal II ,Integral,5
+0411605,Maternal II ,Integral,2
+0430603,Maternal II ,Integral,1
+0514606,Maternal II ,Integral,6
+0918828,Maternal II ,Integral,2
+10069,Maternal I,Integral,4
+1019601,Maternal II ,Integral,2
+01006,Maternal II ,Integral,4
+0101603,Maternal I,Integral,1
+02012,Maternal I,Integral,1
+0107605,Maternal II ,Integral,1
+02036,Maternal II ,Integral,2
+07001,Maternal II ,Integral,2
+0918828,Maternal I,Parcial,1
+10047,Maternal II ,Integral,3
+0411607,Maternal II ,Integral,2
+0515801,Maternal II ,Integral,1
+0206601,Maternal I,Integral,2
+0313802,Maternal II ,Integral,1
+01004,Maternal I,Integral,25
+01010,Maternal II ,Integral,20
+0102602,Berçário,Integral,65
+0102602,Maternal I,Integral,60
+0103607,Maternal I,Parcial,16
+0107601,Maternal II ,Integral,8
+0107608,Maternal I,Integral,25
+0107610,Berçário,Integral,57
+0107610,Maternal I,Integral,8
+0107802,Maternal II ,Integral,12
+02004,Berçário,Integral,31
+02006,Maternal I,Integral,3
+02016,Maternal I,Integral,10
+02022,Maternal I,Integral,24
+02025,Berçário,Integral,12
+02029,Maternal I,Integral,40
+02034,Maternal I,Integral,29
+02038,Berçário,Integral,14
+02040,Maternal II ,Integral,10
+02041,Maternal I,Integral,13
+02045,Maternal I,Integral,22
+0204602,Maternal II ,Integral,5
+0204805,Maternal II ,Integral,3
+0204806,Maternal II ,Integral,9
+02056,Maternal I,Integral,46
+02058,Maternal II ,Integral,10
+0205801,Berçário,Integral,19
+02061,Maternal II ,Integral,13
+0206605,Berçário,Integral,32
+0208603,Berçário,Integral,28
+0209603,Berçário,Integral,16
+0209609,Berçário,Integral,41
+0227801,Maternal I,Integral,26
+03001,Berçário,Integral,13
+03009,Maternal I,Integral,32
+03014,Berçário,Integral,43
+03016,Berçário,Integral,33
+03016,Maternal II ,Integral,7
+03021,Maternal I,Integral,22
+03027,Maternal I,Integral,9
+03033,Berçário,Integral,80
+0312502,Maternal I,Integral,16
+0312810,Maternal I,Integral,20
+0313603,Maternal I,Integral,5
+0313608,Maternal I,Integral,16
+0313611,Berçário,Integral,45
+0328602,Berçário,Integral,24
+0328604,Maternal II ,Integral,8
+0330602,Berçário,Integral,41
+04004,Maternal II ,Integral,22
+04010,Maternal II ,Integral,4
+04011,Maternal I,Integral,18
+04012,Berçário,Integral,24
+04020,Berçário,Integral,30
+04022,Maternal II ,Integral,11
+04023,Berçário,Integral,56
+04024,Berçário,Integral,54
+04035,Berçário,Integral,21
+04044,Maternal I,Integral,8
+0410801,Berçário,Integral,31
+0410802,Maternal II ,Integral,3
+0410810,Maternal II ,Integral,33
+0411605,Berçário,Integral,31
+0430805,Berçário,Integral,25
+0430805,Maternal I,Integral,6
+0430810,Berçário,Integral,24
+0430811,Maternal I,Integral,28
+0431601,Maternal II ,Integral,16
+0431602,Maternal I,Integral,24
+0431603,Maternal I,Integral,21
+0431605,Maternal II ,Integral,3
+0431606,Maternal I,Integral,58
+05001,Maternal II ,Integral,8
+05005,Maternal I,Integral,48
+05006,Maternal II ,Integral,6
+05013,Maternal I,Integral,22
+0514601,Maternal I,Integral,25
+0514607,Maternal I,Integral,5
+0514609,Berçário,Integral,26
+0515064,Maternal II ,Integral,20
+0515503,Maternal II ,Integral,29
+0515613,Berçário,Integral,48
+0515807,Berçário,Integral,29
+0515807,Maternal II ,Integral,7
+06004,Maternal I,Integral,27
+06015,Berçário,Integral,69
+06016,Berçário,Integral,60
+0622202,Maternal I,Integral,102
+0622602,Maternal II ,Integral,13
+0622801,Maternal I,Integral,31
+0622805,Maternal II ,Integral,21
+0625615,Berçário,Parcial,33
+0625815,Berçário,Integral,28
+0625816,Maternal I,Parcial,7
+0625819,Maternal I,Integral,24
+07001,Berçário,Integral,58
+07001,Maternal I,Integral,10
+07010,Maternal I,Integral,41
+07015,Berçário,Integral,75
+07017,Maternal II ,Integral,15
+07020,Maternal I,Integral,6
+07025,Maternal II ,Integral,9
+07036,Berçário,Integral,51
+07037,Berçário,Integral,125
+0716605,Maternal II ,Integral,9
+0716612,Maternal I,Integral,61
+0716614,Berçário,Integral,31
+0716802,Maternal I,Integral,53
+0716808,Maternal I,Integral,29
+0716809,Maternal I,Integral,11
+0716812,Maternal II ,Integral,25
+0716824,Maternal I,Integral,19
+0724605,Berçário,Integral,45
+0724606,Maternal I,Integral,26
+0724803,Maternal I,Integral,48
+0724807,Maternal II ,Integral,52
+08004,Berçário,Integral,36
+08004,Maternal I,Integral,6
+08005,Berçário,Integral,57
+08006,Maternal I,Integral,22
+08007,Berçário,Integral,86
+08024,Maternal I,Integral,11
+0817505,Maternal II ,Parcial,77
+0817609,Maternal I,Parcial,27
+0817610,Maternal I,Parcial,44
+0817613,Maternal II ,Integral,7
+0817614,Berçário,Parcial,23
+0817615,Maternal I,Integral,2
+0817616,Maternal I,Parcial,23
+0817617,Maternal I,Parcial,19
+0817618,Maternal I,Parcial,85
+0817619,Berçário,Parcial,33
+0817803,Maternal II ,Parcial,7
+0817808,Berçário,Parcial,23
+0817810,Maternal II ,Parcial,26
+0817815,Maternal II ,Parcial,44
+0833601,Maternal I,Parcial,6
+0833807,Maternal I,Integral,19
+09004,Maternal I,Integral,34
+09013,Maternal I,Integral,27
+09033,Berçário,Integral,22
+09035,Maternal II ,Integral,16
+09036,Berçário,Integral,45
+09040,Maternal I,Integral,4
+09046,Berçário,Integral,16
+0918603,Maternal I,Parcial,26
+0918606,Maternal II ,Parcial,2
+0918608,Maternal I,Parcial,33
+0918608,Maternal II ,Parcial,15
+0918614,Maternal II ,Parcial,11
+0918620,Maternal I,Parcial,4
+0918804,Maternal I,Integral,18
+0918804,Maternal II ,Parcial,9
+0918806,Maternal I,Integral,29
+0918806,Berçário,Integral,64
+0918807,Berçário,Integral,82
+0918817,Maternal II ,Parcial,11
+0918817,Maternal I,Parcial,43
+0918822,Maternal I,Integral,29
+0918834,Maternal I,Integral,20
+0918836,Maternal II ,Integral,4
+10001,Berçário,Integral,48
+10001,Maternal I,Integral,18
+10008,Maternal I,Integral,18
+10008,Maternal II ,Integral,7
+10013,Maternal I,Integral,9
+10018,Maternal I,Integral,22
+10019,Maternal I,Integral,35
+10028,Maternal II ,Integral,8
+10029,Maternal I,Integral,37
+10030,Berçário,Integral,19
+10033,Berçário,Integral,22
+10041,Maternal I,Integral,22
+10046,Maternal II ,Integral,4
+10047,Berçário,Integral,34
+10060,Maternal II ,Integral,7
+10070,Berçário,Integral,13
+10075,Maternal I,Integral,53
+10076,Maternal II ,Integral,20
+1019605,Maternal I,Integral,30
+1019607,Maternal I,Integral,31
+1019612,Maternal I,Integral,14
+1019614,Berçário,Integral,20
+1019619,Maternal I,Integral,7
+1019625,Maternal II ,Integral,5
+1019627,Berçário,Integral,18
+1019633,Maternal I,Integral,19
+1019806,Maternal I,Integral,21
+1019807,Maternal II ,Integral,25
+1019821,Berçário,Integral,39
+1019828,Maternal II ,Integral,7
+1026603,Maternal I,Integral,31
+1026604,Maternal II ,Parcial,54
+1026802,Maternal II ,Integral,3
+1026805,Berçário,Integral,53
+1026809,Maternal I,Integral,20
+1026810,Maternal I,Integral,35
+1026810,Maternal II ,Integral,6
+11006,Maternal I,Integral,61
+1120601,Berçário,Integral,45
+1120604,Maternal II ,Integral,7
+1120604,Berçário,Integral,20
+1120802,Berçário,Integral,23
+0103602,Maternal I,Integral,4
+0103604,Maternal I,Integral,4
+02018,Maternal II ,Integral,4
+02034,Maternal II ,Integral,11
+02054,Maternal II ,Integral,2
+0208608,Maternal I,Integral,9
+0312801,Maternal II ,Integral,13
+0312812,Maternal II ,Integral,9
+0313601,Maternal II ,Integral,3
+04034,Berçário,Integral,16
+04044,Maternal II ,Integral,10
+0430605,Maternal II ,Integral,2
+0514601,Maternal II ,Integral,9
+06013,Maternal I,Integral,6
+0625604,Maternal II ,Integral,11
+0625611,Maternal I,Integral,3
+0625815,Maternal II ,Integral,8
+0716806,Maternal II ,Integral,3
+0724805,Maternal I,Integral,25
+09024,Maternal II ,Integral,6
+09033,Maternal I,Integral,19
+09043,Maternal II ,Integral,4
+10028,Maternal I,Integral,14
+10029,Maternal II ,Integral,12
+10077,Maternal I,Integral,6
+10083,Maternal II ,Integral,5
+1019611,Maternal II ,Integral,3
+1019615,Maternal II ,Integral,9
+1120804,Maternal II ,Integral,8
+02019,Maternal I,Integral,2
+0206602,Maternal II ,Integral,6
+0208604,Maternal II ,Integral,3
+0313606,Maternal I,Integral,11
+04015,Maternal II ,Integral,6
+0410601,Maternal II ,Integral,6
+0625612,Maternal I,Integral,4
+07008,Maternal II ,Integral,6
+1120605,Maternal I,Integral,3
+0107607,Maternal II ,Integral,3
+02020,Maternal II ,Integral,2
+02049,Maternal II ,Integral,2
+0313610,Maternal II ,Integral,2
+04036,Maternal I,Integral,4
+10062,Maternal II ,Integral,2
+10065,Maternal II ,Integral,1
+1026801,Maternal II ,Integral,2
+0107606,Maternal II ,Parcial,1
+03030,Maternal II ,Integral,1
+04023,Maternal II ,Integral,1
+04046,Maternal II ,Integral,1
+1019822,Maternal II ,Integral,1
+09046,Maternal I,Integral,1
+0918821,Maternal I,Parcial,1
+0206603,Maternal II ,Integral,1
+04046,Maternal I,Integral,1
+0101603,Berçário,Integral,54
+0101802,Maternal I,Integral,11
+0102604,Maternal I,Integral,28
+0102606,Maternal I,Integral,21
+0103801,Berçário,Integral,31
+0103806,Maternal II ,Parcial,9
+0107601,Maternal I,Integral,37
+0107603,Berçário,Integral,21
+0107609,Maternal I,Parcial,25
+0107803,Maternal II ,Parcial,30
+0121001,Maternal II ,Integral,20
+0123603,Maternal I,Integral,8
+0123801,Maternal II ,Integral,11
+02002,Maternal II ,Integral,23
+02004,Maternal II ,Integral,7
+02010,Maternal I,Integral,7
+02013,Maternal II ,Integral,5
+02020,Berçário,Integral,31
+02029,Maternal II ,Integral,14
+02046,Berçário,Integral,45
+02049,Maternal I,Integral,18
+02049,Berçário,Integral,19
+0205601,Berçário,Integral,42
+0205602,Maternal II ,Integral,10
+02061,Maternal I,Integral,31
+02063,Maternal II ,Integral,2
+0206601,Berçário,Integral,21
+0208601,Maternal I,Integral,3
+0208608,Berçário,Integral,40
+0209602,Berçário,Integral,34
+0227601,Maternal II ,Integral,26
+03002,Maternal II ,Integral,22
+03019,Maternal II ,Integral,12
+03022,Maternal II ,Integral,4
+03023,Maternal I,Integral,25
+03024,Maternal I,Integral,14
+03025,Maternal I,Integral,23
+03026,Berçário,Integral,61
+03029,Berçário,Integral,31
+03037,Maternal II ,Integral,24
+03038,Maternal I,Integral,73
+03039,Maternal I,Integral,9
+0312502,Maternal II ,Integral,18
+0312801,Berçário,Integral,27
+0312804,Berçário,Integral,30
+0312805,Maternal I,Integral,24
+0312813,Berçário,Integral,36
+0313602,Berçário,Integral,18
+0313603,Berçário,Integral,36
+0313608,Maternal II ,Integral,5
+0313609,Berçário,Integral,48
+0313610,Maternal I,Integral,8
+0313612,Maternal I,Integral,16
+0313801,Maternal I,Integral,6
+0328604,Maternal I,Integral,14
+0328801,Berçário,Integral,27
+0329801,Maternal II ,Integral,4
+04014,Maternal II ,Integral,23
+04017,Maternal II ,Integral,8
+04040,Maternal I,Integral,123
+04041,Berçário,Integral,18
+0410601,Maternal I,Integral,26
+0410603,Maternal II ,Parcial,8
+0411803,Maternal II ,Integral,6
+0411803,Berçário,Integral,29
+0430604,Maternal I,Integral,16
+0430607,Maternal I,Integral,36
+0430805,Maternal II ,Integral,2
+0430815,Berçário,Integral,29
+0431606,Maternal II ,Integral,20
+05001,Berçário,Integral,35
+05004,Maternal I,Integral,26
+05014,Maternal I,Integral,112
+0514603,Maternal II ,Integral,9
+0514608,Maternal I,Integral,34
+0515604,Berçário,Integral,58
+0515605,Maternal I,Integral,20
+0515611,Berçário,Integral,22
+0515612,Maternal I,Integral,13
+0515810,Berçário,Integral,21
+06003,Maternal II ,Integral,18
+06005,Maternal I,Integral,20
+06012,Maternal I,Integral,9
+06015,Maternal I,Integral,99
+06016,Maternal I,Integral,27
+0622601,Maternal I,Integral,6
+0622603,Maternal II ,Integral,11
+0622603,Maternal I,Parcial,21
+0625605,Berçário,Integral,34
+0625606,Berçário,Integral,68
+0625611,Berçário,Integral,30
+0625614,Maternal I,Integral,45
+0625815,Maternal I,Integral,21
+07002,Berçário,Integral,29
+07002,Maternal II ,Integral,20
+07003,Maternal I,Integral,61
+07004,Maternal I,Integral,85
+07025,Maternal I,Integral,90
+07027,Maternal II ,Integral,8
+07040,Maternal I,Integral,20
+07042,Berçário,Integral,31
+0716602,Maternal II ,Parcial,21
+0716605,Berçário,Integral,30
+0716606,Maternal II ,Integral,28
+0716802,Maternal II ,Integral,56
+0716803,Berçário,Integral,34
+0716805,Maternal II ,Integral,45
+0716806,Berçário,Integral,34
+0716809,Maternal II ,Integral,21
+0716809,Berçário,Integral,29
+0716821,Maternal II ,Integral,40
+0716822,Berçário,Integral,55
+0724603,Maternal II ,Parcial,56
+0724807,Berçário,Integral,36
+0734802,Berçário,Integral,67
+0734805,Maternal I,Integral,49
+08002,Maternal II ,Integral,9
+08002,Maternal I,Integral,7
+08010,Maternal II ,Integral,3
+08011,Maternal II ,Integral,3
+08014,Maternal II ,Integral,29
+08015,Maternal II ,Integral,23
+08016,Maternal I,Integral,68
+08018,Maternal I,Integral,31
+08024,Berçário,Integral,35
+0817202,Maternal II ,Integral,13
+0817601,Maternal I,Parcial,40
+0817602,Berçário,Integral,49
+0817604,Maternal II ,Integral,17
+0817612,Maternal II ,Parcial,8
+0817613,Maternal I,Integral,37
+0817619,Maternal I,Parcial,34
+0817802,Maternal I,Integral,49
+0817802,Maternal II ,Parcial,35
+0817803,Berçário,Parcial,74
+0817804,Maternal I,Integral,11
+0817808,Maternal I,Parcial,51
+0833603,Maternal I,Integral,23
+0833806,Maternal II ,Parcial,63
+0833811,Berçário,Integral,14
+09008,Maternal I,Integral,5
+09022,Berçário,Integral,34
+09027,Maternal II ,Integral,12
+09038,Maternal I,Integral,24
+0918606,Maternal I,Parcial,8
+0918609,Maternal I,Integral,13
+0918610,Maternal I,Integral,14
+0918613,Maternal I,Integral,34
+0918616,Maternal I,Integral,27
+0918618,Maternal I,Parcial,36
+0918619,Berçário,Integral,52
+0918801,Maternal II ,Parcial,10
+0918802,Berçário,Parcial,53
+0918810,Maternal I,Integral,20
+0918818,Maternal I,Parcial,28
+0918824,Maternal I,Integral,4
+0918825,Berçário,Integral,31
+0918826,Maternal I,Integral,20
+0918830,Maternal I,Parcial,25
+0918834,Berçário,Integral,47
+0918835,Berçário,Integral,52
+0918837,Berçário,Integral,48
+10006,Maternal II ,Integral,17
+10010,Maternal II ,Integral,17
+10024,Maternal II ,Integral,6
+10026,Maternal I,Integral,81
+10036,Berçário,Integral,36
+10036,Maternal I,Integral,34
+10037,Berçário,Integral,31
+10039,Maternal I,Integral,61
+10051,Berçário,Integral,72
+10051,Maternal I,Integral,31
+10053,Maternal I,Integral,16
+10063,Maternal I,Integral,31
+10064,Maternal II ,Integral,13
+10065,Berçário,Integral,38
+10065,Maternal I,Integral,10
+10066,Berçário,Integral,65
+10066,Maternal II ,Integral,11
+10067,Maternal II ,Integral,10
+10068,Berçário,Integral,52
+10070,Maternal I,Integral,15
+10072,Berçário,Integral,21
+10083,Maternal I,Integral,6
+1019603,Maternal I,Integral,29
+1019606,Maternal II ,Parcial,20
+1019614,Maternal II ,Integral,6
+1019623,Maternal I,Integral,27
+1019633,Maternal II ,Integral,11
+1019801,Maternal I,Integral,39
+1019808,Maternal I,Integral,22
+1019809,Berçário,Integral,17
+1019829,Berçário,Integral,24
+1019831,Maternal I,Integral,45
+1026602,Maternal I,Integral,22
+1026604,Berçário,Parcial,52
+1026805,Maternal I,Integral,29
+1026809,Berçário,Integral,57
+1120606,Berçário,Integral,52
+1120801,Maternal I,Integral,21
+0101605,Maternal II ,Parcial,3
+02016,Maternal II ,Integral,7
+02035,Berçário,Integral,18
+02044,Maternal II ,Integral,8
+02046,Maternal I,Integral,9
+0204804,Maternal II ,Integral,19
+0205801,Maternal II ,Integral,4
+0209602,Maternal II ,Integral,6
+03021,Maternal II ,Integral,20
+0313607,Maternal II ,Integral,11
+0313809,Maternal II ,Integral,8
+04002,Maternal I,Integral,2
+04021,Maternal II ,Integral,20
+04023,Maternal I,Integral,4
+04036,Berçário,Integral,12
+0410805,Maternal I,Integral,3
+0515602,Maternal I,Integral,22
+0515604,Maternal II ,Integral,3
+0515808,Maternal II ,Integral,6
+07043,Maternal I,Integral,8
+0716601,Maternal II ,Integral,6
+0716611,Maternal II ,Integral,15
+0716803,Maternal II ,Integral,21
+08004,Maternal II ,Integral,3
+0833603,Maternal II ,Integral,4
+0833809,Maternal II ,Integral,14
+09019,Maternal II ,Integral,6
+09026,Maternal I,Integral,9
+09036,Maternal II ,Integral,5
+10026,Maternal II ,Integral,9
+1019628,Maternal I,Integral,14
+1019803,Maternal II ,Integral,4
+1120601,Maternal I,Integral,6
+0107609,Maternal II ,Parcial,10
+0209610,Maternal I,Integral,9
+03041,Maternal II ,Integral,4
+04002,Maternal II ,Integral,2
+0430607,Maternal II ,Integral,2
+0625603,Maternal I,Integral,12
+07010,Maternal II ,Integral,7
+0833808,Maternal I,Integral,4
+0918611,Maternal II ,Integral,9
+0918620,Maternal II ,Parcial,4
+0918814,Maternal II ,Integral,1
+1019627,Maternal II ,Integral,4
+1026801,Maternal I,Integral,8
+11003,Maternal II ,Integral,8
+02054,Maternal I,Integral,2
+08010,Maternal I,Integral,12
+02043,Maternal I,Integral,1
+02062,Maternal I,Integral,1
+0206601,Maternal II ,Integral,1
+0625609,Maternal II ,Integral,6
+1019821,Maternal II ,Integral,5
+0208607,Maternal II ,Integral,1
+0515613,Maternal II ,Integral,4
+10054,Maternal II ,Integral,1
+02012,Maternal II ,Integral,1
+05004,Maternal II ,Integral,1
+1026811,Maternal I,Parcial,1
+0103805,Maternal II ,Integral,1
+0817801,Maternal I,Parcial,1
+01006,Maternal I,Integral,25
+01007,Maternal I,Integral,16
+0101602,Maternal II ,Integral,9
+0101606,Maternal I,Parcial,14
+0101803,Maternal II ,Integral,25
+0102802,Maternal II ,Integral,14
+0103606,Maternal I,Integral,9
+0107607,Berçário,Integral,55
+0107801,Maternal II ,Parcial,42
+0121001,Berçário,Integral,26
+0123601,Berçário,Integral,55
+0123601,Maternal II ,Integral,9
+02005,Maternal II ,Integral,10
+02009,Maternal I,Integral,53
+02016,Berçário,Integral,33
+02029,Berçário,Integral,44
+02037,Berçário,Integral,45
+02042,Maternal I,Integral,21
+02044,Maternal I,Integral,30
+02048,Maternal I,Integral,20
+02053,Maternal I,Integral,5
+0205601,Maternal I,Integral,15
+0205602,Berçário,Integral,38
+02058,Maternal I,Integral,40
+0206606,Maternal I,Integral,10
+0208601,Berçário,Integral,34
+0227602,Maternal II ,Integral,10
+0227801,Maternal II ,Integral,8
+03001,Maternal I,Integral,21
+03008,Maternal II ,Integral,9
+03009,Maternal II ,Integral,13
+03010,Maternal I,Integral,39
+03012,Maternal I,Integral,129
+03013,Maternal II ,Integral,7
+03028,Maternal I,Integral,49
+03028,Maternal II ,Integral,15
+03033,Maternal I,Integral,24
+03035,Maternal I,Integral,20
+03035,Maternal II ,Integral,4
+03037,Berçário,Integral,18
+03039,Berçário,Integral,15
+0312602,Maternal II ,Integral,24
+0312803,Maternal II ,Integral,12
+0312805,Maternal II ,Integral,20
+0312813,Maternal II ,Integral,7
+0313804,Maternal I,Integral,22
+0328604,Berçário,Integral,42
+0329801,Maternal I,Integral,26
+04016,Berçário,Integral,61
+04016,Maternal I,Integral,12
+04018,Maternal II ,Integral,24
+04022,Berçário,Integral,73
+04027,Maternal I,Integral,51
+04029,Maternal II ,Integral,6
+04043,Maternal I,Integral,13
+04043,Berçário,Integral,16
+04047,Berçário,Integral,81
+04047,Maternal I,Integral,43
+04048,Maternal I,Integral,14
+04049,Maternal II ,Integral,8
+0410801,Maternal I,Integral,32
+0410805,Berçário,Integral,27
+0410808,Maternal I,Integral,8
+0411602,Maternal II ,Integral,2
+0411801,Maternal II ,Integral,13
+0430802,Maternal II ,Integral,26
+0430809,Maternal II ,Integral,25
+0431603,Berçário,Integral,26
+0431604,Berçário,Integral,34
+05002,Maternal I,Integral,20
+05014,Berçário,Integral,35
+05015,Maternal I,Integral,88
+0514602,Berçário,Integral,52
+0514602,Maternal II ,Integral,8
+0514604,Maternal I,Integral,26
+0514608,Maternal II ,Integral,17
+0515053,Maternal II ,Integral,22
+0515501,Maternal II ,Integral,41
+0515608,Berçário,Integral,26
+0515608,Maternal I,Integral,7
+0515610,Maternal II ,Integral,8
+0515610,Maternal I,Integral,18
+0515801,Maternal I,Integral,18
+0515809,Berçário,Integral,49
+06004,Berçário,Integral,10
+06005,Maternal II ,Integral,24
+06006,Maternal II ,Integral,20
+06007,Maternal I,Integral,65
+06009,Maternal II ,Integral,33
+0625608,Maternal I,Integral,24
+0625615,Maternal II ,Integral,1
+0625804,Maternal II ,Integral,5
+0625807,Maternal II ,Integral,41
+0625813,Maternal II ,Integral,22
+0625814,Berçário,Integral,27
+0625814,Maternal I,Integral,29
+0625817,Berçário,Integral,67
+0625820,Berçário,Integral,78
+07013,Maternal I,Integral,32
+07014,Maternal I,Integral,31
+07038,Maternal I,Integral,46
+07042,Maternal II ,Integral,3
+07043,Berçário,Integral,21
+0716603,Berçário,Integral,25
+0716604,Maternal II ,Parcial,53
+0716604,Maternal I,Parcial,8
+0716607,Maternal I,Integral,30
+0716609,Berçário,Integral,50
+0716804,Maternal II ,Integral,34
+0716806,Maternal I,Integral,8
+0716813,Maternal II ,Integral,15
+0716820,Berçário,Integral,25
+0724606,Berçário,Integral,59
+0724606,Maternal II ,Integral,6
+0724801,Maternal I,Integral,34
+0724806,Maternal II ,Integral,13
+0734603,Maternal I,Integral,16
+0734803,Maternal I,Integral,24
+08011,Berçário,Integral,65
+08011,Maternal I,Integral,9
+08014,Maternal I,Integral,42
+08015,Berçário,Integral,64
+08016,Berçário,Integral,46
+08019,Maternal I,Integral,73
+0817601,Maternal II ,Parcial,43
+0817601,Berçário,Parcial,67
+0817607,Berçário,Parcial,75
+0817608,Maternal II ,Parcial,23
+0817801,Berçário,Parcial,25
+0817805,Maternal I,Integral,39
+0817808,Maternal II ,Parcial,19
+0833602,Berçário,Integral,21
+0833808,Maternal II ,Parcial,11
+0833810,Maternal I,Integral,6
+0833811,Maternal II ,Integral,58
+09004,Berçário,Integral,35
+09011,Berçário,Integral,60
+09012,Berçário,Integral,21
+09014,Maternal I,Integral,42
+09018,Berçário,Integral,40
+09018,Maternal II ,Integral,6
+09021,Maternal I,Integral,55
+09030,Maternal I,Integral,13
+09030,Berçário,Integral,35
+09036,Maternal I,Integral,13
+09037,Maternal II ,Integral,6
+09044,Berçário,Integral,29
+09046,Maternal II ,Integral,6
+0918602,Maternal II ,Parcial,28
+0918603,Maternal II ,Parcial,28
+0918604,Maternal I,Integral,24
+0918610,Maternal II ,Integral,9
+0918620,Berçário,Integral,6
+0918621,Berçário,Integral,46
+0918801,Maternal I,Parcial,25
+0918801,Berçário,Parcial,30
+0918803,Berçário,Integral,29
+0918805,Berçário,Integral,26
+0918815,Maternal I,Integral,21
+0918826,Berçário,Integral,42
+0918832,Maternal II ,Integral,7
+0918837,Maternal I,Integral,42
+0918837,Maternal II ,Integral,10
+10004,Berçário,Integral,13
+10006,Maternal I,Integral,24
+10013,Berçário,Integral,19
+10022,Maternal I,Integral,108
+10024,Maternal I,Integral,36
+10028,Berçário,Integral,47
+10032,Maternal II ,Integral,16
+10034,Berçário,Integral,55
+10034,Maternal I,Integral,9
+10040,Berçário,Integral,61
+10042,Maternal I,Integral,11
+10046,Maternal I,Integral,9
+10046,Berçário,Integral,48
+10057,Maternal I,Integral,14
+10058,Berçário,Integral,93
+10063,Berçário,Integral,28
+10064,Berçário,Integral,24
+10068,Maternal I,Integral,17
+10071,Berçário,Integral,86
+10071,Maternal I,Integral,45
+10071,Maternal II ,Integral,15
+1019603,Maternal II ,Integral,5
+1019604,Maternal II ,Integral,10
+1019612,Berçário,Integral,64
+1019623,Berçário,Integral,36
+1019632,Maternal II ,Integral,4
+1019803,Berçário,Integral,58
+1019807,Maternal I,Integral,28
+1019810,Maternal I,Integral,26
+1019818,Maternal II ,Integral,17
+1019820,Maternal I,Integral,25
+1019828,Maternal I,Integral,32
+1019828,Berçário,Integral,33
+1026802,Maternal I,Integral,28
+1026803,Maternal II ,Parcial,82
+1026806,Maternal II ,Integral,29
+1026807,Berçário,Integral,57
+1026811,Maternal II ,Parcial,7
+11003,Maternal I,Integral,36
+11004,Berçário,Integral,45
+11007,Berçário,Integral,31
+11009,Maternal I,Integral,11
+1120602,Maternal I,Integral,55
+1120603,Maternal II ,Integral,26
+1120804,Maternal I,Integral,22
+0103605,Maternal I,Integral,2
+0103804,Maternal I,Integral,4
+0206605,Maternal II ,Integral,6
+0206605,Maternal I,Integral,3
+0209603,Maternal II ,Integral,1
+03006,Maternal II ,Integral,10
+03011,Maternal II ,Integral,5
+03022,Maternal I,Integral,28
+0313609,Maternal II ,Integral,7
+0328801,Maternal I,Integral,4
+04045,Maternal II ,Integral,1
+0410802,Maternal I,Integral,1
+0411605,Maternal I,Integral,8
+0431605,Berçário,Integral,25
+05013,Maternal II ,Integral,3
+0514604,Maternal II ,Integral,2
+0514607,Maternal II ,Integral,3
+0514609,Maternal II ,Integral,1
+0625616,Maternal II ,Integral,10
+0625801,Maternal II ,Integral,22
+0716613,Maternal II ,Integral,1
+0716819,Maternal I,Integral,7
+0817606,Maternal II ,Integral,4
+0817801,Maternal II ,Parcial,1
+09022,Maternal II ,Integral,7
+09039,Maternal II ,Integral,3
+09042,Maternal I,Integral,3
+09044,Maternal I,Integral,8
+09045,Maternal I,Integral,5
+0918802,Maternal II ,Parcial,9
+0918826,Maternal II ,Integral,9
+10013,Maternal II ,Integral,3
+10014,Maternal I,Integral,15
+10019,Maternal II ,Integral,16
+10051,Maternal II ,Integral,9
+10072,Maternal II ,Integral,5
+1019626,Maternal II ,Integral,7
+1026602,Maternal II ,Integral,3
+0102604,Maternal II ,Integral,6
+0103804,Maternal II ,Integral,6
+0107603,Maternal I,Integral,6
+02062,Maternal II ,Integral,2
+0312804,Maternal II ,Integral,8
+04003,Maternal II ,Integral,1
+04020,Maternal I,Integral,3
+0411804,Maternal II ,Integral,3
+0625601,Maternal II ,Parcial,1
+0625602,Maternal II ,Integral,5
+0625614,Maternal II ,Integral,3
+0625820,Maternal I,Integral,9
+0833801,Maternal II ,Integral,3
+0918815,Maternal II ,Parcial,27
+0918820,Maternal II ,Integral,10
+0107604,Maternal II ,Integral,1
+02038,Maternal II ,Integral,2
+0430603,Maternal I,Integral,3
+0430815,Maternal II ,Integral,2
+0431604,Maternal I,Integral,3
+0625608,Maternal II ,Integral,1
+0625820,Maternal II ,Integral,3
+0716813,Maternal I,Integral,2
+1120802,Maternal I,Integral,4
+02009,Maternal II ,Integral,1
+0206602,Maternal I,Integral,8
+0206603,Maternal I,Integral,3
+0411601,Maternal II ,Integral,1
+0411604,Maternal II ,Integral,5
+0515611,Maternal II ,Integral,2
+0918823,Maternal II ,Parcial,6
+0918825,Maternal II ,Parcial,3
+02022,Maternal II ,Integral,1
+0918833,Maternal II ,Integral,1
+0208801,Maternal II ,Integral,2
+0328801,Maternal II ,Integral,1
+0330601,Maternal II ,Integral,3
+0918824,Maternal II ,Parcial,1
+07013,Maternal II ,Integral,3
+01009,Maternal I,Integral,47
+01010,Berçário,Integral,108
+0101601,Maternal II ,Parcial,16
+0101606,Berçário,Parcial,56
+0101607,Berçário,Integral,56
+0101801,Maternal II ,Parcial,15
+0102605,Berçário,Integral,56
+0103605,Berçário,Integral,50
+0103605,Maternal II ,Integral,6
+0123601,Maternal I,Integral,10
+0123603,Berçário,Integral,21
+02003,Maternal I,Integral,35
+02005,Maternal I,Integral,29
+02015,Maternal II ,Integral,16
+02025,Maternal I,Integral,10
+02026,Maternal I,Integral,25
+0204601,Maternal I,Integral,3
+0204602,Berçário,Integral,49
+02052,Berçário,Integral,49
+02052,Maternal I,Integral,6
+02053,Maternal II ,Integral,9
+02055,Maternal I,Integral,40
+0205801,Maternal I,Integral,5
+02060,Maternal I,Integral,35
+02063,Maternal I,Integral,15
+0208603,Maternal I,Integral,23
+0208605,Berçário,Integral,8
+0208608,Maternal II ,Integral,12
+0208801,Berçário,Integral,41
+0208801,Maternal I,Integral,6
+0209602,Maternal I,Integral,11
+0209606,Berçário,Integral,15
+0209610,Maternal II ,Integral,7
+03001,Maternal II ,Integral,16
+03002,Maternal I,Integral,46
+03004,Maternal II ,Integral,8
+03007,Berçário,Integral,20
+03013,Maternal I,Integral,30
+03014,Maternal II ,Integral,23
+03018,Maternal I,Integral,22
+03019,Berçário,Integral,26
+03020,Maternal II ,Integral,18
+03021,Berçário,Integral,69
+03022,Berçário,Integral,34
+03023,Maternal II ,Integral,10
+03032,Maternal I,Integral,17
+0312602,Berçário,Integral,30
+0312603,Berçário,Integral,57
+0312809,Berçário,Integral,31
+0312812,Maternal I,Integral,9
+0313601,Berçário,Integral,31
+0313602,Maternal II ,Integral,4
+0313607,Maternal I,Integral,16
+0313608,Berçário,Integral,48
+0313805,Maternal I,Integral,21
+0329801,Berçário,Integral,26
+04001,Berçário,Integral,58
+04004,Maternal I,Integral,70
+04012,Maternal II ,Integral,15
+04013,Maternal II ,Integral,7
+04015,Berçário,Integral,53
+04018,Berçário,Integral,47
+04025,Maternal I,Integral,21
+04029,Berçário,Integral,56
+04038,Maternal I,Integral,28
+04044,Berçário,Integral,34
+04049,Berçário,Integral,13
+0410803,Maternal I,Integral,24
+0410803,Maternal II ,Integral,19
+0410804,Maternal II ,Integral,18
+0411801,Maternal I,Integral,16
+0430603,Berçário,Integral,30
+0430801,Berçário,Integral,21
+0430806,Maternal II ,Integral,26
+0430810,Maternal II ,Integral,3
+0430811,Berçário,Integral,28
+0430812,Maternal I,Integral,26
+0431605,Maternal I,Integral,23
+05002,Maternal II ,Integral,11
+0514009,Maternal II ,Parcial,44
+0514606,Maternal I,Integral,27
+0515602,Maternal II ,Integral,5
+0515604,Maternal I,Integral,16
+0515605,Berçário,Integral,46
+0515605,Maternal II ,Integral,10
+0515607,Maternal I,Integral,78
+0515802,Maternal II ,Parcial,84
+0515807,Maternal I,Integral,6
+0515808,Berçário,Integral,26
+0515809,Maternal I,Integral,9
+06002,Maternal I,Integral,25
+06012,Berçário,Integral,59
+06016,Maternal II ,Integral,26
+0625609,Maternal I,Integral,44
+0625802,Maternal II ,Integral,24
+0625804,Berçário,Integral,30
+0625816,Berçário,Integral,28
+0625818,Berçário,Integral,27
+07011,Maternal I,Integral,79
+07013,Berçário,Integral,41
+07015,Maternal I,Integral,32
+07019,Maternal I,Integral,95
+07035,Maternal II ,Integral,75
+0716601,Maternal I,Integral,88
+0716606,Berçário,Integral,39
+0716607,Berçário,Integral,34
+0716608,Maternal I,Integral,45
+0716610,Maternal I,Integral,13
+0716610,Maternal II ,Integral,34
+0716611,Maternal I,Integral,26
+0716801,Maternal II ,Integral,31
+0716801,Berçário,Integral,28
+0716813,Berçário,Integral,26
+0716814,Maternal II ,Parcial,53
+0716815,Maternal I,Parcial,51
+0716816,Maternal I,Integral,29
+0716821,Maternal I,Integral,25
+0724804,Maternal II ,Integral,40
+0724808,Maternal I,Integral,39
+0734602,Maternal II ,Integral,3
+0734801,Maternal I,Integral,13
+08002,Berçário,Integral,12
+08005,Maternal I,Integral,15
+08025,Maternal I,Integral,30
+0817504,Maternal I,Integral,27
+0817602,Maternal I,Integral,3
+0817604,Maternal I,Integral,20
+0817606,Maternal I,Integral,52
+0817614,Maternal II ,Parcial,21
+0817617,Berçário,Parcial,64
+0817618,Maternal II ,Parcial,15
+0817804,Berçário,Integral,17
+0817805,Maternal II ,Integral,6
+0817814,Berçário,Parcial,29
+0833601,Maternal I,Integral,20
+0833602,Maternal I,Integral,13
+0833806,Maternal I,Parcial,61
+0833810,Berçário,Integral,45
+09003,Maternal I,Integral,15
+09008,Berçário,Integral,15
+09012,Maternal II ,Integral,5
+09017,Berçário,Integral,23
+09020,Berçário,Integral,32
+09021,Berçário,Integral,114
+09023,Maternal I,Integral,15
+09025,Maternal II ,Integral,3
+09026,Berçário,Integral,39
+09027,Maternal I,Integral,4
+09033,Maternal II ,Integral,8
+09038,Maternal II ,Integral,21
+09039,Maternal I,Integral,7
+0918601,Berçário,Integral,69
+0918601,Maternal II ,Integral,7
+0918606,Maternal II ,Integral,24
+0918609,Maternal II ,Integral,31
+0918613,Berçário,Integral,25
+0918617,Maternal II ,Parcial,8
+0918815,Berçário,Integral,55
+0918821,Maternal II ,Integral,8
+0918821,Maternal I,Integral,17
+0918822,Maternal I,Parcial,5
+0918828,Berçário,Integral,38
+0918829,Maternal II ,Integral,14
+0918832,Berçário,Integral,49
+0918834,Maternal II ,Integral,16
+10009,Berçário,Integral,28
+10009,Maternal I,Integral,11
+10011,Berçário,Integral,11
+10020,Maternal II ,Integral,15
+10023,Maternal I,Integral,13
+10024,Berçário,Integral,27
+10027,Maternal II ,Integral,12
+10030,Maternal I,Integral,14
+10030,Maternal II ,Integral,12
+10041,Maternal II ,Integral,15
+10045,Maternal II ,Integral,3
+10052,Maternal I,Integral,10
+10053,Maternal II ,Integral,6
+10055,Maternal II ,Integral,44
+10060,Maternal I,Integral,13
+10062,Berçário,Integral,23
+10066,Maternal I,Integral,26
+10069,Berçário,Integral,40
+10072,Maternal I,Integral,6
+10073,Maternal I,Integral,36
+10074,Maternal II ,Integral,8
+10075,Maternal II ,Integral,7
+10075,Berçário,Integral,25
+10076,Berçário,Integral,20
+10081,Maternal II ,Integral,4
+10081,Berçário,Integral,28
+10084,Maternal I,Integral,14
+10085,Maternal I,Integral,18
+1019609,Berçário,Integral,24
+1019611,Maternal I,Integral,20
+1019615,Maternal I,Integral,17
+1019618,Maternal II ,Integral,26
+1019621,Maternal II ,Integral,2
+1019631,Berçário,Integral,29
+1019802,Maternal II ,Integral,19
+1019803,Maternal I,Integral,8
+1019804,Maternal I,Integral,23
+1019804,Maternal II ,Integral,7
+1019806,Maternal II ,Integral,14
+1019811,Maternal II ,Integral,42
+1019827,Maternal II ,Integral,24
+1019830,Maternal II ,Integral,25
+1019831,Berçário,Integral,41
+11003,Berçário,Integral,47
+11004,Maternal I,Integral,42
+1120602,Maternal II ,Integral,18
+1120606,Maternal I,Integral,33
+02025,Maternal II ,Integral,10
+03018,Maternal II ,Integral,3
+0312801,Maternal I,Integral,25
+0410807,Maternal I,Integral,7
+0431608,Maternal II ,Integral,6
+0625803,Maternal II ,Integral,4
+07041,Berçário,Integral,24
+0716603,Maternal I,Integral,2
+0716609,Maternal II ,Integral,3
+0734803,Maternal II ,Integral,2
+08023,Maternal II ,Integral,4
+0817807,Maternal I,Parcial,4
+09034,Maternal II ,Integral,4
+09045,Berçário,Integral,8
+0918607,Maternal II ,Integral,6
+0918615,Maternal II ,Parcial,15
+0918620,Maternal I,Integral,5
+0918816,Maternal II ,Integral,10
+0918830,Maternal II ,Parcial,3
+0918831,Maternal II ,Integral,17
+10032,Maternal I,Integral,21
+10077,Berçário,Integral,11
+1019625,Maternal I,Integral,18
+0208803,Maternal II ,Integral,6
+0209604,Maternal I,Integral,2
+04028,Maternal II ,Integral,8
+04035,Maternal II ,Integral,3
+0430807,Maternal II ,Integral,2
+08007,Maternal II ,Integral,7
+0817619,Maternal II ,Parcial,4
+09026,Maternal II ,Integral,4
+09028,Maternal II ,Integral,5
+10009,Maternal II ,Integral,3
+10034,Maternal II ,Integral,3
+10082,Maternal I,Integral,5
+1026805,Maternal II ,Integral,7
+0103802,Maternal II ,Parcial,5
+0107602,Maternal I,Integral,1
+02037,Maternal I,Integral,3
+02042,Maternal II ,Integral,1
+02046,Maternal II ,Integral,2
+03015,Maternal II ,Integral,1
+04003,Maternal I,Integral,5
+04043,Maternal II ,Integral,4
+0515608,Maternal II ,Integral,2
+09007,Maternal II ,Integral,1
+1019631,Maternal II ,Integral,2
+04016,Maternal II ,Integral,2
+0515809,Maternal II ,Integral,5
+09008,Maternal II ,Integral,1
+1019609,Maternal II ,Integral,3
+0209608,Maternal II ,Integral,2
+02024,Maternal I,Integral,1
+0918804,Maternal II ,Integral,2
+10061,Maternal I,Integral,1
+01007,Maternal II ,Integral,4
+0101604,Maternal II ,Parcial,10
+0101605,Berçário,Integral,48
+0101607,Maternal I,Integral,18
+0101801,Berçário,Parcial,74
+0102601,Berçário,Integral,47
+0102604,Berçário,Integral,29
+0102606,Berçário,Integral,47
+0103601,Maternal I,Integral,16
+0103604,Berçário,Integral,24
+0103606,Berçário,Integral,26
+0103607,Maternal II ,Parcial,20
+0103802,Berçário,Parcial,27
+0103804,Berçário,Integral,24
+0107602,Berçário,Integral,46
+0107606,Maternal I,Parcial,78
+02001,Maternal II ,Integral,5
+02003,Maternal II ,Integral,29
+02014,Berçário,Integral,20
+02015,Maternal I,Integral,19
+02018,Maternal I,Integral,48
+02019,Berçário,Integral,14
+02031,Maternal II ,Integral,19
+02036,Berçário,Integral,6
+02038,Maternal I,Integral,1
+02039,Berçário,Integral,25
+02040,Berçário,Integral,34
+02041,Maternal II ,Integral,4
+0204602,Maternal I,Integral,23
+02047,Maternal II ,Integral,5
+02047,Maternal I,Integral,13
+0204806,Berçário,Integral,26
+0205602,Maternal I,Integral,18
+02060,Berçário,Integral,36
+0208604,Maternal I,Integral,5
+0208607,Berçário,Integral,20
+0209601,Berçário,Integral,55
+0209601,Maternal I,Integral,10
+0209609,Maternal I,Integral,12
+0209803,Maternal I,Integral,12
+0227801,Berçário,Integral,48
+03013,Berçário,Integral,55
+03015,Berçário,Integral,19
+03025,Berçário,Integral,47
+03025,Maternal II ,Integral,13
+03027,Maternal II ,Integral,8
+03031,Maternal I,Integral,34
+03033,Maternal II ,Integral,7
+03034,Maternal II ,Integral,17
+03037,Maternal I,Integral,65
+03040,Maternal II ,Integral,2
+03041,Maternal I,Integral,27
+0312803,Maternal I,Integral,22
+0313604,Berçário,Integral,24
+0313612,Maternal II ,Integral,7
+0313802,Berçário,Integral,22
+0313806,Maternal II ,Integral,21
+0328601,Maternal II ,Integral,14
+04011,Berçário,Integral,31
+04014,Maternal I,Integral,66
+04015,Maternal I,Integral,7
+04017,Berçário,Integral,45
+04018,Maternal I,Integral,23
+04021,Berçário,Integral,45
+04027,Maternal II ,Integral,9
+04032,Berçário,Integral,35
+04039,Berçário,Integral,25
+04042,Maternal II ,Integral,22
+04042,Berçário,Integral,39
+04048,Maternal II ,Integral,4
+0410805,Maternal II ,Integral,4
+0411609,Maternal II ,Integral,25
+0411802,Maternal I,Integral,6
+0430601,Maternal II ,Integral,27
+0430812,Maternal II ,Integral,26
+0430813,Maternal II ,Integral,20
+0431607,Maternal I,Integral,20
+05006,Maternal I,Integral,49
+05008,Maternal I,Integral,14
+05016,Maternal I,Integral,28
+05016,Berçário,Integral,57
+0514501,Maternal II ,Integral,21
+0514602,Maternal I,Integral,20
+0514603,Maternal I,Integral,17
+0514606,Berçário,Integral,46
+0514607,Berçário,Integral,23
+0514609,Maternal I,Integral,32
+0515046,Maternal II ,Integral,46
+0515601,Maternal II ,Integral,16
+0515607,Maternal II ,Integral,7
+0515804,Maternal II ,Integral,43
+0622602,Maternal I,Integral,30
+0622802,Maternal II ,Integral,25
+0622804,Maternal I,Integral,5
+0622804,Berçário,Integral,63
+0622805,Berçário,Integral,25
+0622805,Maternal I,Integral,17
+0625602,Berçário,Integral,28
+0625603,Maternal II ,Integral,14
+0625606,Maternal II ,Integral,4
+0625607,Maternal II ,Integral,17
+0625802,Berçário,Integral,29
+0625814,Maternal II ,Integral,10
+0625819,Berçário,Integral,62
+07020,Berçário,Integral,11
+07027,Berçário,Integral,32
+07041,Maternal I,Integral,14
+07042,Maternal I,Integral,37
+07044,Berçário,Integral,63
+07045,Maternal I,Integral,43
+0716605,Maternal I,Integral,47
+0716608,Maternal II ,Integral,28
+0716614,Maternal II ,Integral,6
+0716804,Maternal I,Integral,25
+0716808,Berçário,Integral,30
+0716812,Maternal I,Integral,22
+0716815,Maternal II ,Parcial,26
+0716821,Berçário,Integral,25
+0724601,Maternal I,Integral,8
+0724602,Berçário,Integral,80
+0724604,Maternal II ,Integral,15
+0724604,Maternal I,Integral,19
+0724806,Maternal I,Integral,29
+0724809,Maternal I,Integral,14
+0734601,Maternal I,Integral,44
+0734602,Maternal I,Integral,42
+08018,Maternal II ,Integral,24
+08023,Maternal I,Integral,36
+08024,Maternal II ,Integral,16
+08025,Maternal II ,Integral,4
+08027,Maternal I,Integral,10
+0817609,Berçário,Parcial,126
+0817617,Maternal II ,Parcial,6
+0817804,Maternal II ,Integral,17
+0817809,Maternal II ,Parcial,36
+0817814,Maternal I,Parcial,26
+0833505,Maternal II ,Integral,21
+0833601,Berçário,Integral,37
+0833601,Maternal II ,Integral,5
+0833801,Berçário,Integral,28
+0833803,Maternal II ,Integral,41
+0833805,Maternal II ,Integral,6
+0833807,Berçário,Integral,26
+09002,Maternal I,Integral,17
+09009,Berçário,Integral,17
+09017,Maternal II ,Integral,31
+09020,Maternal I,Integral,1
+09022,Maternal I,Integral,11
+09028,Berçário,Integral,13
+09029,Berçário,Integral,25
+09029,Maternal II ,Integral,3
+09035,Berçário,Integral,18
+09038,Berçário,Integral,37
+09039,Berçário,Integral,9
+09041,Berçário,Integral,11
+09042,Berçário,Integral,8
+09043,Maternal I,Integral,25
+09044,Maternal II ,Integral,8
+0918611,Maternal I,Integral,25
+0918802,Maternal I,Parcial,15
+0918803,Maternal I,Integral,9
+0918807,Maternal II ,Integral,15
+0918809,Maternal II ,Integral,17
+0918812,Maternal I,Integral,48
+0918812,Maternal II ,Integral,23
+0918813,Maternal I,Integral,13
+0918814,Maternal I,Integral,26
+0918814,Berçário,Integral,25
+0918819,Maternal II ,Parcial,11
+0918822,Maternal II ,Integral,12
+0918828,Maternal I,Integral,12
+0918831,Maternal I,Integral,21
+0918838,Maternal II ,Parcial,27
+0918839,Maternal I,Integral,22
+0918839,Maternal II ,Integral,20
+10006,Berçário,Integral,24
+10022,Maternal II ,Integral,42
+10032,Berçário,Integral,70
+10033,Maternal I,Integral,1
+10035,Maternal I,Integral,13
+10039,Berçário,Integral,101
+10040,Maternal II ,Integral,15
+10042,Berçário,Integral,55
+10045,Berçário,Integral,18
+10055,Berçário,Integral,46
+10056,Maternal I,Integral,21
+10057,Berçário,Integral,151
+10057,Maternal II ,Integral,20
+10058,Maternal II ,Integral,13
+10069,Maternal II ,Integral,6
+10073,Maternal II ,Integral,37
+10074,Maternal I,Integral,21
+10080,Berçário,Integral,23
+1019605,Maternal II ,Integral,10
+1019610,Maternal II ,Integral,11
+1019620,Maternal I,Integral,4
+1019630,Maternal I,Integral,30
+1019632,Maternal I,Integral,16
+1019808,Maternal II ,Integral,34
+1019826,Berçário,Integral,31
+1019827,Berçário,Integral,31
+1019829,Maternal II ,Integral,4
+1019829,Maternal I,Integral,6
+1019830,Berçário,Integral,23
+1019830,Maternal I,Integral,4
+1026601,Maternal II ,Parcial,42
+1026806,Berçário,Integral,32
+11008,Berçário,Integral,26
+0103807,Maternal II ,Integral,5
+0107607,Maternal I,Integral,7
+02006,Maternal II ,Integral,1
+0209606,Maternal II ,Integral,2
+03036,Maternal I,Integral,11
+0313602,Maternal I,Integral,7
+0313606,Berçário,Integral,24
+0330601,Maternal I,Integral,2
+04009,Maternal I,Integral,11
+04036,Maternal II ,Integral,1
+0515606,Maternal I,Integral,27
+0622801,Maternal II ,Integral,1
+07014,Maternal II ,Integral,10
+0724809,Maternal II ,Integral,2
+0734603,Maternal II ,Integral,13
+0734802,Maternal I,Integral,7
+08021,Maternal I,Integral,3
+09032,Berçário,Integral,13
+09032,Maternal I,Integral,3
+0918836,Maternal I,Integral,19
+10037,Maternal II ,Integral,9
+10070,Maternal II ,Integral,4
+10078,Maternal I,Integral,2
+10079,Maternal II ,Integral,2
+10082,Berçário,Integral,8
+1019627,Maternal I,Integral,6
+1019815,Maternal I,Parcial,15
+0103805,Maternal I,Integral,4
+0107608,Maternal II ,Integral,2
+0123603,Maternal II ,Integral,3
+0208607,Maternal I,Integral,2
+04045,Maternal I,Integral,3
+0430815,Maternal I,Integral,6
+0625816,Maternal II ,Integral,7
+08010,Berçário,Integral,18
+0918829,Berçário,Integral,22
+10054,Maternal I,Integral,1
+1019626,Maternal I,Integral,18
+0103801,Maternal I,Integral,1
+02019,Maternal II ,Integral,1
+0209601,Maternal II ,Integral,4
+0410801,Maternal II ,Integral,2
+07044,Maternal II ,Integral,2
+0833802,Maternal I,Parcial,6
+0918825,Maternal I,Parcial,2
+10047,Maternal I,Integral,3
+11007,Maternal II ,Integral,2
+04008,Maternal II ,Integral,6
+0734802,Maternal II ,Integral,2
+09040,Maternal II ,Integral,2
+10078,Maternal II ,Integral,2
+1120802,Maternal II ,Integral,1
+04050,Maternal II ,Integral,2
+0430604,Maternal II ,Integral,2
+0918803,Maternal II ,Integral,2
+05008,Maternal II ,Integral,2
+06002,Maternal II ,Integral,4
+02010,Maternal II ,Integral,1
+01010,Maternal I,Integral,20
+0102605,Maternal I,Integral,9
+0103802,Maternal I,Parcial,13
+0103807,Maternal I,Integral,28
+02001,Maternal I,Integral,32
+02011,Berçário,Integral,8
+02012,Berçário,Integral,21
+02026,Maternal II ,Integral,9
+02031,Maternal I,Integral,35
+02032,Maternal I,Integral,26
+02035,Maternal II ,Integral,2
+02041,Berçário,Integral,9
+02047,Berçário,Integral,25
+02048,Berçário,Integral,18
+02054,Berçário,Integral,18
+0206602,Berçário,Integral,55
+0206603,Berçário,Integral,21
+0206606,Berçário,Integral,47
+0208803,Maternal I,Integral,29
+0209605,Berçário,Integral,29
+0209606,Maternal I,Integral,6
+0209608,Berçário,Integral,46
+03004,Maternal I,Integral,25
+03005,Maternal I,Integral,29
+03006,Maternal I,Integral,17
+03006,Berçário,Integral,20
+03008,Berçário,Integral,41
+03027,Berçário,Integral,112
+03029,Maternal II ,Integral,7
+03039,Maternal II ,Integral,9
+0312603,Maternal I,Integral,13
+0312804,Maternal I,Integral,13
+0312805,Berçário,Integral,30
+0312806,Berçário,Integral,33
+0313604,Maternal I,Integral,15
+0313809,Maternal I,Integral,58
+0330601,Berçário,Integral,27
+04001,Maternal I,Integral,19
+04002,Berçário,Integral,23
+04005,Berçário,Integral,73
+04009,Maternal II ,Integral,6
+04011,Maternal II ,Integral,8
+04017,Maternal I,Integral,17
+04020,Maternal II ,Integral,1
+04025,Berçário,Integral,64
+04025,Maternal II ,Integral,23
+04026,Maternal I,Integral,21
+04028,Berçário,Integral,9
+04030,Maternal II ,Integral,11
+04037,Maternal I,Integral,40
+04038,Maternal II ,Integral,23
+04038,Berçário,Integral,75
+04047,Maternal II ,Integral,10
+0410802,Berçário,Integral,25
+0410808,Berçário,Integral,58
+0411603,Maternal II ,Integral,6
+0411801,Berçário,Integral,23
+0411803,Maternal I,Integral,7
+0430801,Maternal II ,Integral,10
+0430802,Maternal I,Integral,30
+0430803,Maternal I,Integral,21
+0430806,Maternal I,Integral,5
+0430807,Berçário,Integral,51
+0430809,Maternal I,Integral,2
+0430813,Maternal I,Integral,23
+0431801,Maternal II ,Integral,22
+05001,Maternal I,Integral,23
+05010,Maternal I,Integral,109
+05010,Maternal II ,Integral,36
+05012,Maternal II ,Integral,10
+0515015,Maternal II ,Integral,24
+0515803,Maternal II ,Integral,24
+0515805,Maternal II ,Integral,32
+06002,Berçário,Integral,56
+06004,Maternal II ,Integral,15
+06007,Maternal II ,Integral,13
+0622603,Maternal II ,Parcial,11
+0622603,Maternal I,Integral,2
+0625605,Maternal II ,Integral,6
+0625607,Berçário,Integral,33
+0625610,Maternal I,Integral,21
+0625614,Berçário,Integral,43
+0625616,Maternal I,Integral,46
+0625804,Maternal I,Integral,26
+07004,Maternal II ,Integral,6
+07015,Maternal II ,Integral,26
+07018,Maternal I,Integral,86
+07019,Maternal II ,Integral,82
+07034,Berçário,Integral,24
+07036,Maternal II ,Integral,30
+07037,Maternal I,Integral,41
+07040,Berçário,Integral,148
+07041,Maternal II ,Integral,18
+0716803,Maternal I,Integral,9
+0716807,Maternal I,Integral,133
+0716807,Maternal II ,Integral,53
+0716814,Maternal I,Parcial,61
+0716818,Berçário,Integral,56
+0716819,Maternal II ,Integral,8
+0724801,Maternal II ,Integral,17
+0724802,Maternal I,Integral,27
+0724807,Maternal I,Integral,40
+0724808,Maternal II ,Integral,36
+0734804,Maternal II ,Integral,9
+0734804,Maternal I,Integral,19
+08003,Maternal I,Integral,43
+08009,Berçário,Integral,33
+08013,Maternal II ,Integral,32
+08015,Maternal I,Integral,47
+08016,Maternal II ,Integral,12
+08021,Berçário,Integral,10
+0817602,Maternal II ,Integral,4
+0817603,Maternal I,Integral,47
+0817603,Berçário,Integral,20
+0817607,Maternal I,Parcial,96
+0817608,Maternal I,Parcial,49
+0817609,Maternal II ,Parcial,12
+0817610,Maternal II ,Parcial,20
+0817611,Maternal II ,Integral,19
+0817612,Maternal I,Parcial,42
+0817614,Maternal I,Parcial,26
+0817616,Maternal II ,Parcial,14
+0817803,Maternal I,Parcial,10
+0817806,Berçário,Integral,62
+0817810,Maternal I,Integral,76
+0817814,Maternal II ,Parcial,11
+0817815,Berçário,Parcial,25
+0817815,Maternal I,Parcial,5
+0833602,Maternal II ,Integral,22
+0833801,Maternal I,Integral,19
+0833806,Berçário,Parcial,65
+09001,Maternal I,Integral,15
+09002,Maternal II ,Integral,6
+09010,Maternal I,Integral,43
+09010,Maternal II ,Integral,31
+09013,Berçário,Integral,15
+09017,Maternal I,Integral,55
+09019,Berçário,Integral,41
+09024,Maternal I,Integral,19
+09027,Berçário,Integral,17
+09031,Berçário,Integral,28
+0918606,Maternal I,Integral,27
+0918617,Berçário,Parcial,32
+0918617,Maternal I,Parcial,12
+0918619,Maternal I,Integral,43
+0918808,Maternal I,Integral,35
+0918814,Maternal II ,Parcial,11
+0918823,Berçário,Integral,26
+0918824,Maternal I,Parcial,6
+0918827,Maternal II ,Integral,10
+0918829,Maternal I,Integral,22
+0918831,Berçário,Integral,44
+0918832,Maternal I,Integral,40
+0918833,Maternal I,Integral,26
+10020,Maternal I,Integral,73
+10027,Berçário,Integral,64
+10035,Maternal II ,Integral,21
+10036,Maternal II ,Integral,17
+10045,Maternal I,Integral,20
+10052,Berçário,Integral,78
+10053,Berçário,Integral,107
+10054,Berçário,Integral,10
+10060,Berçário,Integral,25
+10061,Berçário,Integral,17
+10064,Maternal I,Integral,49
+10067,Maternal I,Integral,22
+10074,Berçário,Integral,30
+10079,Berçário,Integral,48
+10081,Maternal I,Integral,16
+1019602,Berçário,Integral,56
+1019602,Maternal I,Integral,32
+1019602,Maternal II ,Integral,6
+1019604,Maternal I,Integral,15
+1019612,Maternal II ,Integral,2
+1019613,Maternal II ,Parcial,13
+1019618,Maternal I,Integral,33
+1019620,Berçário,Integral,20
+1019623,Maternal II ,Parcial,7
+1019802,Maternal I,Integral,26
+1019809,Maternal I,Integral,5
+1019815,Maternal II ,Parcial,18
+1019821,Maternal I,Integral,17
+1026603,Maternal II ,Integral,37
+1026604,Maternal I,Parcial,58
+1026802,Berçário,Integral,27
+11001,Berçário,Integral,20
+11001,Maternal I,Integral,26
+11007,Maternal I,Integral,5
+11009,Berçário,Integral,33
+1120601,Maternal II ,Integral,9
+1120603,Maternal I,Integral,29
+1120603,Berçário,Integral,33
+1120604,Maternal I,Integral,24
+0101603,Maternal II ,Integral,2
+0209603,Maternal I,Integral,6
+0209604,Maternal II ,Integral,4
+0209607,Maternal II ,Integral,2
+03003,Maternal II ,Integral,32
+03016,Maternal I,Integral,5
+03034,Maternal I,Integral,51
+0312601,Maternal II ,Integral,8
+0312603,Maternal II ,Integral,3
+0330602,Maternal II ,Integral,3
+04050,Berçário,Integral,22
+0431802,Maternal I,Integral,12
+0514605,Maternal I,Integral,13
+0514802,Maternal II ,Parcial,11
+0515810,Maternal II ,Integral,8
+0515810,Maternal I,Integral,13
+0716603,Maternal II ,Integral,11
+08027,Maternal II ,Integral,2
+0817801,Maternal I,Integral,9
+10004,Maternal I,Integral,2
+10059,Maternal II ,Integral,7
+1019609,Maternal I,Integral,10
+1019827,Maternal I,Integral,3
+1026807,Maternal II ,Integral,23
+1120801,Maternal II ,Integral,7
+0103801,Maternal II ,Integral,1
+02040,Maternal I,Integral,5
+03030,Berçário,Integral,2
+04039,Maternal II ,Integral,5
+06012,Maternal II ,Integral,2
+06017,Berçário,Integral,11
+0734601,Maternal II ,Integral,10
+0918811,Maternal II ,Parcial,4
+02048,Maternal II ,Integral,1
+0833802,Maternal II ,Parcial,7
+01005,Maternal II ,Integral,1
+0209609,Maternal II ,Integral,3
+05003,Maternal II ,Integral,1
+0205601,Maternal II ,Integral,3
+1019630,Maternal II ,Integral,2
+0622804,Maternal II ,Integral,1
+09007,Berçário,Integral,2
+08003,Maternal II ,Integral,1

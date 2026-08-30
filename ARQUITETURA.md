@@ -77,3 +77,10 @@ cuidados de leitura documentados em [`CLAUDE.md`](CLAUDE.md) (encoding, valores
 `"NULL"` literais, CSV sem header, etc.) e os achados já validados em
 [`eda/RESULTADOS_H6_H12.md`](eda/RESULTADOS_H6_H12.md) antes de reimplementar lógica
 parecida (ex.: régua de pontuação, taxa de atendimento).
+
+## Integração com sistemas da Prefeitura (produção)
+
+Para o que os módulos `documentacao` (comprovação de critérios) e `acompanhamento`/
+Eixo 3 (convocação) fariam em produção, apoiados em infraestrutura que a Prefeitura já
+opera (RMI, disparo de WhatsApp) em vez de sistema de notificação próprio — ver
+[`INTEGRACAO_RMI_WHATSAPP.md`](INTEGRACAO_RMI_WHATSAPP.md).
