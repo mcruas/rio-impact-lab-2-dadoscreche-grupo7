@@ -2,6 +2,7 @@
 
 - **Site (ao vivo)**: https://inscricao-frontend-production.up.railway.app
 - **Backend (ao vivo)**: https://inscricao-backend-production-3e24.up.railway.app
+- **Vídeo**: https://drive.google.com/drive/folders/1dpBm_q0IcMzMxhV8dr7AtLfke-xpCdec?usp=sharing
 
 Solução deste grupo para o desafio de dados de Inscrição Creche do Rio de
 Janeiro, do Claude Impact Lab 2026.
