@@ -17,7 +17,11 @@ paths:
           description: OK
   /cep/{cep}:
     get:
-      summary: "Resolve um CEP para o nome do bairro (via ViaCEP, viacep.com.br)"
+      summary: "Resolve um CEP para bairro e coordenada"
+      description: >
+        Resolve pela tabela local dados/ceps.csv (sem rede). Só cai no ViaCEP
+        (viacep.com.br) para CEP fora dessa tabela — e nesse caso latitude/longitude
+        voltam nulas, porque o ViaCEP não devolve coordenada.
       parameters:
         - name: cep
           in: path
@@ -27,7 +31,7 @@ paths:
           description: "CEP com ou sem hífen (ex.: 23050-300 ou 23050300)."
       responses:
         "200":
-          description: Bairro correspondente ao CEP
+          description: Bairro e, quando conhecida, a coordenada do CEP
           content:
             application/json:
               schema:
@@ -35,6 +39,14 @@ paths:
                 required: ["bairro"]
                 properties:
                   bairro: { type: string }
+                  latitude:
+                    type: number
+                    nullable: true
+                    description: "Nula quando o CEP só foi resolvido pelo ViaCEP."
+                  longitude:
+                    type: number
+                    nullable: true
+                    description: "Nula quando o CEP só foi resolvido pelo ViaCEP."
         "404":
           description: "CEP inválido, inexistente, ou ViaCEP indisponível"
   /escolas:

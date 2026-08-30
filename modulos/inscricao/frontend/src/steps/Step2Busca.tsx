@@ -37,17 +37,28 @@ export function Step2Busca({ dados, atualizar, onVoltar, onBuscar }: StepProps) 
     try {
       const texto = dados.buscaTexto.trim();
       let bairro = texto;
+      // Guardado para ir junto na busca: com o CEP o backend localiza a família pelo
+      // próprio CEP em vez do centróide do bairro, o que muda bastante o ranking
+      // (dois CEPs da mesma Tijuca devolvem listas sem nenhuma escola em comum).
+      let cep: string | undefined;
       if (pareceCep(texto)) {
-        const bairroResolvido = await resolverCep(texto);
-        if (bairroResolvido === null) {
+        const localizacao = await resolverCep(texto);
+        if (localizacao === null) {
           setErro("Não encontramos esse CEP. Confira os números ou tente buscar pelo nome do bairro.");
           setCarregando(false);
           return;
         }
-        bairro = bairroResolvido;
+        bairro = localizacao.bairro;
+        cep = texto;
+        // Guardado para o mapa do passo 3 plotar o pino da família.
+        atualizar({ latFamilia: localizacao.latitude, lonFamilia: localizacao.longitude });
+      } else {
+        // Busca por nome de bairro não tem coordenada: limpa a anterior para o mapa
+        // não mostrar uma casa em lugar nenhum.
+        atualizar({ latFamilia: null, lonFamilia: null });
       }
 
-      const resultados = await buscarPorBairro(bairro);
+      const resultados = await buscarPorBairro(bairro, 8, cep);
       if (resultados.length === 0) {
         setErro("Não encontramos creches nessa região. Tente um bairro vizinho.");
         setCarregando(false);
@@ -99,7 +110,11 @@ export function Step2Busca({ dados, atualizar, onVoltar, onBuscar }: StepProps) 
       ) : (
         <label className="campo">
           <span>Buscar por bairro ou CEP</span>
-          <span className="campo-ajuda">Digite o bairro ou CEP para ver creches próximas de verdade.</span>
+          <span className="campo-ajuda">
+            {dados.buscaTexto.trim() !== "" && dados.buscaTexto.trim() === dados.cepResidencial.trim()
+              ? "Usamos o CEP que você informou. Troque se quiser procurar perto de outro lugar (trabalho, casa de familiares…)."
+              : "Digite o bairro ou CEP para ver creches próximas de verdade."}
+          </span>
           <div className="campo-com-icone">
             <input
               type="text"

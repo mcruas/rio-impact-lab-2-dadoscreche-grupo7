@@ -95,6 +95,24 @@ def _resolver_query_a() -> Path:
     )
 
 
+def _coordenada(
+    latitude: float | None, longitude: float | None
+) -> tuple[float | None, float | None]:
+    """Trata (0, 0) como coordenada ausente, não como um ponto no Golfo da Guiné.
+
+    A Escola Municipal Pedro Bruno (esc_codigo 121002, Paquetá) vem com LATITUDE e
+    LONGITUDE zeradas em Unidades_Unificadas_com_Localizacao.xlsx. Como 0 não é None,
+    ela passava batido e contaminava o centróide do bairro: Paquetá ia parar em
+    (-11,38, -21,55), a média entre a ilha e a "null island" — ou seja, toda família de
+    Paquetá recebia distância sem sentido para todas as escolas. Zerando aqui, a escola
+    passa a ser tratada como qualquer unidade sem coordenada (fica de fora do ranking
+    de distância) e o centróide do bairro volta a fazer sentido.
+    """
+    if not latitude or not longitude:
+        return (None, None)
+    return (latitude, longitude)
+
+
 def _indice_concorrencia(taxa_atendimento: float | None) -> float | None:
     """Quanto menor a taxa histórica de atendimento, mais concorrida é a escola."""
     if taxa_atendimento is None:
@@ -146,9 +164,9 @@ def recalcular_de_desafio() -> list[Escola]:
 
     microarea.carregar_microareas(con)
     pontos_escolas = {
-        str(registro["esc_codigo_num"]): (registro["latitude"], registro["longitude"])
+        str(registro["esc_codigo_num"]): _coordenada(registro["latitude"], registro["longitude"])
         for registro in (dict(zip(colunas, linha)) for linha in escolas_raw)
-        if registro["latitude"] is not None and registro["longitude"] is not None
+        if _coordenada(registro["latitude"], registro["longitude"]) != (None, None)
     }
     microarea_por_escola = microarea.atribuir_microarea_lote(con, pontos_escolas)
     con.close()
@@ -159,14 +177,15 @@ def recalcular_de_desafio() -> list[Escola]:
         esc_codigo_num = registro["esc_codigo_num"]
         taxa = taxa_por_unidade.get(esc_codigo_num)
         cod_territ, cre = microarea_por_escola.get(str(esc_codigo_num), (None, None))
+        latitude, longitude = _coordenada(registro["latitude"], registro["longitude"])
         escolas.append(
             Escola(
                 esc_codigo=str(esc_codigo_num),
                 nome=registro["nome"],
                 endereco=registro["endereco"],
                 bairro=registro["bairro"],
-                latitude=registro["latitude"],
-                longitude=registro["longitude"],
+                latitude=latitude,
+                longitude=longitude,
                 tipo=registro["tipo"],
                 indice_concorrencia=_indice_concorrencia(taxa),
                 cod_territ=cod_territ,
@@ -197,14 +216,16 @@ def carregar_escolas() -> list[Escola]:
         """
     ).fetchall()
     con.close()
+    # _coordenada() de novo aqui (e não só na geração) para que o arquivo já commitado,
+    # que ainda guarda o (0, 0) da Pedro Bruno, seja lido corretamente sem regerar.
     return [
         Escola(
             esc_codigo=esc_codigo,
             nome=nome,
             endereco=endereco,
             bairro=bairro,
-            latitude=latitude,
-            longitude=longitude,
+            latitude=_coordenada(latitude, longitude)[0],
+            longitude=_coordenada(latitude, longitude)[1],
             tipo=tipo,
             indice_concorrencia=indice_concorrencia,
             cod_territ=cod_territ,

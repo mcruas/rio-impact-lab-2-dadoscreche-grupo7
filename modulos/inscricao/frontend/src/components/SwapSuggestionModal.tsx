@@ -1,3 +1,4 @@
+import { formatarDistancia } from "../utils/distancia";
 import type { RecomendacaoEscola } from "../types";
 import { CrecheTags } from "./CrecheTags";
 
@@ -37,7 +38,7 @@ export function SwapSuggestionModal({
             <div className="creche-info">
               <h3>{crecheSugerida.nome}</h3>
               <p className="creche-distancia">
-                {crecheSugerida.distanciaKm.toFixed(1)} km de você • {crecheSugerida.bairro}
+                {formatarDistancia(crecheSugerida.distanciaKm)} de você • {crecheSugerida.bairro}
               </p>
               <CrecheTags creche={crecheSugerida} />
             </div>
@@ -53,7 +54,7 @@ export function SwapSuggestionModal({
           <div className="creche-info">
             <h3>{crecheAtual.nome}</h3>
             <p className="creche-distancia">
-              {crecheAtual.distanciaKm.toFixed(1)} km de você • {crecheAtual.bairro}
+              {formatarDistancia(crecheAtual.distanciaKm)} de você • {crecheAtual.bairro}
             </p>
             <CrecheTags creche={crecheAtual} />
           </div>

@@ -4,8 +4,10 @@ Rodar (a partir desta pasta, modulos/recomendacao-escolas/):
     uvicorn app.main:app --reload
 
 Não depende de nenhum outro módulo em runtime — score e histórico chegam prontos
-no corpo do pedido de POST /recomendacoes (ver README.md). A única dependência de
-rede externa é o ViaCEP (app/cep.py), usado só em GET /cep/{cep}.
+no corpo do pedido de POST /recomendacoes (ver README.md). Também não depende de rede
+no caminho normal: CEP e coordenadas saem da tabela local `dados/ceps.csv`
+(ver app/ceps.py). O ViaCEP (app/cep.py) ficou só como fallback de GET /cep/{cep},
+para CEP que não esteja nessa tabela.
 """
 
 from __future__ import annotations
@@ -18,13 +20,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from .cep import resolver_bairro_por_cep
+from .cep import resolver_cep
+from .ceps import tabela_ceps
 from .data import Escola, buscar_por_bairro, carregar_escolas
 from .distancia import EnderecoFamilia, centroides_por_bairro, distancia_mais_proxima
 from .models import (
     TIPO_MORADIA,
     EnderecoRequest,
     EscolaResponse,
+    LocalizacaoCepResponse,
     HistoricoResponsavelRequest,
     PedidoRecomendacao,
     RationaleResponse,
@@ -67,12 +71,16 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/cep/{cep}")
-def cep(cep: str) -> dict[str, str]:
-    bairro = resolver_bairro_por_cep(cep)
-    if bairro is None:
+@app.get("/cep/{cep}", response_model=LocalizacaoCepResponse)
+def cep(cep: str) -> LocalizacaoCepResponse:
+    localizacao = resolver_cep(cep)
+    if localizacao is None:
         raise HTTPException(status_code=404, detail="CEP não encontrado")
-    return {"bairro": bairro}
+    return LocalizacaoCepResponse(
+        bairro=localizacao.bairro,
+        latitude=localizacao.latitude,
+        longitude=localizacao.longitude,
+    )
 
 
 @app.get("/escolas", response_model=list[EscolaResponse])
@@ -99,9 +107,10 @@ def escolas(bairro: str = Query(..., min_length=1)) -> list[EscolaResponse]:
 
 def _rankear(pedido: PedidoRecomendacao, limite: int) -> list[RecomendacaoEscolaResponse]:
     enderecos_familia = [
-        EnderecoFamilia(tipo=e.tipo, bairro=e.bairro) for e in pedido.enderecos
+        EnderecoFamilia(tipo=e.tipo, bairro=e.bairro, cep=e.cep) for e in pedido.enderecos
     ]
     centroides = _centroides()
+    ceps = tabela_ceps()
     percentil = pedido.score_estimado.percentil if pedido.score_estimado else None
     vezes_convocado = (
         pedido.historico_responsavel.vezes_convocado if pedido.historico_responsavel else None
@@ -112,7 +121,9 @@ def _rankear(pedido: PedidoRecomendacao, limite: int) -> list[RecomendacaoEscola
 
     candidatas = []
     for escola in _escolas():
-        resultado = distancia_mais_proxima(enderecos_familia, centroides, escola.latitude, escola.longitude)
+        resultado = distancia_mais_proxima(
+            enderecos_familia, centroides, escola.latitude, escola.longitude, ceps
+        )
         if resultado is None:
             continue
         distancia_km, origem = resultado

@@ -23,6 +23,19 @@ class EscolaResponse(BaseModel):
     cre: int | None = None
 
 
+class LocalizacaoCepResponse(BaseModel):
+    """Resposta de GET /cep/{cep}.
+
+    `latitude`/`longitude` são adição posterior ao `bairro`, para o frontend poder
+    plotar a família no mapa. Ficam nulas quando o CEP só existe no ViaCEP, que não
+    devolve coordenada — quem consome tem de aguentar o nulo.
+    """
+
+    bairro: str
+    latitude: float | None = None
+    longitude: float | None = None
+
+
 class EnderecoRequest(BaseModel):
     """Espelha contracts/schemas/endereco.schema.json."""
 

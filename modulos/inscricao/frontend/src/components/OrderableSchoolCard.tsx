@@ -1,3 +1,4 @@
+import { formatarDistancia } from "../utils/distancia";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { RecomendacaoEscola } from "../types";
@@ -33,7 +34,7 @@ export function OrderableSchoolCard({ posicao, creche, onRemover }: OrderableSch
         <h3>{creche.nome}</h3>
         <p className="creche-distancia">
           {creche.distanciaKm > 0
-            ? `${creche.distanciaKm.toFixed(1)} km de você • ${creche.bairro}`
+            ? `${formatarDistancia(creche.distanciaKm)} de você • ${creche.bairro}`
             : creche.bairro}
         </p>
         <CrecheTags creche={creche} />
