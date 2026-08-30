@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Vaga, Nunca Definitiva Até o Fim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F5F4;
+    --panel: #FFFFFF;
+    --panel-2: #ECEFEE;
+    --ink: #152029;
+    --ink-soft: #48545D;
+    --border: #D8DEDD;
+    --accent: #B36A0C;
+    --accent-soft: #F1DCB9;
+    --aceito: #227A54;
+    --aceito-bg: #E1F1E8;
+    --rejeitado: #A63F27;
+    --rejeitado-bg: #F5E5DF;
+    --expulso: #6A4E9C;
+    --expulso-bg: #EBE4F5;
+    --scale-track: #DFE4E3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10161C;
+      --panel: #18222A;
+      --panel-2: #1E2930;
+      --ink: #E7ECEE;
+      --ink-soft: #A7B3BA;
+      --border: #2C3941;
+      --accent: #E0983A;
+      --accent-soft: #4A3A1E;
+      --aceito: #55C48C;
+      --aceito-bg: #17301F;
+      --rejeitado: #E2836A;
+      --rejeitado-bg: #33201A;
+      --expulso: #B79EE8;
+      --expulso-bg: #27203D;
+      --scale-track: #263139;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161C;
+    --panel: #18222A;
+    --panel-2: #1E2930;
+    --ink: #E7ECEE;
+    --ink-soft: #A7B3BA;
+    --border: #2C3941;
+    --accent: #E0983A;
+    --accent-soft: #4A3A1E;
+    --aceito: #55C48C;
+    --aceito-bg: #17301F;
+    --rejeitado: #E2836A;
+    --rejeitado-bg: #33201A;
+    --expulso: #B79EE8;
+    --expulso-bg: #27203D;
+    --scale-track: #263139;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+  .eyebrow {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1.1rem;
+  }
+  .lede {
+    font-size: 1.13rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 3rem;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.005em;
+    margin: 3.6rem 0 0.6rem;
+  }
+  h2 .num {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .section-lede {
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0 0 1.6rem;
+  }
+  code {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.88em;
+    background: var(--panel-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  /* --- diagrama do mecanismo --- */
+  figure { margin: 0 0 3.2rem; }
+  figure.mecanismo svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 0.7rem;
+    max-width: 62ch;
+  }
+  .diagram-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* --- escala de merito --- */
+  .escala-wrap {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.5rem 1.4rem;
+    margin-bottom: 3.2rem;
+  }
+  .escala-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.5rem;
+  }
+  .escala-track {
+    position: relative;
+    height: 10px;
+    border-radius: 6px;
+    background: var(--scale-track);
+  }
+  .escala-fill {
+    position: absolute;
+    inset: 0;
+    width: 18.3%;
+    border-radius: 6px 0 0 6px;
+    background: var(--accent-soft);
+  }
+  .escala-marker {
+    position: absolute;
+    top: -9px;
+    left: 18.3%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .escala-marker::after {
+    content: "";
+  }
+  .escala-caption {
+    margin-top: 1.1rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .escala-caption strong { color: var(--ink); }
+
+  /* --- jornada / timeline --- */
+  .jornada {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .rodada {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0 1.1rem;
+  }
+  .rodada .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .rodada .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .rodada.aceito .dot { border-color: var(--aceito); color: var(--aceito); }
+  .rodada.rejeitado .dot { border-color: var(--rejeitado); color: var(--rejeitado); }
+  .rodada.expulso .dot { border-color: var(--expulso); color: var(--expulso); }
+  .rodada .linha {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    min-height: 1.4rem;
+  }
+  .rodada:last-child .linha { display: none; }
+  .cartao {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem 1.25rem;
+    margin-bottom: 1.4rem;
+  }
+  .cartao-topo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+  .escola {
+    font-weight: 600;
+    font-size: 1.02rem;
+  }
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.28em 0.7em;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge.aceito { background: var(--aceito-bg); color: var(--aceito); }
+  .badge.rejeitado { background: var(--rejeitado-bg); color: var(--rejeitado); }
+  .badge.expulso { background: var(--expulso-bg); color: var(--expulso); }
+  .meta {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.55rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .explicacao {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .explicacao strong { color: var(--ink); font-weight: 600; }
+
+  .callout {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+    margin-top: 2.2rem;
+    font-size: 0.98rem;
+  }
+  .callout strong { color: var(--accent); }
+
+  .fonte {
+    margin-top: 4rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .fonte code { font-size: 0.85em; }
+
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+
+  <p class="eyebrow">Motor de Match — Eixo 2</p>
+  <h1>Uma vaga aceita não é uma vaga garantida — até a rodada acabar</h1>
+  <p class="lede">
+    O motor não decide vaga a vaga. Ele processa <strong>uma ordem única de mérito</strong>
+    contra as escolhas de todas as crianças ao mesmo tempo, em rodadas — e uma criança
+    só está de fato alocada quando nenhuma rodada seguinte a desloca. É isso que
+    "aceitação diferida" quer dizer, e é o que muda o resultado de uma criança real
+    da base de 2025, contada abaixo.
+  </p>
+
+  <h2><span class="num">01</span> Como cada escola decide quem fica</h2>
+  <p class="section-lede">
+    Cada estrato (unidade × grupamento × turno) tem dois tipos de assento, processados
+    nesta ordem — nunca a inversa, porque processar a reserva primeiro desperdiçaria
+    vaga territorial em crianças que entrariam pelo mérito de qualquer jeito.
+  </p>
+
+  <figure class="mecanismo">
+    <div class="diagram-panel">
+      <svg viewBox="0 0 640 220" role="img" aria-label="Uma escola recebe propostas de crianças; preenche primeiro os assentos abertos por ordem de mérito, depois os assentos reservados ao território, aceitando não-locais se não houver demanda local suficiente.">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text x="12" y="26" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor" letter-spacing="0.02em">CRIANÇAS LIVRES PROPÕEM À PRÓXIMA OPÇÃO DA LISTA</text>
+        <line x1="150" y1="42" x2="150" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <rect x="30" y="78" width="580" height="118" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
+        <text x="50" y="100" font-family="Public Sans, sans-serif" font-size="12" font-weight="700" fill="currentColor" opacity="0.6" letter-spacing="0.06em">ESTRATO (unidade × grupamento × turno)</text>
+
+        <rect x="50" y="114" width="250" height="66" rx="8" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="70" y="136" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">1. Assentos abertos</text>
+        <text x="70" y="156" font-family="Public Sans, sans-serif" font-size="12" fill="currentColor" opacity="0.75">ordem: pontuação → desempates → sorteio</text>
+        <text x="70" y="172" font-family="Public Sans, sans-serif" font-size="12" fill="currentColor" opacity="0.75">(mérito, para todas as candidatas)</text>
+
+        <rect x="340" y="114" width="250" height="66" rx="8" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.5"/>
+        <text x="360" y="136" font-family="Public Sans, sans-serif" font-size="13" font-weight="700" fill="currentColor">2. Assentos reservados</text>
+        <text x="360" y="156" font-family="Public Sans, sans-serif" font-size="12" fill="currentColor" opacity="0.75">locais primeiro; sem demanda local,</text>
+        <text x="360" y="172" font-family="Public Sans, sans-serif" font-size="12" fill="currentColor" opacity="0.75">não-locais preenchem o resto</text>
+
+        <line x1="300" y1="147" x2="335" y2="147" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+        <text x="303" y="140" font-family="Public Sans, sans-serif" font-size="10.5" fill="currentColor" opacity="0.6">depois</text>
+      </svg>
+    </div>
+    <figcaption>
+      A precedência (abertos antes de reservados) é o que evita desperdiçar a reserva
+      territorial com quem entraria pelo mérito de qualquer forma. Quem não entra em
+      nenhum dos dois volta a propor à próxima opção da sua lista, na rodada seguinte.
+    </figcaption>
+  </figure>
+
+  <h2><span class="num">02</span> A criança do exemplo, antes de rodar</h2>
+  <p class="section-lede">
+    <code>aluno_0086739</code>, família do bairro da Maré, 55 pontos na régua legal de
+    2025. Isso a coloca no <strong>percentil 18,3 de mérito</strong> entre as 62.891
+    crianças do processo — bem posicionada, mas isso sozinho não decide nada: o que
+    decide é contra quem ela concorre em cada escola específica que listou.
+  </p>
+
+  <div class="escala-wrap">
+    <div class="escala-label">
+      <span>Mais prioridade</span>
+      <span>Menos prioridade</span>
+    </div>
+    <div class="escala-track">
+      <div class="escala-fill"></div>
+      <div class="escala-marker"></div>
+    </div>
+    <p class="escala-caption">
+      Posição <strong>11.503 de 62.891</strong> na ordem global de mérito
+      (pontuação legal → desempates → sorteio único) — percentil <strong>18,3</strong>.
+    </p>
+  </div>
+
+  <h2><span class="num">03</span> A jornada, rodada a rodada</h2>
+  <p class="section-lede">
+    Ela listou 5 opções, em ordem de preferência. O motor processa as 62.891 crianças
+    juntas; abaixo está só o que aconteceu com esta, a cada rodada em que algo mudou
+    para ela.
+  </p>
+
+  <div class="jornada">
+
+    <div class="rodada rejeitado">
+      <div class="rail"><div class="dot">1</div><div class="linha"></div></div>
+      <div class="cartao">
+        <div class="cartao-topo">
+          <span class="escola">Opção 1 — unidade 0430815, Bonsucesso</span>
+          <span class="badge rejeitado">Rejeitada</span>
+        </div>
+        <div class="meta">2 assentos no total (1 aberto + 1 reservado) · 30 candidatas na rodada</div>
+        <p class="explicacao">
+          Escola pequena, disputa grande. Mesmo no percentil 18,3, não há espaço entre
+          as 2 vagas — nem na aberta (mérito), nem na reservada (ela não é do bairro de
+          Bonsucesso). Ela volta a propor, agora à opção 2.
+        </p>
+      </div>
+    </div>
+
+    <div class="rodada aceito">
+      <div class="rail"><div class="dot">2</div><div class="linha"></div></div>
+      <div class="cartao">
+        <div class="cartao-topo">
+          <span class="escola">Opção 2 — unidade 0430601, Bonsucesso</span>
+          <span class="badge aceito">Aceita (provisória)</span>
+        </div>
+        <div class="meta">27 assentos no total (18 abertos + 9 reservados) · 63 candidatas na rodada</div>
+        <p class="explicacao">
+          Escola maior, e seu mérito garante um assento aberto. <strong>Mas "aceita" aqui
+          não é definitivo</strong> — é uma retenção provisória, válida só até a próxima
+          rodada trazer alguém melhor posicionado para esta mesma escola.
+        </p>
+      </div>
+    </div>
+
+    <div class="rodada expulso">
+      <div class="rail"><div class="dot">3</div><div class="linha"></div></div>
+      <div class="cartao">
+        <div class="cartao-topo">
+          <span class="escola">Ainda na unidade 0430601</span>
+          <span class="badge expulso">Expulsa</span>
+        </div>
+        <div class="meta">chegou uma candidata com mais prioridade para este mesmo assento</div>
+        <p class="explicacao">
+          Isto é o "diferida" da aceitação diferida: uma criança com prioridade maior
+          propôs à mesma escola nesta rodada, e como a capacidade é fixa, ela desloca
+          quem estava provisoriamente aceita. Ninguém perde vaga confirmada — só uma
+          retenção que nunca tinha virado definitiva. Ela volta a propor, à opção 3.
+        </p>
+      </div>
+    </div>
+
+    <div class="rodada aceito">
+      <div class="rail"><div class="dot">4</div></div>
+      <div class="cartao">
+        <div class="cartao-topo">
+          <span class="escola">Opção 3 — unidade 0430812, Maré</span>
+          <span class="badge aceito">Aceita — final</span>
+        </div>
+        <div class="meta">26 assentos no total (17 abertos + 9 reservados) · 31 candidatas na rodada · nenhuma rodada seguinte a desloca</div>
+        <p class="explicacao">
+          Desta vez, no próprio bairro. Ela entra pelo <strong>assento aberto</strong> —
+          5ª colocada em mérito entre as 26 admitidas ali, não precisou da reserva
+          territorial. Não era a 1ª opção da família, mas o processo terminou: nenhuma
+          rodada seguinte teve mais nenhuma proposta pendente para este estrato, então
+          o resultado ficou definitivo.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <strong>Por que isso importa:</strong> se o motor decidisse escola por escola, na
+    ordem em que as propostas chegassem, a rodada 2 teria "fechado" a vaga errada —
+    e a criança que a desloca na rodada 3 teria ficado sem opção nenhuma, mesmo tendo
+    mais prioridade. Processar em rodadas, com aceitação sempre provisória até o fim,
+    é o que garante que ninguém com mais prioridade fique de fora por causa da ordem
+    de chegada das propostas.
+  </div>
+
+  <p class="fonte">
+    Caso real, dados anonimizados do processo de 2025 (Rio Impact Lab, Grupo 7).
+    Algoritmo e backtest completos em <code>MATCHING.md</code>; código em
+    <code>backend/motor.py</code> (função <code>roda_matching</code>).
+  </p>
+
+</main>
+</body>
+</html>
