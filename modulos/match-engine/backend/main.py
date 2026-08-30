@@ -17,10 +17,19 @@ Limitacoes conhecidas do contrato face aos dados reais -- ver
   no contrato (additionalProperties: false).
 """
 from contextlib import asynccontextmanager
+from datetime import datetime
 
 from fastapi import FastAPI, HTTPException
 
-from motor import RESERVE_FRACTION, load, ordem_global, roda_matching, soma_capacidade
+from motor import (
+    RESERVE_FRACTION,
+    carrega_vagas_selecionadas,
+    detecta_inconsistencias,
+    load,
+    ordem_global,
+    roda_matching,
+    soma_capacidade,
+)
 
 # Regua legal de 2025 (Query C) -- hardcoded por decisao explicita: uma unica
 # lista de criterios usada tanto aqui quanto em MATCHING.md, atualizada a mao
@@ -68,6 +77,7 @@ def _carrega_alocacao() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _carrega_alocacao()
+    _estado["vagas_selecionadas"] = carrega_vagas_selecionadas()
     yield
     _estado.clear()
 
@@ -142,3 +152,35 @@ def marcar_nao_confirmados(lote: dict) -> dict:
     _estado["excluidos"].update(cpfs)
     _carrega_alocacao()
     return {"excluidos_total": len(_estado["excluidos"])}
+
+
+@app.get("/vagas-selecionadas")
+def vagas_selecionadas(unidade: str | None = None) -> list[dict]:
+    """Painel operacional CRE/polo -- ver contracts/match-engine.openapi.yaml.
+    dias_desde_criacao_cadastro e aproximado (idade do CADASTRO, nao da
+    situacao -- ver contracts/schemas/vaga_selecionada.schema.json)."""
+    agora = datetime.now()
+    resultado = []
+    for vaga in _estado["vagas_selecionadas"]:
+        if unidade is not None and vaga["unidade"] != unidade:
+            continue
+        resultado.append({
+            "inscricao_id": vaga["inscricao_id"],
+            "opcao": vaga["opcao"],
+            "unidade": vaga["unidade"],
+            "situacao": vaga["situacao"],
+            "dias_desde_criacao_cadastro": (agora - vaga["data_criacao"]).days,
+        })
+    return resultado
+
+
+@app.get("/inconsistencias")
+def inconsistencias(unidade: str | None = None) -> list[dict]:
+    """Painel operacional CRE/polo -- ver contracts/match-engine.openapi.yaml."""
+    todas = detecta_inconsistencias(_estado["familias"])
+    if unidade is None:
+        return todas
+    return [
+        c for c in todas
+        if any(o["unidade"] == unidade for o in c["opcoes"])
+    ]

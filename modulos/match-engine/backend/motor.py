@@ -26,6 +26,7 @@ subestimava a capacidade real em ~530 vagas).
 """
 import csv, hashlib, os
 from collections import defaultdict
+from datetime import datetime
 
 DADOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados")
 RESERVE_FRACTION = 0.35  # fracao de vagas reservadas ao territorio (bairro da unidade)
@@ -195,6 +196,69 @@ def soma_capacidade(capacidade, ociosas):
     for estrato, oc in ociosas.items():
         total[estrato] = total.get(estrato, 0) + oc
     return total
+
+
+# Situacao "resolvida" para fins de P4: uma opcao ofertada (Selecionado/
+# Selecionado da lista) enquanto outra segue em Lista de espera -- a mesma
+# definicao usada na tabela de PROBLEMAS.md P4. Nao inclui "Confirmado" de
+# proposito: cadastro Confirmado numa opcao e Lista de espera noutra e uma
+# situacao normal de quem confirmou e nao cancelou as demais, nao o
+# fenomeno que P4 descreve.
+SITUACOES_RESOLVIDAS = {"Selecionado", "Selecionado da lista"}
+
+
+def carrega_vagas_selecionadas():
+    """Cadastros com uma opcao em 'Selecionado'/'Selecionado da lista' no
+    processo real de 2025, com a data de CRIACAO DO CADASTRO (nao a data em
+    que a opcao virou Selecionado -- a base nao registra isso, ver
+    PROBLEMAS.md P6). dados/vagas_selecionadas.csv foi gerado a partir da
+    Query A bruta por dados/gerar_vagas_selecionadas.sql -- nao depende da
+    base bruta em tempo de execucao, so para regenerar do zero.
+    """
+    vagas = []
+    with open(f"{DADOS}/vagas_selecionadas.csv", encoding="utf8") as f:
+        for row in csv.DictReader(f):
+            vagas.append({
+                "inscricao_id": row["aluno_anon"],
+                "opcao": int(row["opcao"]),
+                "unidade": row["unidade"],
+                "situacao": row["situacao"],
+                "data_criacao": _parse_data_criacao(row["data_criacao"]),
+            })
+    return vagas
+
+
+def _parse_data_criacao(valor: str) -> datetime:
+    for formato in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S"):
+        try:
+            return datetime.strptime(valor.strip(), formato)
+        except ValueError:
+            continue
+    raise ValueError(f"formato de data_criacao nao reconhecido: {valor!r}")
+
+
+def detecta_inconsistencias(familias):
+    """Cadastros onde uma opcao esta resolvida (Confirmado/Selecionado/
+    Selecionado da lista) e outra opcao do MESMO cadastro segue em Lista de
+    espera -- confuso para quem acompanha linha a linha, porque o cadastro
+    parece "ainda pendente" quando na verdade uma das opcoes ja tem
+    desfecho. So enxerga isso quem compara as opcoes de um mesmo cadastro
+    entre si, nao quem le uma linha por vez (PROBLEMAS.md P4).
+    """
+    inconsistencias = []
+    for a, f in familias.items():
+        situacoes = f["situacao_real"]  # estrato -> situacao (ja deduplicado por load())
+        tem_resolvida = any(s in SITUACOES_RESOLVIDAS for s in situacoes.values())
+        tem_espera = any(s == "Lista de espera" for s in situacoes.values())
+        if tem_resolvida and tem_espera:
+            inconsistencias.append({
+                "inscricao_id": a,
+                "opcoes": [
+                    {"unidade": estrato[0], "situacao": situ}
+                    for estrato, situ in situacoes.items()
+                ],
+            })
+    return inconsistencias
 
 
 if __name__ == "__main__":

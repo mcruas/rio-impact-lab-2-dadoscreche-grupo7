@@ -153,7 +153,7 @@ disponível (CPF do responsável). Precisa ser confirmado com a equipe da SME.
 
 ## P4 — Estados transitórios não sinalizados
 
-**Status:** aberto · **Eixos:** 3 (convocação)
+**Status:** sinalização implementada · **Eixos:** 3 (convocação)
 **Fonte:** apresentação da SME, gap "Estados transitórios não sinalizados"; confirmado nos dados
 
 ### O problema
@@ -183,6 +183,14 @@ humana revendo linha a linha.
 Consequência direta do log de eventos do Eixo 3 (ver `ARQUITETURA.md`): uma
 regra simples sobre o log ("mesmo cadastro com uma opção Selecionado e outra
 em Lista de espera") vira alerta automático, não auditoria manual.
+
+**Implementado:** `GET /inconsistencias` no Motor de Match (ver
+`modulos/match-engine/README.md`) — exatamente essa regra, rodando sobre
+`situacao_real` (já carregado em memória). Dá 62 cadastros para 2025, perto
+mas não igual aos 51 da tabela acima (metodologia um pouco diferente —
+`match_opcoes.csv` deduplicado vs. contagem linha a linha sobre a Query A
+bruta). Ainda não é o log de eventos completo (isso é P6); é a sinalização
+que a régua simples acima descreve, aplicada ao snapshot atual.
 
 ---
 
@@ -279,3 +287,18 @@ também um dos cinco gaps que a própria SME nomeou, não uma invenção nossa.
 Tabela de eventos: `(prm_id, plm_id, ipl_id, opcao, status_anterior,
 status_novo, timestamp, canal, resultado)`. Populada pela mesma pipeline que
 hoje só grava o estado final.
+
+**Parcialmente implementado, em duas frentes diferentes:**
+
+- **Daqui pra frente:** `modulos/acompanhamento/backend/ciclo_convocacao.py`
+  já registra `criado_em`/`atualizado_em` por transição de estado da
+  convocação — é exatamente o padrão de tabela de eventos proposto acima,
+  só que ainda restrito ao ciclo de convocação (Eixo 3), não ao processo de
+  inscrição inteiro.
+- **Retroativo, sobre o processo real de 2025:** como o problema descreve, a
+  base histórica não tem timestamp de mudança de status — só `data_criacao`
+  do cadastro inteiro. `GET /vagas-selecionadas` no Motor de Match expõe essa
+  aproximação (idade do cadastro, não da situação, ver o schema
+  `vaga_selecionada.schema.json`) para dar alguma visibilidade sem fingir
+  que o dado exato existe. O log de eventos completo sobre o histórico
+  continua em aberto — não dá para reconstruir o que nunca foi registrado.

@@ -27,6 +27,42 @@ contrato REST abaixo.
 - `GET /criterios` — lista os critérios de match vigentes e seus pesos.
 - `GET /status/{cpf}` — consultado pelo módulo `acompanhamento/` (Tela 3) para mostrar
   a posição na fila.
+- `POST /nao-confirmados` — chamado pelo Eixo 3 (`acompanhamento/`) em lote, para
+  liberar vagas de quem nunca confirma. Ver `../../INTEGRACAO_RMI_WHATSAPP.md`.
+- `GET /vagas-selecionadas` e `GET /inconsistencias` — painel operacional para
+  CRE/polo (ver seção abaixo).
+
+## Painel operacional para CRE/polo (P4 e P6 de `PROBLEMAS.md`)
+
+Hoje a equipe de CRE/polo acompanha milhares de inscrições por processo sem um
+painel que sinalize isso — só aparece conferindo linha a linha. Dois endpoints
+resolvem os dois sinais mais concretos que o diagnóstico (`../../PROBLEMAS.md`)
+já tinha encontrado manualmente:
+
+- **`GET /vagas-selecionadas?unidade=`** — cadastros com uma opção em
+  `Selecionado`/`Selecionado da lista` no processo real de 2025: vaga oferecida,
+  ainda sem confirmação. `dias_desde_criacao_cadastro` é uma **aproximação**
+  (idade do cadastro inteiro, não da situação específica) — a base não registra
+  quando uma opção mudou de status (P6). Dado de
+  `dados/vagas_selecionadas.csv`, gerado uma vez a partir da Query A bruta por
+  `dados/gerar_vagas_selecionadas.sql` (só 159 linhas — reproduzível, ao
+  contrário de `match_opcoes.csv`, que não tem pipeline de geração documentado
+  em lugar nenhum do repositório).
+- **`GET /inconsistencias?unidade=`** — cadastros em que uma opção está
+  ofertada (`Selecionado`/`Selecionado da lista`, nunca `Confirmado` — ver
+  `motor.SITUACOES_RESOLVIDAS`) enquanto outra opção do MESMO cadastro segue
+  em `Lista de espera` (P4) — só aparece comparando as opções de um cadastro
+  entre si. Reaproveita `situacao_real` (já carregado em memória por
+  `motor.load()`, usado também pelo backtest em `relatorio()`), não precisa
+  de dado novo. Dá **62** cadastros para 2025 — perto, mas não igual, aos
+  **51** da tabela de `PROBLEMAS.md` P4: a diferença provável é que
+  `situacao_real` vem de `match_opcoes.csv` (já deduplicado por
+  `PRIORIDADE_SITUACAO`, com contagens ligeiramente diferentes da Query A
+  bruta — ver `dados/gerar_vagas_selecionadas.sql`), não de uma contagem
+  linha a linha sobre o dado bruto. Mesmo fenômeno, metodologia um pouco
+  diferente — não reconciliado byte a byte.
+
+Ambos são consultas — não alteram a alocação nem o estado de convocação.
 
 ## Cuidado ao desenhar os critérios (lições da EDA do próprio desafio)
 
