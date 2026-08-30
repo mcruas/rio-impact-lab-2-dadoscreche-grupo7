@@ -99,6 +99,32 @@ paths:
               schema:
                 $ref: "./schemas/convocacao.schema.json"
         "409":
-          description: Convocação já encerrada (Confirmada ou EsgotadoEscalarManual)
+          description: Convocação já encerrada (Confirmada, EsgotadoEscalarManual ou Liberada)
         "404":
           description: Nenhuma convocação em curso para esse CPF
+  /convocacoes/verificar-prazos:
+    post:
+      summary: >
+        Roda a checagem de prazos: quem estourou o prazo de resposta sem
+        nenhum evento chegar avança a cascata como se tivesse dito "não sou
+        eu"; quem estourou o prazo do fluxo manual do diretor é marcado como
+        Liberada e o Motor de Match recalcula a alocação em lote (POST
+        /nao-confirmados). Em produção roda numa tarefa periódica (cron/
+        Prefect), não sob demanda -- aqui existe como endpoint para permitir
+        demonstrar o ciclo completo sem esperar os prazos reais passarem.
+      responses:
+        "200":
+          description: Prazos verificados
+          content:
+            application/json:
+              schema:
+                type: object
+                required: ["timeouts_avancados", "liberadas"]
+                properties:
+                  timeouts_avancados:
+                    type: integer
+                    description: Quantas convocações avançaram a cascata por silêncio.
+                  liberadas:
+                    type: array
+                    items:
+                      $ref: "./schemas/convocacao.schema.json"

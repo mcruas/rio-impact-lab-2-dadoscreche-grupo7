@@ -47,3 +47,34 @@ paths:
                 $ref: "./schemas/status_fila.schema.json"
         "404":
           description: Nenhum status encontrado para esse CPF
+  /nao-confirmados:
+    post:
+      summary: >
+        Marca um lote de inscrições como não confirmadas (a família não
+        respondeu à convocação dentro do prazo, nem pelo telefone nem pelo
+        fluxo manual do diretor) e recalcula a alocação excluindo-as. Chamado
+        pelo Eixo 3 (acompanhamento) numa rotina periódica, em lote -- nunca
+        uma chamada por criança, para não recalcular a alocação inteira a
+        cada liberação isolada. Quem é marcado passa a aparecer como
+        status=Cancelado em GET /status/{cpf}; a vaga liberada é redistribuída
+        pela mesma ordem de mérito de sempre.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/lote_nao_confirmados.schema.json"
+      responses:
+        "200":
+          description: Alocação recalculada
+          content:
+            application/json:
+              schema:
+                type: object
+                required: ["excluidos_total"]
+                properties:
+                  excluidos_total:
+                    type: integer
+                    description: Total acumulado de inscrições excluídas da alocação até agora.
+        "404":
+          description: Algum CPF do lote não corresponde a nenhuma inscrição conhecida

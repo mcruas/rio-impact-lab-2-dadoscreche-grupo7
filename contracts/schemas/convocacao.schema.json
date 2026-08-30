@@ -9,8 +9,8 @@
     "inscricao_id": { "type": "string" },
     "estado": {
       "type": "string",
-      "enum": ["AguardandoResposta", "Confirmada", "EsgotadoEscalarManual"],
-      "description": "AguardandoResposta: HSM disparado, esperando o responsável responder. Confirmada: respondeu 'confirmo' e os dígitos de CPF bateram. EsgotadoEscalarManual: cascata de telefones do RMI esgotada sem confirmação -- volta para o fluxo manual do diretor."
+      "enum": ["AguardandoResposta", "Confirmada", "EsgotadoEscalarManual", "Liberada"],
+      "description": "AguardandoResposta: HSM disparado, esperando o responsável responder (por evento explícito ou até vencer o prazo por tentativa). Confirmada: respondeu 'confirmo' e os dígitos de CPF bateram. EsgotadoEscalarManual: cascata de telefones do RMI esgotada sem confirmação -- volta para o fluxo manual do diretor. Liberada: o prazo do fluxo manual do diretor também venceu; a inscrição foi marcada como não confirmada no Motor de Match (POST /nao-confirmados) e a vaga foi redistribuída."
     },
     "indice_telefone": {
       "type": "integer",

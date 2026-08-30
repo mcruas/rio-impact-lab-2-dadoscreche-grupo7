@@ -83,13 +83,42 @@ nosso webhook (`POST /convocacoes/{cpf}/eventos`) com uma intenção estruturada
   regressão: a automação cobre o caso comum, o caso raro cai de volta no
   processo atual.
 
+**Quem nunca responde, não só quem recusa.** As transições acima só cobrem
+recusa explícita. Uma família que simplesmente ignora tudo — nunca diz "não
+sou eu", nunca confirma — não pode travar a vaga indefinidamente: é
+justamente para não prender vagas em famílias que nunca vão aparecer que a
+régua de reserva e o mecanismo existem. Duas rotinas fecham esse ciclo:
+
+- **Timeout por tentativa** (`PRAZO_TENTATIVA`, 48h nesta simulação): sem
+  nenhum evento chegar dentro do prazo, o silêncio tem a mesma consequência
+  de um "não sou eu" explícito — avança para o próximo telefone da cascata.
+- **Liberação da vaga** (`PRAZO_DIRETOR`, 5 dias nesta simulação): se o prazo
+  do próprio fluxo manual do diretor também vence sem confirmação, a
+  inscrição é marcada como não confirmada e o Motor de Match recalcula a
+  alocação **em lote** (`POST /nao-confirmados`, nunca uma chamada por
+  criança — recalcular por lote é o que evita rodar a aceitação diferida
+  inteira a cada liberação isolada). A vaga passa para quem tinha a próxima
+  prioridade naquele estrato, pela mesma ordem de mérito de sempre — não é
+  uma segunda régua, é o mesmo `roda_matching()` de novo com um candidato a
+  menos. `GET /status/{cpf}` passa a responder `status=Cancelado` para quem
+  foi liberado.
+
+Em produção estas duas rotinas rodariam numa tarefa periódica (cron/
+Prefect); aqui são expostas como `POST /convocacoes/verificar-prazos` para
+poder demonstrar o ciclo inteiro sem esperar os prazos reais passarem.
+
 **Contrato e estados**: `contracts/acompanhamento.openapi.yaml`
 (`POST /convocacoes/{cpf}`, `GET /convocacoes/{cpf}`,
-`POST /convocacoes/{cpf}/eventos`) e `contracts/schemas/convocacao.schema.json` /
-`evento_convocacao.schema.json`. Implementação de referência em
-`modulos/acompanhamento/backend/main.py`, testada de ponta a ponta contra o
-Motor de Match real (cascata avançando em "não sou eu", confirmação com
-dígito certo/errado, escalonamento ao esgotar).
+`POST /convocacoes/{cpf}/eventos`, `POST /convocacoes/verificar-prazos`),
+`contracts/match-engine.openapi.yaml` (`POST /nao-confirmados`), e os schemas
+`convocacao.schema.json` / `evento_convocacao.schema.json` /
+`lote_nao_confirmados.schema.json`. Implementação de referência em
+`modulos/acompanhamento/backend/ciclo_convocacao.py` (a máquina de estados —
+`main.py` só traduz HTTP) e `modulos/match-engine/backend/main.py` (exclusão
++ recálculo), testada de ponta a ponta contra o Motor de Match real: cascata
+avançando em "não sou eu" e em timeout, confirmação com dígito certo/errado,
+escalonamento ao esgotar, e liberação chamando o Motor de Match de verdade
+(recálculo de ~63 mil famílias em ~1,1s) até `status=Cancelado`.
 
 **O que é real e o que é simulado nesta implementação de hackathon:** a
 máquina de estados e o contrato são os que valeriam em produção. O que é

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lote_nao_confirmados.schema.json",
+  "title": "LoteNaoConfirmados",
+  "description": "Lote de inscrições que o Eixo 3 (acompanhamento) marca como não confirmadas numa rotina periódica -- não uma chamada por criança, para não recalcular a alocação inteira a cada liberação isolada. Ver ../../INTEGRACAO_RMI_WHATSAPP.md.",
+  "type": "object",
+  "required": ["cpfs"],
+  "properties": {
+    "cpfs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
