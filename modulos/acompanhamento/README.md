@@ -1,14 +1,24 @@
-# Acompanhamento (Tela 3)
+# Acompanhamento (Tela 3 + Eixo 3)
 
-> Módulo esqueleto — implementação a fazer. Ver [`../../ARQUITETURA.md`](../../ARQUITETURA.md)
-> para a visão geral do sistema e [`../recomendacao-escolas/`](../recomendacao-escolas/)
-> como referência de estrutura/qualidade.
+> Implementado. Ver [`../../ARQUITETURA.md`](../../ARQUITETURA.md) para a visão
+> geral do sistema e [`../../INTEGRACAO_RMI_WHATSAPP.md`](../../INTEGRACAO_RMI_WHATSAPP.md)
+> para o fluxo completo de convocação (por que a cascata de telefones existe,
+> por que a confirmação pede dígitos de CPF, o que é real vs. simulado neste
+> hackathon).
 
 ## Responsabilidade
 
-Tela onde o responsável busca, por CPF (da criança ou dele mesmo), o lugar na fila da
-inscrição. Camada fina — não possui dados próprios, só repassa o status do
-`match-engine/`. Contrato: [`../../contracts/acompanhamento.openapi.yaml`](../../contracts/acompanhamento.openapi.yaml).
+Duas coisas:
+
+1. **Tela 3** — o responsável busca, por CPF (da criança ou dele mesmo), o
+   lugar na fila da inscrição. Camada fina — não possui dados próprios, só
+   repassa o status do `match-engine/`.
+2. **Eixo 3 (convocação)** — dono do contato automatizado via WhatsApp/RMI que
+   pede ao responsável para confirmar uma vaga que o Motor de Match alocou.
+   Máquina de estados própria (`AguardandoResposta` → `Confirmada` ou
+   `EsgotadoEscalarManual`), guardada em memória.
+
+Contrato: [`../../contracts/acompanhamento.openapi.yaml`](../../contracts/acompanhamento.openapi.yaml).
 
 ## O que este módulo consome
 
@@ -19,15 +29,36 @@ inscrição. Camada fina — não possui dados próprios, só repassa o status d
 ## O que este módulo expõe
 
 - `GET /acompanhamento/{cpf}` — repassa o status consultado no Motor de Match.
+- `POST /convocacoes/{cpf}` — dispara (ou reconsulta) a convocação de uma
+  criança com vaga `Confirmada`; `409` se ainda não tem vaga.
+- `GET /convocacoes/{cpf}` — estado atual da convocação.
+- `POST /convocacoes/{cpf}/eventos` — webhook para o LLM do WhatsApp da
+  Prefeitura reportar a intenção estruturada extraída da resposta do
+  responsável (`confirmar` com dígitos de CPF, ou `nao_sou_eu`).
+
+## Limitações conhecidas (simulado neste hackathon)
+
+A base anonimizada não tem CPF nem telefone reais, então dois pedaços são
+mock — o resto (contrato, máquina de estados, verificação) é o que valeria em
+produção. Detalhes e porquês em
+[`../../INTEGRACAO_RMI_WHATSAPP.md`](../../INTEGRACAO_RMI_WHATSAPP.md):
+
+- Cascata de telefones do RMI: tamanho fixo (3), não a lista real por pessoa.
+- Autenticação por "últimos 4 dígitos do CPF": gerada por hash do código
+  anonimizado, não dígitos de CPF de verdade.
 
 ## Como começar
 
 ```bash
 cd modulos/acompanhamento/backend
-python -m venv .venv && source .venv/Scripts/activate
-pip install fastapi "uvicorn[standard]" pydantic httpx
-uvicorn main:app --reload
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+MATCH_ENGINE_URL=http://127.0.0.1:8001 uvicorn main:app --reload --port 8002
 ```
+
+Requer o Motor de Match rodando (ver
+[`../match-engine/README.md`](../match-engine/README.md)) — este módulo só o
+consulta por HTTP, nunca acessa `motor.py` diretamente.
 
 Frontend (React + TypeScript, ainda não escafoldado):
 
