@@ -1,71 +1,76 @@
-# Deploy — Match Creche (ao vivo)
+# Match Creche (ao vivo)
 
 - **Site**: https://inscricao-frontend-production.up.railway.app
 - **Backend**: https://inscricao-backend-production-3e24.up.railway.app
 
-Tudo hospedado no Railway (projeto `grupo7-inscricao`): 1 banco Postgres +
-2 serviços (backend e frontend). Nada em Vercel.
+## O problema que a rede enfrenta hoje
 
-## O que o sistema faz, e o que ele já prova
+A rede municipal recebe milhares de inscrições por processo, sem um
+mecanismo de alocação à prova de estratégia, sem visibilidade de quanto
+tempo uma vaga oferecida fica esperando confirmação, e com a confirmação
+inteira dependendo de ligação manual do diretor — SMS, WhatsApp, e-mail, um
+a um. O resultado: vagas que existem ficam subutilizadas, a régua de
+prioridade legal (CadÚnico, Bolsa Família, educação especial etc.) não é
+aplicada de forma consistente, e famílias vulneráveis — justamente as que a
+régua deveria proteger — são as que mais perdem vaga por não conseguir
+comparecer a tempo num processo presencial.
 
-O Match Creche ataca o processo de inscrição em creches da rede pública do
-Rio em quatro frentes que trabalham juntas: a família escolhe melhor, o
-algoritmo aloca melhor, a confirmação de vaga acontece sem depender de
-ligação manual, e a família responde sem sair do WhatsApp.
+O Match Creche é o sistema de ponta a ponta que resolve isso: a família
+escolhe melhor informada, o algoritmo aloca de forma justa e eficiente, a
+confirmação de vaga acontece sozinha, e ninguém precisa sair do WhatsApp
+pra confirmar.
 
-**Recomendação de escola.** Em vez de aproximar a distância da família até
-a creche pelo centróide do bairro, o sistema geocodifica o CEP de verdade.
-O erro de distância caiu de 0,97km para 0,65km — a família vê a ordem certa
-de opções mais próximas de casa, não uma aproximação grosseira.
+## As vitórias para a rede
 
-**Motor de match, com Gale-Shapley (aceitação diferida).** É o mesmo
-algoritmo usado hoje na matrícula pública de Nova York, Boston e no processo
-nacional de admissão do Chile — rendeu o Nobel de Economia de 2012 aos seus
-criadores. A ideia: cada criança propõe pra sua creche preferida, cada
-creche só aceita as melhores propostas até a vaga acabar, e pode trocar uma
-criança já aceita por outra melhor que apareça depois. Repete até não sobrar
-ninguém propondo. Duas garantias fortes saem disso: ninguém ganha vantagem
-escondendo opções (o sistema antigo recompensava listar menos creches — o
-oposto do que se pede à família) e nenhuma vaga fica presa com uma criança
-pior colocada enquanto uma criança melhor colocada ainda a quer. Rodando
-sobre as 62.891 crianças reais de 2025: **+779 crianças atendidas a mais**
-(conserto de um bug que subcontava 531 vagas existentes, aproveitamento de
-vaga ociosa e a régua de prioridade legal valendo de verdade); famílias que
-declaram CadÚnico saem de **78,0% para 93,1%** de chance de atendimento; e
-quem já tem vaga confirmada não perde nada — a régua nova só vale pra fila
-de espera e vagas futuras, nunca aplicada retroativamente.
+**Mais crianças atendidas com a mesma capacidade.** Rodando sobre as 62.891
+crianças reais de 2025, o motor corrigido atende **+779 crianças a mais**
+sem abrir uma vaga nova — só corrigindo um bug que subcontava 531 vagas já
+existentes e aproveitando vaga ociosa que o mecanismo antigo desperdiçava.
+Ganho de eficiência puro, sem custo de expansão.
 
-**Convocação automática via RMI + WhatsApp.** Hoje a confirmação de vaga é
-manual: o diretor liga, manda SMS, manda WhatsApp, um por um. O sistema
-convoca sozinho pelo telefone mais confiável (via RMI) e, se a resposta for
-"não sou eu", avança pro próximo telefone da família sem intervenção
-humana. Ninguém fica esperando pra sempre: sem resposta em 48h já conta como
-recusa e avança a cascata; passado 5 dias sem confirmação nenhuma, a vaga é
-liberada de verdade e o motor de match roda de novo — em lote, sobre
-~63 mil famílias, em ~1,1 segundo — passando a vaga pra próxima criança da
-fila.
+**A régua de prioridade passa a valer de verdade.** Hoje ela é praticamente
+ignorada na prática porque o mecanismo de alocação não é matching de
+verdade. Com o motor corrigido, famílias que declaram CadÚnico saem de
+**78,0% para 93,1%** de chance de atendimento — a rede passa a proteger
+quem a lei manda proteger, e não só quem chegou primeiro no balcão.
 
-**IA no contato.** A resposta da família é interpretada pelo LLM que já
-atende o WhatsApp da Prefeitura — não foi criado canal novo. Pra confirmar
-de verdade (evitando número reciclado ou compartilhado), o sistema pede só
-os últimos dígitos do CPF da criança, direto na conversa. A família nunca
-precisa voltar ao site.
+**Ninguém que já tem vaga perde ela.** A régua nova só vale pra fila de
+espera e vagas futuras, nunca aplicada pra trás — a rede pode adotar o
+mecanismo novo sem reabrir nenhuma matrícula já confirmada.
 
-## O que foi feito nesta rodada de deploy
+**Vaga parada vira vaga ocupada, em segundos, não em semanas.** Hoje uma
+vaga "selecionada" aguardando confirmação pode ficar presa indefinidamente
+enquanto o diretor tenta contato manual. O sistema convoca sozinho pelo
+telefone mais confiável (via RMI), avança pro próximo telefone se a
+resposta for "não sou eu", e sem resposta em 48h já avança a fila. Passado
+5 dias sem confirmação nenhuma, a vaga é liberada de verdade e o motor
+recalcula a alocação inteira — **~63 mil famílias em ~1,1 segundo** — sem
+esperar o próximo ciclo administrativo.
 
-- **Persistência real do módulo Inscrição.** `POST /inscricoes` e
-  `GET /inscricoes/{cpf}` saíram de stub e passaram a gravar/ler de um
-  Postgres de verdade.
-- **Backend unificado.** Os 4 backends de módulo (inscrição, recomendação
-  de escola, motor de match, acompanhamento) continuam sendo 4 aplicações
-  independentes por dentro — só passaram a rodar num único serviço Railway,
-  cada uma no seu prefixo de endereço, sem misturar código nem persistência
-  entre elas e sem quebrar a fronteira de contrato (continuam se chamando
-  só por HTTP). Isso trocou 4 deploys por 1, sem trocar a arquitetura.
-- **Frontend ligado de verdade.** O formulário de inscrição agora resolve o
-  CEP residencial e envia a inscrição de verdade antes de mostrar a tela de
-  sucesso — antes a tela final era só estática, sem enviar nada pro
-  backend.
-- **Frontend no ar.** Antes só rodava na máquina local; agora está
-  publicado junto com o backend.
-- **Rename**: "Matrícula Carioca" virou "Match Creche".
+**A confirmação deixa de ser uma barreira presencial.** A família responde
+pelo próprio WhatsApp, interpretado pelo LLM que a Prefeitura já usa —
+nenhum canal novo, nenhum aplicativo novo, nenhuma exigência de comparecer
+num horário comercial. Isso importa porque essa exigência hoje filtra
+primeiro quem tem menos flexibilidade de horário e menos acesso a
+transporte — exatamente as famílias que a régua de prioridade existe para
+proteger.
+
+**A família escolhe informada, não só pela creche que já conhece.** A
+recomendação geocodifica o CEP de verdade (erro de distância caindo de
+0,97km para 0,65km) e mostra opções reais mais próximas de casa. Isso só
+se traduz em mais chance de vaga porque o motor corrigido garante que
+listar mais opções nunca piora o resultado da família — no mecanismo
+antigo, listar menos podia dar resultado melhor, o oposto do que se pedia
+à família.
+
+## Como é feito o matching, em uma frase
+
+Aceitação diferida (Gale-Shapley) — o mesmo mecanismo usado hoje na
+matrícula pública de Nova York, Boston, e no processo nacional de admissão
+do Chile, e que rendeu o Nobel de Economia de 2012 aos seus criadores.
+Cada criança propõe pra sua creche preferida; cada creche só segura as
+melhores propostas até a vaga acabar, podendo trocar uma criança aceita
+por outra melhor que apareça depois; repete até não sobrar ninguém
+propondo. Resultado: nenhuma vaga fica presa com uma criança pior colocada
+enquanto uma criança melhor colocada ainda a quer, e ninguém ganha vantagem
+escondendo opções verdadeiras.
