@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evento_convocacao.schema.json",
+  "title": "EventoConvocacao",
+  "description": "Intenção estruturada que o LLM já exposto pelo WhatsApp da Prefeitura extrai da resposta do responsável e repassa para este módulo. Não é o texto da mensagem -- é a interpretação já feita na ponta.",
+  "type": "object",
+  "required": ["intent"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "enum": ["confirmar", "nao_sou_eu"],
+      "description": "confirmar: respondeu que aceita a vaga. nao_sou_eu: respondeu que o número não é dele -- a cascata avança para o próximo telefone do RMI."
+    },
+    "cpf_digitos": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}$",
+      "description": "Últimos 4 dígitos do CPF da criança, pedidos pelo LLM só quando intent=confirmar, para autenticar antes de fechar o ciclo sem forçar o responsável a voltar ao site. Dígito incorreto é tratado como nao_sou_eu (número reciclado/compartilhado)."
+    }
+  },
+  "additionalProperties": false
+}

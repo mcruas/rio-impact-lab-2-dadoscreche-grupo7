@@ -49,6 +49,56 @@ O item 3 é o que resolve o gap que a própria SME aponta: *"não há registro d
 quando uma opção mudou de status"*. Com `externalID` amarrando convocação →
 entrega → resposta, o SLA por criança passa a ser mensurável.
 
+## Fluxo de convocação: cascata de telefones + confirmação por chat
+
+Hoje esse contato é manual: SMS, WhatsApp e e-mail disparados um a um pelo
+diretor da unidade. O que este módulo (`modulos/acompanhamento/`, Eixo 3)
+automatiza é a **cascata de tentativa e a confirmação**, não o disparo em si
+(que continua governado pela IplanRio, ver restrições abaixo).
+
+**Gatilho.** Quando o Motor de Match aloca uma vaga (`status=Confirmado` em
+`GET /status/{cpf}`), o Eixo 3 dispara o HSM de convocação para o telefone de
+maior confiança da cascata do responsável (tabela `telefone`, ordenada por
+`telefone_qualidade`/`confianca_propriedade`, filtrada por
+`estrategia_envio IN ('ENVIAR','TESTAR')`).
+
+**Resposta processada pelo LLM que já existe no WhatsApp da Prefeitura.** Não
+construímos um novo canal de conversa — o mesmo LLM que já atende outras
+exposições via Wetalkie interpreta a resposta em linguagem natural e chama o
+nosso webhook (`POST /convocacoes/{cpf}/eventos`) com uma intenção estruturada:
+
+- **"Não sou eu"** → esse telefone não pertence à pessoa certa. A cascata
+  avança para o próximo telefone do RMI e reenvia o HSM. Isso substitui o que
+  hoje é o diretor testando manualmente SMS depois WhatsApp depois e-mail.
+- **"Confirmo"** → antes de fechar o ciclo, o LLM pede só os **últimos 4
+  dígitos do CPF da criança** — pouco atrito, sem forçar o responsável a
+  voltar ao site — e repassa junto com a intenção. Isso existe porque um
+  número de telefone pode ter sido **reciclado ou compartilhado**: "confirmo"
+  vindo da pessoa errada não pode fechar a vaga de outra família. Dígito
+  batendo com o CPF real (RMI, em produção) → `Confirmada`. Dígito errado é
+  tratado exatamente como "não sou eu": a cascata avança, não é encerrada como
+  erro.
+- **Cascata esgotada** (nenhum telefone confirmou) → `EsgotadoEscalarManual`,
+  volta para o fluxo humano do diretor. Isso é o piso de hoje, não uma
+  regressão: a automação cobre o caso comum, o caso raro cai de volta no
+  processo atual.
+
+**Contrato e estados**: `contracts/acompanhamento.openapi.yaml`
+(`POST /convocacoes/{cpf}`, `GET /convocacoes/{cpf}`,
+`POST /convocacoes/{cpf}/eventos`) e `contracts/schemas/convocacao.schema.json` /
+`evento_convocacao.schema.json`. Implementação de referência em
+`modulos/acompanhamento/backend/main.py`, testada de ponta a ponta contra o
+Motor de Match real (cascata avançando em "não sou eu", confirmação com
+dígito certo/errado, escalonamento ao esgotar).
+
+**O que é real e o que é simulado nesta implementação de hackathon:** a
+máquina de estados e o contrato são os que valeriam em produção. O que é
+mock, porque a base anonimizada não tem CPF nem telefone reais: o tamanho da
+cascata de telefones (fixo em 3, cadastrado no código) e os "últimos 4
+dígitos do CPF" (gerados por hash do código anonimizado, não dígitos de CPF
+de verdade). Plugar no RMI de verdade troca só essas duas peças, não a
+máquina de estados.
+
 ## Restrições reais, para não prometer demais
 
 - **HSM é template aprovado previamente.** Não dá para improvisar texto: a

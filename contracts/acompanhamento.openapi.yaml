@@ -4,7 +4,11 @@ info:
   version: "1.0.0"
   description: >
     Tela 3 — camada fina que consulta o Motor de Match (GET /status/{cpf})
-    e exibe a posição na fila para o responsável. Não possui dados próprios.
+    e exibe a posição na fila para o responsável. Também é dono do Eixo 3
+    (convocação): o contato automatizado via WhatsApp/RMI que pede ao
+    responsável para confirmar uma vaga alocada. Ver
+    ../../INTEGRACAO_RMI_WHATSAPP.md para o fluxo completo. Não possui dados
+    próprios de inscrição -- só o estado da própria convocação.
 paths:
   /health:
     get:
@@ -30,3 +34,71 @@ paths:
                 $ref: "./schemas/status_fila.schema.json"
         "404":
           description: Nenhuma inscrição encontrada para esse CPF
+  /convocacoes/{cpf}:
+    post:
+      summary: >
+        Dispara (ou reconsulta, se já em curso) a convocação de uma criança
+        cujo status no Motor de Match seja Confirmado. Dispara o HSM para o
+        primeiro telefone da cascata do RMI.
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Convocação criada ou já em curso
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/convocacao.schema.json"
+        "409":
+          description: A criança ainda não tem vaga Confirmada no Motor de Match
+    get:
+      summary: Consulta o estado atual da convocação de uma criança
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Estado da convocação
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/convocacao.schema.json"
+        "404":
+          description: Nenhuma convocação em curso para esse CPF
+  /convocacoes/{cpf}/eventos:
+    post:
+      summary: >
+        Webhook chamado pelo LLM do WhatsApp da Prefeitura com a intenção
+        estruturada extraída da resposta do responsável. Avança a máquina de
+        estados da convocação (confirma, ou passa para o próximo telefone da
+        cascata).
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/evento_convocacao.schema.json"
+      responses:
+        "200":
+          description: Convocação atualizada
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/convocacao.schema.json"
+        "409":
+          description: Convocação já encerrada (Confirmada ou EsgotadoEscalarManual)
+        "404":
+          description: Nenhuma convocação em curso para esse CPF

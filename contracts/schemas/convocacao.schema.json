@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "convocacao.schema.json",
+  "title": "Convocacao",
+  "description": "Estado do contato automatizado (Eixo 3) para o responsável confirmar uma vaga que o Motor de Match alocou. Ver ../../INTEGRACAO_RMI_WHATSAPP.md para o fluxo completo.",
+  "type": "object",
+  "required": ["inscricao_id", "estado", "indice_telefone", "tentativas"],
+  "properties": {
+    "inscricao_id": { "type": "string" },
+    "estado": {
+      "type": "string",
+      "enum": ["AguardandoResposta", "Confirmada", "EsgotadoEscalarManual"],
+      "description": "AguardandoResposta: HSM disparado, esperando o responsável responder. Confirmada: respondeu 'confirmo' e os dígitos de CPF bateram. EsgotadoEscalarManual: cascata de telefones do RMI esgotada sem confirmação -- volta para o fluxo manual do diretor."
+    },
+    "indice_telefone": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Posição na cascata de telefones do RMI (ordenada por confiança) para a qual o HSM mais recente foi disparado."
+    },
+    "tentativas": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Quantas vezes um telefone respondeu 'não sou eu' (ou falhou a autenticação por CPF) e a cascata avançou."
+    },
+    "atualizado_em": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
