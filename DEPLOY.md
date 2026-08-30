@@ -40,7 +40,9 @@ mecanismo novo sem reabrir nenhuma matrícula já confirmada.
 
 **Vaga parada vira vaga ocupada, em segundos, não em semanas.** Hoje uma
 vaga "selecionada" aguardando confirmação pode ficar presa indefinidamente
-enquanto o diretor tenta contato manual. O sistema convoca sozinho pelo
+enquanto o diretor tenta contato manual. O sistema dispara um HSM (mensagem
+de template do WhatsApp Business) cujo único propósito é confirmar o
+interesse da família naquela vaga específica — convoca sozinho pelo
 telefone mais confiável (via RMI), avança pro próximo telefone se a
 resposta for "não sou eu", e sem resposta em 48h já avança a fila. Passado
 5 dias sem confirmação nenhuma, a vaga é liberada de verdade e o motor
@@ -79,14 +81,14 @@ telefone mais confiável, não o mais recente cadastrado ou o primeiro da
 lista — e é isso que faz a cascata avançar rápido pro número certo em vez
 de insistir em contatos desatualizados.
 
-**O endereço deixa de ser aproximação.** O RMI traz o endereço principal da
-família já com latitude e longitude reais, não só bairro ou CEP. Toda a
-lógica de proximidade — recomendação de escola, reserva territorial no
-matching — passa a calcular sobre o ponto real da família, não sobre um
-centróide de bairro. (No ambiente de teste seguimos com a aproximação por
-CEP porque a base de dados usada aqui é anonimizada e só expõe essa
-granularidade; em produção, plugando no RMI de verdade, o mesmo código já
-fica mais preciso sem precisar ser reescrito.)
+**O endereço fica ainda mais preciso.** Já geocodificamos por CEP (é o que
+derrubou o erro de distância pra 0,65km — ver acima), mas CEP ainda é uma
+granularidade de quarteirão/rua, não o endereço exato. O RMI traz o
+endereço principal da família com latitude e longitude do ponto certo —
+plugando nele, a mesma lógica de proximidade (recomendação de escola,
+reserva territorial no matching) passa a calcular sobre a casa da família,
+não sobre o CEP dela, sem precisar reescrever nada — só troca a fonte da
+coordenada.
 
 ## Como é feito o matching, em uma frase
 
