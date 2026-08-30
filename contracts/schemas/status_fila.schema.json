@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "status_fila.schema.json",
+  "title": "StatusFila",
+  "description": "Entidade exposta pelo Motor de Match e consumida pela Tela 3 (Acompanhamento).",
+  "type": "object",
+  "required": ["inscricao_id", "status", "posicao_fila"],
+  "properties": {
+    "inscricao_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["EmFila", "Confirmado", "ListaDeEspera", "Cancelado"] },
+    "posicao_fila": { "type": ["integer", "null"] },
+    "escola_alocada": { "type": ["string", "null"], "description": "esc_codigo da escola alocada, se houver." },
+    "pontuacao": { "type": ["number", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Documentação
+  version: "1.0.0"
+  description: >
+    Dono da entidade Documento (Tela 2). Recebe e valida os documentos
+    exigidos para uma inscrição já existente. Consulta o módulo Inscrição
+    por contrato (GET /inscricoes/{cpf}) — nunca acessa o banco dele
+    diretamente.
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        "200":
+          description: OK
+  /documentos:
+    post:
+      summary: Registra o envio de um documento para uma inscrição
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/documento.schema.json"
+      responses:
+        "201":
+          description: Documento registrado
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/documento.schema.json"
+    get:
+      summary: Lista documentos de uma inscrição
+      parameters:
+        - name: inscricao_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de documentos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/documento.schema.json"

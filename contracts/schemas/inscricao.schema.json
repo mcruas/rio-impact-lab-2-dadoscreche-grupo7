@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "inscricao.schema.json",
+  "title": "Inscricao",
+  "description": "Entidade dona do módulo Inscrição (Tela 1). Única fonte de verdade sobre criança/responsável/endereços/escolas escolhidas para os demais módulos.",
+  "type": "object",
+  "required": ["id", "crianca", "responsavel", "enderecos_interesse", "turno", "escolas_escolhidas", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "crianca": { "$ref": "crianca.schema.json" },
+    "responsavel": { "$ref": "responsavel.schema.json" },
+    "enderecos_interesse": {
+      "type": "array",
+      "items": { "$ref": "endereco.schema.json" },
+      "minItems": 1,
+      "maxItems": 3
+    },
+    "turno": { "type": "string", "enum": ["Integral", "Parcial"] },
+    "escolas_escolhidas": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 5,
+      "description": "Lista de esc_codigo escolhidos (ver módulo Recomendação de Escola), em ordem de preferência."
+    },
+    "status": { "type": "string", "enum": ["Recebida", "EmAnalise", "Confirmada", "Cancelada"] },
+    "criado_em": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

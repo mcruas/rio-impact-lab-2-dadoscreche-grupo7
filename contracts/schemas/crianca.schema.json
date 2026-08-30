@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "crianca.schema.json",
+  "title": "Crianca",
+  "type": "object",
+  "required": ["nome", "cpf", "data_nascimento"],
+  "properties": {
+    "nome": { "type": "string", "minLength": 1 },
+    "cpf": {
+      "type": "string",
+      "pattern": "^[0-9]{11}$",
+      "description": "CPF da criança, somente dígitos, sem pontuação."
+    },
+    "data_nascimento": { "type": "string", "format": "date" }
+  },
+  "additionalProperties": false
+}

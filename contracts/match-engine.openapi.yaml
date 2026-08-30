@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Motor de Match
+  version: "1.0.0"
+  description: >
+    Calcula critérios de pontuação e posição na fila a partir dos dados de
+    Inscrição e Documentação (consumidos por contrato, GET /inscricoes/{cpf}
+    e GET /documentos?inscricao_id=). Expõe o status consultado pela Tela 3
+    (Acompanhamento). Ver eda/RESULTADOS_H6_H12.md antes de desenhar a régua
+    de pontuação: no dado real, contar ponto só quando resposta E confirmado
+    concordam (resposta='Sim' AND confirmado='Sim'), e nunca comparar
+    pontuação bruta entre regras/anos diferentes sem normalizar.
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        "200":
+          description: OK
+  /criterios:
+    get:
+      summary: Lista os critérios de match vigentes e seus pesos
+      responses:
+        "200":
+          description: Lista de critérios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/criterio_match.schema.json"
+  /status/{cpf}:
+    get:
+      summary: Consulta o status/posição na fila de uma criança
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Status atual
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/status_fila.schema.json"
+        "404":
+          description: Nenhum status encontrado para esse CPF

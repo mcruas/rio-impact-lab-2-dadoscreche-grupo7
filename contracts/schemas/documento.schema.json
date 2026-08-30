@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "documento.schema.json",
+  "title": "Documento",
+  "description": "Entidade dona do módulo Documentação (Tela 2).",
+  "type": "object",
+  "required": ["inscricao_id", "tipo", "status"],
+  "properties": {
+    "inscricao_id": { "type": "string", "description": "Referencia o id de uma Inscricao existente (contrato do módulo Inscrição)." },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "RG_RESPONSAVEL",
+        "CERTIDAO_NASCIMENTO",
+        "CPF_CRIANCA",
+        "RG_CRIANCA",
+        "CARTEIRA_VACINACAO",
+        "CARTAO_SUS",
+        "FOTO_3X4"
+      ]
+    },
+    "status": { "type": "string", "enum": ["Pendente", "Enviado", "Validado", "Rejeitado"] },
+    "arquivo_ref": { "type": ["string", "null"], "description": "Referência/URL do arquivo enviado." }
+  },
+  "additionalProperties": false
+}

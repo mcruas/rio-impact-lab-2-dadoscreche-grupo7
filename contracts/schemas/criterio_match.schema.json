@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "criterio_match.schema.json",
+  "title": "CriterioMatch",
+  "description": "Um critério de pontuação usado pelo Motor de Match para calcular a posição na fila.",
+  "type": "object",
+  "required": ["criterio_id", "descricao", "peso"],
+  "properties": {
+    "criterio_id": { "type": "string" },
+    "descricao": { "type": "string" },
+    "peso": { "type": "number", "description": "Peso do critério na pontuação total, se atendido." }
+  },
+  "additionalProperties": false
+}

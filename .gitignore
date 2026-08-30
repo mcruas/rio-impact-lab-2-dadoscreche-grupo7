@@ -1,5 +1,23 @@
-# Os dois CSVs maiores sao versionados compactados (.csv.gz), porque o GitHub
-# recusa qualquer arquivo acima de 100 MB. Se voce descompactar localmente,
-# as copias .csv ficam de fora do controle de versao.
-Bases IC_ ClassificadoseFila/01_QueryA_InscricoesPorAno.csv
-Bases IC_ ClassificadoseFila/02_QueryB_RespostasSocioEconomicas.csv
+# Bases de dados brutas do desafio (desafio/) — mantidas apenas localmente.
+# Ficam fora do controle de versao daqui em diante (o historico antigo do
+# git ainda contem as versoes anteriores). Documentacao (README, dicionario
+# de dados, docx/pdf de apresentacao/briefing) continua versionada normalmente.
+desafio/Bases IC_ ClassificadoseFila/*.csv
+desafio/Bases IC_ ClassificadoseFila/*.csv.gz
+desafio/OferecimentosEvagas/*.xlsx
+desafio/Microáreas_SME_revisãoIPP/*
+desafio/NascidosvivosRJ.xlsx
+
+# Arquivos de trava do Excel/Word (nunca versionar)
+~$*.xlsx
+~$*.docx
+
+# Artefatos de build/dependencias dos modulos da solucao (modulos/)
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+dist/
+.env

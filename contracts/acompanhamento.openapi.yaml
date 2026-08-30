@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: Acompanhamento
+  version: "1.0.0"
+  description: >
+    Tela 3 — camada fina que consulta o Motor de Match (GET /status/{cpf})
+    e exibe a posição na fila para o responsável. Não possui dados próprios.
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        "200":
+          description: OK
+  /acompanhamento/{cpf}:
+    get:
+      summary: Consulta a posição na fila de uma criança/responsável
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Status repassado do Motor de Match
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/status_fila.schema.json"
+        "404":
+          description: Nenhuma inscrição encontrada para esse CPF

@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Recomendação de Escola
+  version: "1.0.0"
+  description: >
+    Dado um bairro de interesse, retorna as escolas da região com uma tag de
+    priorização (heurística ilustrativa baseada em dados anonimizados do
+    desafio — não reflete a realidade). Consumido pela Tela 1 (Inscrição).
+    Não depende de nenhum outro módulo — só dos dados em desafio/.
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        "200":
+          description: OK
+  /escolas:
+    get:
+      summary: Lista escolas de um bairro, com tag de priorização
+      parameters:
+        - name: bairro
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Nome do bairro (com ou sem acento, qualquer capitalização).
+      responses:
+        "200":
+          description: Lista de escolas encontradas (pode ser vazia)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/escola.schema.json"
+        "422":
+          description: Parâmetro bairro ausente ou vazio

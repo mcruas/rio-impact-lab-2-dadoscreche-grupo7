@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "escola.schema.json",
+  "title": "Escola",
+  "description": "Escola candidata retornada pelo módulo Recomendação de Escola, com tag de priorização.",
+  "type": "object",
+  "required": ["esc_codigo", "nome", "bairro", "tag_priorizacao"],
+  "properties": {
+    "esc_codigo": { "type": "string", "description": "Código da unidade (DESIGNACAO / esc_codigo)." },
+    "nome": { "type": "string" },
+    "endereco": { "type": "string" },
+    "bairro": { "type": "string" },
+    "latitude": { "type": ["number", "null"] },
+    "longitude": { "type": ["number", "null"] },
+    "tipo": { "type": "string", "description": "Tipo de unidade (ex.: CDEI, CIEP, CRECHE, EDI)." },
+    "tag_priorizacao": {
+      "type": "string",
+      "enum": ["Alta", "Média", "Baixa", "Sem dado"],
+      "description": "Heurística ilustrativa baseada em dados anonimizados — não reflete a realidade."
+    },
+    "taxa_atendimento_historica": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Proporção histórica de inscrições nesta unidade que terminaram atendidas (Confirmado/Ativo/Selecionado)."
+    }
+  },
+  "additionalProperties": false
+}

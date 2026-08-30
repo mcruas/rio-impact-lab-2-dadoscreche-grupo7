@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Inscrição
+  version: "1.0.0"
+  description: >
+    Dono da entidade Inscrição (Tela 1). Persiste criança, responsável,
+    endereços de interesse e escolas escolhidas — as escolas candidatas em si
+    vêm do módulo Recomendação de Escola, consultado pelo frontend desta tela.
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        "200":
+          description: OK
+  /inscricoes:
+    post:
+      summary: Cria uma nova inscrição
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/inscricao.schema.json"
+      responses:
+        "201":
+          description: Inscrição criada
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/inscricao.schema.json"
+  /inscricoes/{cpf}:
+    get:
+      summary: Busca inscrição pelo CPF da criança ou do responsável
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Inscrição encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/inscricao.schema.json"
+        "404":
+          description: Nenhuma inscrição encontrada para esse CPF

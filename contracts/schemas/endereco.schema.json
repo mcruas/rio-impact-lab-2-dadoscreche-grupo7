@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "endereco.schema.json",
+  "title": "Endereco",
+  "type": "object",
+  "required": ["bairro"],
+  "properties": {
+    "logradouro": { "type": "string" },
+    "numero": { "type": "string" },
+    "complemento": { "type": "string" },
+    "bairro": { "type": "string", "minLength": 1 },
+    "cep": { "type": "string", "pattern": "^[0-9]{8}$" }
+  },
+  "additionalProperties": false
+}
