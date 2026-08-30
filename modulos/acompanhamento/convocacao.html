@@ -284,13 +284,13 @@
 
   <p class="fonte">
     Contrato em <code>contracts/acompanhamento.openapi.yaml</code> e
-    <code>contracts/schemas/convocacao.schema.json</code> /
-    <code>evento_convocacao.schema.json</code>. Implementação e o porquê de cada
-    decisão (por que pedir dígitos de CPF, por que a cascata tem esse tamanho,
-    o que é real vs. simulado neste hackathon) em <code>backend/main.py</code> e
-    <code>../../INTEGRACAO_RMI_WHATSAPP.md</code>. <strong>O laço externo — prazo por
-    tentativa e a liberação da vaga via re-execução do motor — é o desenho proposto
-    para quem nunca confirma; ainda não está implementado em <code>backend/main.py</code>.</strong>
+    <code>contracts/match-engine.openapi.yaml</code> (<code>POST /nao-confirmados</code>).
+    Máquina de estados em <code>backend/ciclo_convocacao.py</code> (o laço externo —
+    timeout por tentativa e liberação da vaga via <code>POST /convocacoes/verificar-prazos</code>
+    — já está implementado e testado contra o Motor de Match real, não é mais só o
+    desenho proposto). Porquê de cada decisão (dígitos de CPF, tamanho da cascata,
+    os dois prazos, o que é real vs. simulado neste hackathon) em
+    <code>../../INTEGRACAO_RMI_WHATSAPP.md</code>.
   </p>
 
 </main>
