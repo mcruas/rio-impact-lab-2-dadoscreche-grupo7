@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "inconsistencia_cadastro.schema.json",
+  "title": "InconsistenciaCadastro",
+  "description": "Um cadastro em que uma opção está ofertada (Selecionado/Selecionado da lista) enquanto outra opção do MESMO cadastro segue em Lista de espera -- só aparece comparando as opções de um cadastro entre si, não lendo uma linha por vez (ver PROBLEMAS.md P4). Não inclui o caso Confirmado + Lista de espera, que é normal (família confirmou e não cancelou as demais opções).",
+  "type": "object",
+  "required": ["inscricao_id", "opcoes"],
+  "properties": {
+    "inscricao_id": { "type": "string" },
+    "opcoes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["unidade", "situacao"],
+        "properties": {
+          "unidade": { "type": "string" },
+          "situacao": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

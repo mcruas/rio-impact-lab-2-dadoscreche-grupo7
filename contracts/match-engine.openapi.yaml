@@ -78,3 +78,51 @@ paths:
                     description: Total acumulado de inscrições excluídas da alocação até agora.
         "404":
           description: Algum CPF do lote não corresponde a nenhuma inscrição conhecida
+  /vagas-selecionadas:
+    get:
+      summary: >
+        Painel operacional para CRE/polo: cadastros com uma opção em
+        situação Selecionado/Selecionado da lista no processo real de 2025
+        -- vaga oferecida à família, ainda sem confirmação. Hoje isso só é
+        visível conferindo linha a linha; este endpoint sinaliza direto,
+        por unidade e por criança. `dias_desde_criacao_cadastro` é uma
+        APROXIMAÇÃO (idade do cadastro, não da situação -- ver o schema).
+      parameters:
+        - name: unidade
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtra só as vagas selecionadas nesta unidade.
+      responses:
+        "200":
+          description: Lista de vagas selecionadas aguardando confirmação
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/vaga_selecionada.schema.json"
+  /inconsistencias:
+    get:
+      summary: >
+        Painel operacional para CRE/polo: cadastros em que uma opção está
+        ofertada (Selecionado/Selecionado da lista) enquanto outra opção do
+        MESMO cadastro segue em Lista de espera -- só aparece comparando as
+        opções de um cadastro entre si, não lendo uma linha por vez.
+      parameters:
+        - name: unidade
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtra só cadastros em que pelo menos uma opção conflitante é nesta unidade.
+      responses:
+        "200":
+          description: Lista de cadastros com opções inconsistentes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./schemas/inconsistencia_cadastro.schema.json"

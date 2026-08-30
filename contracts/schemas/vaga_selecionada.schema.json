@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vaga_selecionada.schema.json",
+  "title": "VagaSelecionada",
+  "description": "Uma opção de um cadastro em situação 'Selecionado'/'Selecionado da lista' -- vaga oferecida à família, ainda sem confirmação. Painel operacional para CRE/polo: hoje isso só é visível conferindo linha a linha.",
+  "type": "object",
+  "required": ["inscricao_id", "opcao", "unidade", "situacao", "dias_desde_criacao_cadastro"],
+  "properties": {
+    "inscricao_id": { "type": "string" },
+    "opcao": { "type": "integer", "description": "Posição desta opção na lista de preferência do cadastro." },
+    "unidade": { "type": "string", "description": "esc_codigo da unidade que selecionou esta criança." },
+    "situacao": { "type": "string", "enum": ["Selecionado", "Selecionado da lista"] },
+    "dias_desde_criacao_cadastro": {
+      "type": "integer",
+      "description": "APROXIMAÇÃO: dias desde que o CADASTRO inteiro foi criado (data_criacao), não desde que esta opção específica virou Selecionado -- a base não registra quando uma opção mudou de status (ver PROBLEMAS.md P6). Superestima o tempo real de espera quando a seleção aconteceu bem depois da inscrição."
+    }
+  },
+  "additionalProperties": false
+}
